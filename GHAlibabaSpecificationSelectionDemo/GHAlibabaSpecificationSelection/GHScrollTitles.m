@@ -35,6 +35,7 @@
         UILabel *label = [[UILabel alloc]init];
         label.text = titles[index];
         label.tag = index;
+        label.userInteractionEnabled = YES;
         label.textAlignment = NSTextAlignmentCenter;
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelClick:)]];
         [self.labels addObject:label];
@@ -48,6 +49,9 @@
     int index = (int)tap.view.tag;
     CGFloat width = self.scrollView.frame.size.width / 3.01f;
     [self.scrollView setContentOffset:CGPointMake(index * width, 0) animated:YES];
+    if (self.didClickTitleBlock) {
+        self.didClickTitleBlock(index);
+    }
 }
 
 - (void)layoutSubviews {

@@ -17,6 +17,8 @@
 		040FA5D023544A62001D2877 /* GHPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5CF23544A61001D2877 /* GHPopView.m */; };
 		040FA5D323544CBA001D2877 /* GHAlibabaSpecificationSelection.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5D223544CBA001D2877 /* GHAlibabaSpecificationSelection.m */; };
 		040FA5D623545E97001D2877 /* GHScrollTitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5D523545E97001D2877 /* GHScrollTitles.m */; };
+		040FA5D92355766C001D2877 /* GHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5D82355766C001D2877 /* GHTableView.m */; };
+		040FA5DC235589B3001D2877 /* GHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5DB235589B3001D2877 /* GHScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,10 @@
 		040FA5D223544CBA001D2877 /* GHAlibabaSpecificationSelection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHAlibabaSpecificationSelection.m; sourceTree = "<group>"; };
 		040FA5D423545E97001D2877 /* GHScrollTitles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHScrollTitles.h; sourceTree = "<group>"; };
 		040FA5D523545E97001D2877 /* GHScrollTitles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHScrollTitles.m; sourceTree = "<group>"; };
+		040FA5D72355766C001D2877 /* GHTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTableView.h; sourceTree = "<group>"; };
+		040FA5D82355766C001D2877 /* GHTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHTableView.m; sourceTree = "<group>"; };
+		040FA5DA235589B3001D2877 /* GHScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHScrollView.h; sourceTree = "<group>"; };
+		040FA5DB235589B3001D2877 /* GHScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,10 @@
 				040FA5D223544CBA001D2877 /* GHAlibabaSpecificationSelection.m */,
 				040FA5D423545E97001D2877 /* GHScrollTitles.h */,
 				040FA5D523545E97001D2877 /* GHScrollTitles.m */,
+				040FA5D72355766C001D2877 /* GHTableView.h */,
+				040FA5D82355766C001D2877 /* GHTableView.m */,
+				040FA5DA235589B3001D2877 /* GHScrollView.h */,
+				040FA5DB235589B3001D2877 /* GHScrollView.m */,
 			);
 			path = GHAlibabaSpecificationSelection;
 			sourceTree = "<group>";
@@ -169,8 +179,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040FA5DC235589B3001D2877 /* GHScrollView.m in Sources */,
 				040FA5D023544A62001D2877 /* GHPopView.m in Sources */,
 				040FA5BC23544A4E001D2877 /* ViewController.m in Sources */,
+				040FA5D92355766C001D2877 /* GHTableView.m in Sources */,
 				040FA5D323544CBA001D2877 /* GHAlibabaSpecificationSelection.m in Sources */,
 				040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */,
 				040FA5D623545E97001D2877 /* GHScrollTitles.m in Sources */,
@@ -251,7 +263,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -303,7 +315,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -315,7 +327,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KZ9JB9ZT4S;
 				INFOPLIST_FILE = GHAlibabaSpecificationSelectionDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -323,7 +337,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = macBookPro.GHAlibabaSpecificationSelectionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -331,7 +346,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KZ9JB9ZT4S;
 				INFOPLIST_FILE = GHAlibabaSpecificationSelectionDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -339,7 +356,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = macBookPro.GHAlibabaSpecificationSelectionDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

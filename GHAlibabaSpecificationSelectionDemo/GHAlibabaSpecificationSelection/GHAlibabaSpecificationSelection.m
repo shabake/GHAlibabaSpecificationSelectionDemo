@@ -8,8 +8,25 @@
 
 #import "GHAlibabaSpecificationSelection.h"
 #import "GHScrollTitles.h"
+#import "GHTableView.h"
+#import "GHScrollView.h"
+#define weakself(self)          __weak __typeof(self) weakSelf = self
 
-@interface GHAlibabaSpecificationSelection()
+@interface GHSpecificationSelectionCell : UITableViewCell
+
+@end
+
+@implementation GHSpecificationSelectionCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    return self;
+}
+
+@end
+@interface GHAlibabaSpecificationSelection()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,GHScrollViewScrollViewDelegate>
 
 /**
  自定义view
@@ -52,15 +69,26 @@
 /**
  *
  */
-@property (nonatomic , strong) UIScrollView *scrollView;
+@property (nonatomic , strong) GHScrollView *scrollView;
 
 /**
  *
  */
 @property (nonatomic , strong) UIView *test;
 
+@property (nonatomic , strong) NSMutableArray *arrays;
+
+@property (nonatomic , assign) NSInteger currentPage;
+
+@property (nonatomic , assign) int lastContentOffset;
+
+@property (nonatomic , strong) UITableView *table;
+
+@property (nonatomic , strong) UILabel *t;
+
 @end
 @implementation GHAlibabaSpecificationSelection
+
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
@@ -74,42 +102,68 @@
         [self.backGround addSubview:self.shadow];
         [self.backGround addSubview:self.scrollTitles];
         [self.backGround addSubview:self.scrollView];
-
+        [self.scrollView setupViews];
+        self.currentPage = 0;
         self.contentViewHeight = 500;
-        self.scrollTitles.titles = @[@"1",@"2",@"3",@"1",@"2",@"3",@"1",@"2",@"3",@"1",@"2",@"3"].mutableCopy;
+        self.scrollTitles.titles = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9"].mutableCopy;
     }
     return self;
 }
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
 
-- (void)
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrays.count;
+}
 
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    GHSpecificationSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GHSpecificationSelectionCellID"];
+    cell.textLabel.text = self.arrays[indexPath.row];
+    return cell;
+}
+
+- (void)clickClose {
     [self dismiss];
 }
 
-- (UIScrollView *)scrollView {
-    if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc]init];
-         _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,500 -CGRectGetMaxY(self.scrollTitles.frame));
-                  _test.backgroundColor = [UIColor blueColor];
-        _scrollView.backgroundColor = [UIColor yellowColor];
-    }
-    return _scrollView;
+- (UIView *)setupView:(UIView *)view toPage:(NSUInteger)toPage {
+    
+    UILabel *table = [[UILabel alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,500 -CGRectGetMaxY(self.scrollTitles.frame))];
+    self.t =table;
+    return table;
 }
 
-- (UIView *)test {
-    if (_test == nil) {
-        _test = [[UIView alloc]init];
-        _test.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,500 -CGRectGetMaxY(self.scrollTitles.frame));
-            _test.backgroundColor = [UIColor blueColor];
+- (NSUInteger)numOfPages {
+    return 10;
+}
+
+- (GHScrollView *)scrollView {
+    if (_scrollView == nil) {
+        _scrollView = [[GHScrollView alloc]init];
+         _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,500 -CGRectGetMaxY(self.scrollTitles.frame));
+        _scrollView.pagingEnabled = YES;
+        _scrollView.delegate = self;
+        _scrollView.backgroundColor = [UIColor clearColor];
+        _scrollView.delegateForReuseableScrollView = self;
+        _scrollView.bounces = NO;
+        _scrollView.showsHorizontalScrollIndicator = YES;
+        _scrollView.getCurrentPageBlock = ^(NSInteger currentPage, UIView * _Nonnull view) {
+
+        };
     }
-    return _test;
+    return _scrollView;
 }
 
 - (GHScrollTitles *)scrollTitles {
     if (_scrollTitles == nil) {
         _scrollTitles = [[GHScrollTitles alloc]init];
         _scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, [UIScreen mainScreen].bounds.size.width, 50);
+        weakself(self);
+        _scrollTitles.didClickTitleBlock = ^(NSInteger tag) {
+            [weakSelf.scrollView setContentOffset:CGPointZero];
+            [weakSelf.scrollView setContentOffset:CGPointMake([UIScreen mainScreen].bounds.size.width * tag, 0) animated:YES];
+        };
     }
     return _scrollTitles;
 }
@@ -158,7 +212,6 @@
     if (_minimumOrder == nil) {
         _minimumOrder = [[UILabel alloc]init];
         _minimumOrder.frame = CGRectMake(CGRectGetMinX(self.price.frame), CGRectGetMaxY(self.price.frame) + 5, 100, 21);
-
         _minimumOrder.text = @"标题";
      }
     return _minimumOrder;
@@ -181,5 +234,13 @@
     }
     return _title;
 }
+
+- (NSMutableArray *)arrays {
+    if (_arrays == nil) {
+        _arrays = [NSMutableArray array];
+    }
+    return _arrays;
+}
+
 
 @end
