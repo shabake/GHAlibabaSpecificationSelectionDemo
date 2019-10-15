@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  GHScrollTitles.h
 //  GHAlibabaSpecificationSelectionDemo
 //
 //  Created by mac on 2019/10/14.
@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+NS_ASSUME_NONNULL_BEGIN
 
-@property (strong, nonatomic) UIWindow * window;
+@interface GHScrollTitles : UIView
+
+@property (nonatomic , strong) NSMutableArray *titles;
 
 @end
 
+NS_ASSUME_NONNULL_END

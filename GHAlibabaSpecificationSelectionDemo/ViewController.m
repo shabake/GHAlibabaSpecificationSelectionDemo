@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "GHAlibabaSpecificationSelection.h"
 
 @interface ViewController ()
 
@@ -14,9 +15,14 @@
 
 @implementation ViewController
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    GHAlibabaSpecificationSelection *alibabaSpecificationSelection = [[GHAlibabaSpecificationSelection alloc]init];
+     [alibabaSpecificationSelection show];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view. 
 }
 
 
