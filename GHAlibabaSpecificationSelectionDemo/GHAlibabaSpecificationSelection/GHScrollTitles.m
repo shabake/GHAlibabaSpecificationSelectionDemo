@@ -15,6 +15,7 @@
 @property (nonatomic , strong) UIView *bottomLine;
 @property (nonatomic , strong) UIScrollView *scrollView;
 @property (nonatomic , strong) NSMutableArray *labels;
+@property (nonatomic , assign) NSInteger currentIndex;
 
 @end
 @implementation GHScrollTitles
@@ -47,17 +48,46 @@
 - (void)labelClick:(UITapGestureRecognizer *)tap{
 
     NSInteger index = (int)tap.view.tag;
-    CGFloat width = self.scrollView.frame.size.width / 3.01f;
-    
-    CGFloat distance = width * index;
-    if (distance >= width * 2) {
-        [self.scrollView setContentOffset:CGPointMake(width, 0) animated:YES];
-    } else {
-        
-    }
+    self.currentIndex = index;
     if (self.didClickTitleBlock) {
         self.didClickTitleBlock(index);
     }
+}
+
+- (void)setMenusScrollView:(CGPoint)contentOffset{
+    CGFloat scale = contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+  
+    CGFloat btnWidth = self.scrollView.frame.size.width / 3 ;
+    if (scale < 0 || scale > self.scrollView.subviews.count - 1 - 1) return;
+    CGRect frame = self.bottomLine.frame;
+    frame.origin.x = scale * btnWidth;
+    self.bottomLine.frame = frame;
+    
+    self.currentIndex = scale;
+    for (UILabel *title in self.labels) {
+        title.textColor = [UIColor blackColor];
+    }
+    
+    UILabel *title = self.labels[self.currentIndex];
+    title.textColor = [UIColor redColor];
+}
+
+- (void)setMenusScrollViewEnd:(CGPoint)endOffset{
+    
+    NSInteger index = endOffset.x / [UIScreen mainScreen].bounds.size.width;
+    
+    UILabel *label = self.labels[index];
+    CGFloat width = self.scrollView.frame.size.width;
+    CGPoint titleOffset = self.scrollView.contentOffset;
+
+    titleOffset.x = label.center.x - width * 0.5;
+    //左边超出
+    if (titleOffset.x < 0) titleOffset.x = 0;
+    //可移动最大量
+    CGFloat maxTitleOffsetX = self.scrollView.contentSize.width - width;
+    if (maxTitleOffsetX < titleOffset.x) titleOffset.x = maxTitleOffsetX;
+    
+    [self.scrollView setContentOffset:titleOffset animated:YES];
 }
 
 - (void)layoutSubviews {

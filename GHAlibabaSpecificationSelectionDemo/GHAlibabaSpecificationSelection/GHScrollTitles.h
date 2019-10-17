@@ -18,6 +18,10 @@ typedef void (^GHScrollTitlesDidClickTitleBlock)(NSInteger tag);
 
 @property (nonatomic , copy) GHScrollTitlesDidClickTitleBlock didClickTitleBlock;
 
+/** 菜单按钮移动位置 */
+- (void)setMenusScrollView:(CGPoint)contentOffset;
+/** 滑动停止的时候 */
+- (void)setMenusScrollViewEnd:(CGPoint)endOffset;
 
 @end
 

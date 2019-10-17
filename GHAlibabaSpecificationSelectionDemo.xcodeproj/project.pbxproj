@@ -19,6 +19,7 @@
 		040FA5D623545E97001D2877 /* GHScrollTitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5D523545E97001D2877 /* GHScrollTitles.m */; };
 		040FA5D92355766C001D2877 /* GHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5D82355766C001D2877 /* GHTableView.m */; };
 		040FA5DC235589B3001D2877 /* GHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5DB235589B3001D2877 /* GHScrollView.m */; };
+		040FA60723581909001D2877 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA60523581909001D2877 /* UIView+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		040FA5D82355766C001D2877 /* GHTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHTableView.m; sourceTree = "<group>"; };
 		040FA5DA235589B3001D2877 /* GHScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHScrollView.h; sourceTree = "<group>"; };
 		040FA5DB235589B3001D2877 /* GHScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHScrollView.m; sourceTree = "<group>"; };
+		040FA60523581909001D2877 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		040FA60623581909001D2877 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 		040FA5CD23544A61001D2877 /* GHAlibabaSpecificationSelection */ = {
 			isa = PBXGroup;
 			children = (
+				040FA60623581909001D2877 /* UIView+Extension.h */,
+				040FA60523581909001D2877 /* UIView+Extension.m */,
 				040FA5CE23544A61001D2877 /* GHPopView.h */,
 				040FA5CF23544A61001D2877 /* GHPopView.m */,
 				040FA5D123544CBA001D2877 /* GHAlibabaSpecificationSelection.h */,
@@ -179,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040FA60723581909001D2877 /* UIView+Extension.m in Sources */,
 				040FA5DC235589B3001D2877 /* GHScrollView.m in Sources */,
 				040FA5D023544A62001D2877 /* GHPopView.m in Sources */,
 				040FA5BC23544A4E001D2877 /* ViewController.m in Sources */,

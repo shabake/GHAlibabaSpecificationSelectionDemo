@@ -10,6 +10,8 @@
 #import "GHScrollTitles.h"
 #import "GHTableView.h"
 #import "GHScrollView.h"
+#import "UIView+Extension.h"
+
 #define weakself(self)          __weak __typeof(self) weakSelf = self
 
 @interface GHSpecificationSelectionCell : UITableViewCell
@@ -39,26 +41,26 @@
 @property (nonatomic , strong) UIView *backGround;
 /**
  图标
-*/
+ */
 @property (nonatomic , strong) UIImageView *icon;
 /**
-  关闭
-*/
+ 关闭
+ */
 @property (nonatomic , strong) UIButton *close;
 
 /**
  sku标题
-*/
+ */
 @property (nonatomic , strong) UILabel *title;
 
 /**
  sku价格
-*/
+ */
 @property (nonatomic , strong) UILabel *price;
 
 /**
  最小起订量
-*/
+ */
 @property (nonatomic , strong) UILabel *minimumOrder;
 
 /**
@@ -92,7 +94,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
-    
+        
         [self addView:self.backGround];
         [self.backGround addSubview:self.icon];
         [self.backGround addSubview:self.close];
@@ -116,10 +118,32 @@
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.frame.size.width * index  , 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.showsVerticalScrollIndicator = NO;
         [tableView registerClass:[GHSpecificationSelectionCell class] forCellReuseIdentifier:@"GHSpecificationSelectionCellID"];
         [self.scrollView addSubview:tableView];
     }
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * self.scrollTitles.titles.count, 0);
+}
+
+
+#pragma mark - 添加控件 结束
+//- (void)sliderView:(FSSliderView *)sliderView index: (NSInteger)index {
+///
+//}
+
+#pragma mark UIScrollViewDelegate
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    [self.scrollTitles setMenusScrollViewEnd:scrollView.contentOffset];
+    CGFloat x = self.scrollView.contentOffset.x;
+    //    self.header.headerMData = [self.dataArray by_ObjectAtIndex:x / kScreenWidth];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self scrollViewDidEndScrollingAnimation:scrollView];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.scrollTitles setMenusScrollView:scrollView.contentOffset];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -153,6 +177,14 @@
     if (_scrollTitles == nil) {
         _scrollTitles = [[GHScrollTitles alloc]init];
         _scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, [UIScreen mainScreen].bounds.size.width, 50);
+        weakself(self);
+        _scrollTitles.didClickTitleBlock = ^(NSInteger tag) {
+            CGPoint offset = weakSelf.scrollView.contentOffset;
+            NSLog(@"起始点%@",NSStringFromCGPoint(offset));
+            NSLog(@"结束点%@",NSStringFromCGPoint(CGPointMake([UIScreen mainScreen].bounds.size.width * tag, 0)));
+            offset.x = [UIScreen mainScreen].bounds.size.width * tag;
+            [weakSelf.scrollView setContentOffset:offset animated:YES];
+        };
     }
     return _scrollTitles;
 }
@@ -202,7 +234,7 @@
         _minimumOrder = [[UILabel alloc]init];
         _minimumOrder.frame = CGRectMake(CGRectGetMinX(self.price.frame), CGRectGetMaxY(self.price.frame) + 5, 100, 21);
         _minimumOrder.text = @"标题";
-     }
+    }
     return _minimumOrder;
 }
 
@@ -211,7 +243,7 @@
         _price = [[UILabel alloc]init];
         _price.frame = CGRectMake(CGRectGetMinX(self.title.frame), CGRectGetMaxY(self.title.frame) + 5, 100, 21);
         _price.text = @"标题";
-     }
+    }
     return _price;
 }
 
