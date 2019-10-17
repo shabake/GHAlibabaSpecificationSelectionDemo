@@ -10,7 +10,6 @@
 #import "GHScrollTitles.h"
 #import "GHTableView.h"
 #import "GHScrollView.h"
-#import "UIView+Extension.h"
 
 #define weakself(self)          __weak __typeof(self) weakSelf = self
 
@@ -125,7 +124,6 @@
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * self.scrollTitles.titles.count, 0);
 }
 
-
 #pragma mark - 添加控件 结束
 //- (void)sliderView:(FSSliderView *)sliderView index: (NSInteger)index {
 ///
@@ -139,15 +137,19 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self scrollViewDidEndScrollingAnimation:scrollView];
+    if (scrollView == self.scrollView) {
+          [self scrollViewDidEndScrollingAnimation:scrollView];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.scrollTitles setMenusScrollView:scrollView.contentOffset];
+    if (scrollView == self.scrollView) {
+        [self.scrollTitles setMenusScrollView:scrollView.contentOffset];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return  self.scrollTitles.titles.count;
+    return self.scrollTitles.titles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -180,8 +182,6 @@
         weakself(self);
         _scrollTitles.didClickTitleBlock = ^(NSInteger tag) {
             CGPoint offset = weakSelf.scrollView.contentOffset;
-            NSLog(@"起始点%@",NSStringFromCGPoint(offset));
-            NSLog(@"结束点%@",NSStringFromCGPoint(CGPointMake([UIScreen mainScreen].bounds.size.width * tag, 0)));
             offset.x = [UIScreen mainScreen].bounds.size.width * tag;
             [weakSelf.scrollView setContentOffset:offset animated:YES];
         };

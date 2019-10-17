@@ -9,6 +9,7 @@
 #import "GHScrollView.h"
 
 @interface GHScrollView()
+
 @end
 
 @implementation GHScrollView

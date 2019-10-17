@@ -7,6 +7,7 @@
 //
 
 #import "GHScrollTitles.h"
+#import "UIView+Extension.h"
 
 @interface GHScrollTitles()
 
@@ -16,6 +17,11 @@
 @property (nonatomic , strong) UIScrollView *scrollView;
 @property (nonatomic , strong) NSMutableArray *labels;
 @property (nonatomic , assign) NSInteger currentIndex;
+
+/**
+ *  指示器
+ */
+@property (nonatomic , strong) UIView *indicator;
 
 @end
 @implementation GHScrollTitles
@@ -32,22 +38,33 @@
 
 - (void)setTitles:(NSMutableArray *)titles {
     _titles = titles;
+    
+    for (UILabel *label in self.labels) {
+        [label removeFromSuperview];
+    }
     for (NSInteger index = 0 ; index < titles.count; index++) {
         UILabel *label = [[UILabel alloc]init];
         label.text = titles[index];
         label.tag = index;
         label.userInteractionEnabled = YES;
         label.textAlignment = NSTextAlignmentCenter;
-        [label addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelClick:)]];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelClick:)];
+        [label addGestureRecognizer:tap];
         [self.labels addObject:label];
     }
     CGFloat width = self.scrollView.frame.size.width / 3.01f;
     self.scrollView.contentSize = CGSizeMake(width * titles.count, 0);
+    [self.indicator removeFromSuperview];
+    UIView *indicator = [[UIView alloc]init];
+    self.indicator = indicator;
+    indicator.backgroundColor = [UIColor redColor];
+    indicator.frame = CGRectMake((width -width * 0.25) * 0.5,CGRectGetMaxY(self.leftButton.frame) - 1, width * 0.25, 1);
+    [self.scrollView addSubview:indicator];
 }
 
 - (void)labelClick:(UITapGestureRecognizer *)tap{
-
-    NSInteger index = (int)tap.view.tag;
+    
+    NSInteger index = (NSInteger)tap.view.tag;
     self.currentIndex = index;
     if (self.didClickTitleBlock) {
         self.didClickTitleBlock(index);
@@ -56,37 +73,29 @@
 
 - (void)setMenusScrollView:(CGPoint)contentOffset{
     CGFloat scale = contentOffset.x / [UIScreen mainScreen].bounds.size.width;
-  
-    CGFloat btnWidth = self.scrollView.frame.size.width / 3 ;
-    if (scale < 0 || scale > self.scrollView.subviews.count - 1 - 1) return;
-    CGRect frame = self.bottomLine.frame;
-    frame.origin.x = scale * btnWidth;
-    self.bottomLine.frame = frame;
     
     self.currentIndex = scale;
-    for (UILabel *title in self.labels) {
-        title.textColor = [UIColor blackColor];
+    for (UILabel *label in self.labels) {
+        label.textColor = [UIColor blackColor];
     }
     
-    UILabel *title = self.labels[self.currentIndex];
-    title.textColor = [UIColor redColor];
+    UILabel *label = self.labels[self.currentIndex];
+    label.textColor = [UIColor redColor];
+    CGRect frame = self.indicator.frame;
+    frame.origin.x =  label.x + (label.width - self.indicator.width ) * 0.5;
+    self.indicator.frame = frame;
 }
 
 - (void)setMenusScrollViewEnd:(CGPoint)endOffset{
     
     NSInteger index = endOffset.x / [UIScreen mainScreen].bounds.size.width;
-    
     UILabel *label = self.labels[index];
     CGFloat width = self.scrollView.frame.size.width;
     CGPoint titleOffset = self.scrollView.contentOffset;
-
     titleOffset.x = label.center.x - width * 0.5;
-    //左边超出
     if (titleOffset.x < 0) titleOffset.x = 0;
-    //可移动最大量
     CGFloat maxTitleOffsetX = self.scrollView.contentSize.width - width;
     if (maxTitleOffsetX < titleOffset.x) titleOffset.x = maxTitleOffsetX;
-    
     [self.scrollView setContentOffset:titleOffset animated:YES];
 }
 
@@ -110,7 +119,7 @@
 - (UIScrollView *)scrollView {
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc]init];
-        _scrollView.frame = CGRectMake(CGRectGetMaxX(self.leftButton.frame), 0, [UIScreen mainScreen].bounds.size.width -CGRectGetMaxX(self.leftButton.frame) - 50 , 50);
+        _scrollView.frame = CGRectMake(CGRectGetMaxX(self.leftButton.frame), 0, [UIScreen mainScreen].bounds.size.width - CGRectGetMaxX(self.leftButton.frame) - 50 , 50);
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
