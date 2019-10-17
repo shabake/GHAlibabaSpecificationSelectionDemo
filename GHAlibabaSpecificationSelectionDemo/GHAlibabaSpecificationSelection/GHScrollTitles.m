@@ -46,9 +46,15 @@
 
 - (void)labelClick:(UITapGestureRecognizer *)tap{
 
-    int index = (int)tap.view.tag;
+    NSInteger index = (int)tap.view.tag;
     CGFloat width = self.scrollView.frame.size.width / 3.01f;
-    [self.scrollView setContentOffset:CGPointMake(index * width, 0) animated:YES];
+    
+    CGFloat distance = width * index;
+    if (distance >= width * 2) {
+        [self.scrollView setContentOffset:CGPointMake(width, 0) animated:YES];
+    } else {
+        
+    }
     if (self.didClickTitleBlock) {
         self.didClickTitleBlock(index);
     }
@@ -86,8 +92,8 @@
 - (UIView *)bottomLine {
     if (_bottomLine == nil) {
         _bottomLine = [[UIView alloc]init];
-        _bottomLine.backgroundColor = [UIColor blackColor];
-        _bottomLine.frame = CGRectMake(0,CGRectGetMaxY(self.leftButton.frame), [UIScreen mainScreen].bounds.size.width, 0.5);
+        _bottomLine.backgroundColor = [UIColor lightGrayColor];
+        _bottomLine.frame = CGRectMake(0,CGRectGetMaxY(self.leftButton.frame) - 1, [UIScreen mainScreen].bounds.size.width, 0.3);
     }
     return _bottomLine;
 }
@@ -97,8 +103,8 @@
         _rightButton = [[UIButton alloc]init];
         _rightButton.frame =  CGRectMake([UIScreen mainScreen].bounds.size.width - 50, 0, 50, 50);
         UIView *line = [[UIView alloc]init];
-        line.frame = CGRectMake(0, 10, 1, 30);
-        line.backgroundColor = [UIColor blackColor];
+        line.frame = CGRectMake(0, 10, 0.3, 30);
+        line.backgroundColor = [UIColor lightGrayColor];
         [_rightButton addSubview:line];
         [_rightButton setImage:[UIImage imageNamed:@"rightArrow"] forState:UIControlStateNormal];
     }
@@ -111,8 +117,8 @@
         [_leftButton setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal];
         _leftButton.frame =  CGRectMake(0, 0, 50, 50);
         UIView *line = [[UIView alloc]init];
-        line.frame = CGRectMake(50 - 1, 10, 1, 30);
-        line.backgroundColor = [UIColor blackColor];
+        line.frame = CGRectMake(50 - 1, 10, 0.3, 30);
+        line.backgroundColor = [UIColor lightGrayColor];
         [_leftButton addSubview:line];
     }
     return _leftButton;
