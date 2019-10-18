@@ -23,6 +23,8 @@
 		040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */; };
 		040FA6322359A2FF001D2877 /* GHSpecificationSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA6312359A2FF001D2877 /* GHSpecificationSelectionModel.m */; };
 		040FA6352359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA6342359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m */; };
+		040FA6382359BBCC001D2877 /* ToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA6362359BBCC001D2877 /* ToastTool.m */; };
+		040FA63B2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA63A2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m */; };
 		F2990ADB9C9CE728232AA502 /* Pods_GHAlibabaSpecificationSelectionDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,10 @@
 		040FA6312359A2FF001D2877 /* GHSpecificationSelectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionModel.m; sourceTree = "<group>"; };
 		040FA6332359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHAlibabaSpecificationSelectionModel.h; sourceTree = "<group>"; };
 		040FA6342359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHAlibabaSpecificationSelectionModel.m; sourceTree = "<group>"; };
+		040FA6362359BBCC001D2877 /* ToastTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastTool.m; sourceTree = "<group>"; };
+		040FA6372359BBCC001D2877 /* ToastTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastTool.h; sourceTree = "<group>"; };
+		040FA6392359C7FB001D2877 /* GHSpecificationSelectionImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHSpecificationSelectionImageModel.h; sourceTree = "<group>"; };
+		040FA63A2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionImageModel.m; sourceTree = "<group>"; };
 		1D64B2FE7F97A0941C374FA6 /* Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig"; path = "Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig"; sourceTree = "<group>"; };
 		AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHAlibabaSpecificationSelectionDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6CA08E36706B06D4CE6A26 /* Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig"; path = "Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +122,8 @@
 		040FA5CD23544A61001D2877 /* GHAlibabaSpecificationSelection */ = {
 			isa = PBXGroup;
 			children = (
+				040FA6372359BBCC001D2877 /* ToastTool.h */,
+				040FA6362359BBCC001D2877 /* ToastTool.m */,
 				040FA60623581909001D2877 /* UIView+Extension.h */,
 				040FA60523581909001D2877 /* UIView+Extension.m */,
 				040FA5CE23544A61001D2877 /* GHPopView.h */,
@@ -132,6 +140,8 @@
 				040FA6312359A2FF001D2877 /* GHSpecificationSelectionModel.m */,
 				040FA6332359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.h */,
 				040FA6342359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m */,
+				040FA6392359C7FB001D2877 /* GHSpecificationSelectionImageModel.h */,
+				040FA63A2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m */,
 			);
 			path = GHAlibabaSpecificationSelection;
 			sourceTree = "<group>";
@@ -278,8 +288,10 @@
 				040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */,
 				040FA5D623545E97001D2877 /* GHScrollTitles.m in Sources */,
 				040FA5C723544A4F001D2877 /* main.m in Sources */,
+				040FA63B2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m in Sources */,
 				040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */,
 				040FA5B923544A4E001D2877 /* SceneDelegate.m in Sources */,
+				040FA6382359BBCC001D2877 /* ToastTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

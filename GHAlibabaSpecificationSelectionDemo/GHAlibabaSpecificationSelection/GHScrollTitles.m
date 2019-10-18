@@ -11,11 +11,26 @@
 
 @interface GHScrollTitles()
 
+/**
+ *  左侧剪头
+ */
 @property (nonatomic , strong) UIButton *leftButton;
+
+/**
+ *  右侧剪头
+ */
 @property (nonatomic , strong) UIButton *rightButton;
 @property (nonatomic , strong) UIView *bottomLine;
 @property (nonatomic , strong) UIScrollView *scrollView;
+
+/**
+ *  装label的数组
+ */
 @property (nonatomic , strong) NSMutableArray *labels;
+
+/**
+ *  记录当前序号
+ */
 @property (nonatomic , assign) NSInteger currentIndex;
 
 /**
@@ -42,6 +57,7 @@
     for (UILabel *label in self.labels) {
         [label removeFromSuperview];
     }
+    
     for (NSInteger index = 0 ; index < titles.count; index++) {
         UILabel *label = [[UILabel alloc]init];
         label.text = titles[index];
@@ -52,6 +68,7 @@
         [label addGestureRecognizer:tap];
         [self.labels addObject:label];
     }
+    
     CGFloat width = self.scrollView.frame.size.width / 3.01f;
     self.scrollView.contentSize = CGSizeMake(width * titles.count, 0);
     [self.indicator removeFromSuperview];
@@ -72,7 +89,6 @@
 }
 
 - (void)setMenusScrollView:(CGPoint)contentOffset{
-    
     
     CGFloat scale = contentOffset.x / [UIScreen mainScreen].bounds.size.width;
     if (scale < 0 || scale > self.scrollView.subviews.count - 1 - 1) return;
@@ -111,12 +127,19 @@
 }
 
 - (void)clicRightButton {
+ 
+    if (self.currentIndex == self.labels.count - 1) {// 处理向左滚动越界
+        return;
+    }
     if (self.didClickRightBlock) {
         self.didClickRightBlock();
     }
 }
 
 - (void)clickLeftButton {
+   if (self.currentIndex == 0) {// 处理向右滚动越界
+        return;
+    }
     if (self.didClickLeftBlock) {
         self.didClickLeftBlock();
     }

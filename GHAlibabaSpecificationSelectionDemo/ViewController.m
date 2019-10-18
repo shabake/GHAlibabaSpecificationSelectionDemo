@@ -12,6 +12,11 @@
 #import "MJExtension.h"
 #import "GHSpecificationSelectionModel.h"
 #import "GHAlibabaSpecificationSelectionModel.h"
+#import "ToastTool.h"
+#import "GHSpecificationSelectionImageModel.h"
+
+#define weakself(self)          __weak __typeof(self) weakSelf = self
+
 
 #ifdef DEBUG
 #define NSLog(format, ...) printf("%s\n", [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String]);
@@ -22,6 +27,8 @@
 @interface ViewController ()
 
 @property (nonatomic , strong) NSMutableArray *dataArray;
+
+@property (nonatomic , strong) GHAlibabaSpecificationSelection *alibabaSpecificationSelection;
 
 @end
 
@@ -35,14 +42,26 @@
 }
 
 - (void)loadData {
+    [ToastTool makeToastActivity:self.view];
+    weakself(self);
+
+
     NSString *url = @"http://5da9613ee44c790014cd5598.mockapi.io/GHGoodDetails/mac";
     [[GHHTTPSessionManager sharedManager] getGoodDetailsWithUrl:url finishedBlock:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
          NSDictionary *dict = responseObject[0];
         NSArray *colors = dict[@"color"];
         NSArray *data = dict[@"data"];
+        NSDictionary *sectePrice = dict[@"sectePrice"];
         NSMutableArray *specifications = [NSMutableArray array];
         for (NSDictionary *dataDict in data) {
             GHSpecificationSelectionModel *specificationSelectionModel = [GHSpecificationSelectionModel mj_objectWithKeyValues:dataDict];
+            NSArray *images = dataDict[@"images"];
+            NSMutableArray *imagesArray = [NSMutableArray array];
+            for (NSDictionary *imageDict in images) {
+                GHSpecificationSelectionImageModel *specificationSelectionImageModel = [GHSpecificationSelectionImageModel mj_objectWithKeyValues:imageDict];
+                [imagesArray addObject:specificationSelectionImageModel];
+            }
+            specificationSelectionModel.images = imagesArray.copy;
             [specifications addObject:specificationSelectionModel];
         }
 //
@@ -61,14 +80,19 @@
             alibabaSpecificationSelectionModel.colorStr = colorStr;
             [dataArray addObject:alibabaSpecificationSelectionModel];
         }
-        self.dataArray = dataArray;
+        weakSelf.alibabaSpecificationSelection.dataArray = dataArray;
+        [ToastTool makeToastActivity:weakSelf.view toastToolCompleteBlock:^{
+            [weakSelf.alibabaSpecificationSelection show];
+        }];
     }];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    GHAlibabaSpecificationSelection *alibabaSpecificationSelection = [[GHAlibabaSpecificationSelection alloc]init];
-    alibabaSpecificationSelection.dataArray = self.dataArray;
-    [alibabaSpecificationSelection show];
+
+- (GHAlibabaSpecificationSelection *)alibabaSpecificationSelection {
+    if (_alibabaSpecificationSelection == nil) {
+        _alibabaSpecificationSelection = [[GHAlibabaSpecificationSelection alloc]init];
+    }
+    return _alibabaSpecificationSelection;
 }
 
 @end

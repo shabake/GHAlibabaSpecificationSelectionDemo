@@ -86,7 +86,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 }
 
 #pragma mark 显示
-- (void)show{
+- (void)show {
     [kKeyWindow bringSubviewToFront:self];
     self.contentView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, self.contentViewHeight);
     
@@ -95,7 +95,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
         weakSelf.contentView.frame = CGRectMake(0, kScreenHeight-weakSelf.contentViewHeight - kSafeAreaBottomHeight, weakSelf.contentView.frame.size.width, weakSelf.contentViewHeight + kSafeAreaBottomHeight);
     } completion:^(BOOL finished) {
         if (weakSelf.showFinish) {
-            weakSelf.showFinish();
+            weakSelf.showFinish(self.contentView.frame);
         }
     }];
 }

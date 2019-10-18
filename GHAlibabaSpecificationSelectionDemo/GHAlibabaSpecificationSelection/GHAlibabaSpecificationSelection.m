@@ -12,6 +12,8 @@
 #import "GHScrollView.h"
 #import "GHAlibabaSpecificationSelectionModel.h"
 #import "GHSpecificationSelectionModel.h"
+#import "UIImageView+WebCache.h"
+#import "GHSpecificationSelectionImageModel.h"
 
 #define weakself(self)          __weak __typeof(self) weakSelf = self
 
@@ -92,14 +94,32 @@
 @end
 @implementation GHAlibabaSpecificationSelection
 
+- (void)show {
+    [super show];
+
+}
+
+- (void)reloadData {
+    
+}
+
 - (void)setDataArray:(NSArray *)dataArray {
-    _dataArray =  dataArray;
+    _dataArray = dataArray;
     NSMutableArray *titles = [NSMutableArray array];
-    for (GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel in dataArray) {
-        [titles addObject:alibabaSpecificationSelectionModel.colorStr];
-    }
+       for (GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel in self.dataArray) {
+           [titles addObject:alibabaSpecificationSelectionModel.colorStr];
+       }
     self.scrollTitles.titles = titles.mutableCopy;
     [self setTableViews];
+    [self loadIconWithIndex:0];
+}
+
+- (void)loadIconWithIndex:(NSInteger)index {
+    GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel = self.dataArray[index];
+    GHSpecificationSelectionModel *specificationSelectionModel = alibabaSpecificationSelectionModel.specifications.firstObject;
+    GHSpecificationSelectionImageModel *specificationSelectionImageModel = specificationSelectionModel.images.firstObject;
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:specificationSelectionImageModel.img_url]];
+    self.title.text = specificationSelectionModel.sku_name;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -137,8 +157,9 @@
 #pragma mark UIScrollViewDelegate
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self.scrollTitles setMenusScrollViewEnd:scrollView.contentOffset];
-    CGFloat x = self.scrollView.contentOffset.x;
-    //    self.header.headerMData = [self.dataArray by_ObjectAtIndex:x / kScreenWidth];
+    NSInteger page = (NSInteger)self.scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    NSLog(@"page%ld",(long)page);
+    [self loadIconWithIndex:page];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -177,7 +198,7 @@
         _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,500 -CGRectGetMaxY(self.scrollTitles.frame));
         _scrollView.pagingEnabled = YES;
         _scrollView.delegate = self;
-        _scrollView.backgroundColor = [UIColor orangeColor];
+        _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.bounces = NO;
         _scrollView.showsHorizontalScrollIndicator = YES;
     }
@@ -276,7 +297,7 @@
 - (UILabel *)title {
     if (_title == nil) {
         _title = [[UILabel alloc]init];
-        _title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 10, 100, 21);
+        _title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 10, 200, 21);
         _title.text = @"标题";
     }
     return _title;

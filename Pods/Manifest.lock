@@ -14,21 +14,31 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - MBProgressHUD (0.9.2)
   - MJExtension (3.0.10)
+  - SDWebImage (5.2.2):
+    - SDWebImage/Core (= 5.2.2)
+  - SDWebImage/Core (5.2.2)
 
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
+  - MBProgressHUD (= 0.9.2)
   - MJExtension (= 3.0.10)
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - MBProgressHUD
     - MJExtension
+    - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
+  SDWebImage: 5fcdb02cc35e05fc35791ec514b191d27189f872
 
-PODFILE CHECKSUM: 60e48884faa6f0050c98082250ba8d558bfa02e3
+PODFILE CHECKSUM: afce01be0cbfbde67e9e6819ea46ef540b185aef
 
 COCOAPODS: 1.8.3

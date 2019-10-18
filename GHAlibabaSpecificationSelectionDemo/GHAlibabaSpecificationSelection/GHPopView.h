@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Event
 /** 显示完成Block */
-@property (nonatomic, copy) void (^showFinish)(void);
+@property (nonatomic, copy) void (^showFinish)(CGRect frame);
 /** 消失完成Block */
 @property (nonatomic, copy) void (^dimissFinish)(void);
 
