@@ -72,8 +72,10 @@
 }
 
 - (void)setMenusScrollView:(CGPoint)contentOffset{
-    CGFloat scale = contentOffset.x / [UIScreen mainScreen].bounds.size.width;
     
+    
+    CGFloat scale = contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    if (scale < 0 || scale > self.scrollView.subviews.count - 1 - 1) return;
     self.currentIndex = scale;
     for (UILabel *label in self.labels) {
         label.textColor = [UIColor blackColor];
@@ -82,12 +84,11 @@
     UILabel *label = self.labels[self.currentIndex];
     label.textColor = [UIColor redColor];
     CGRect frame = self.indicator.frame;
-    frame.origin.x =  label.x + (label.width - self.indicator.width ) * 0.5;
+    frame.origin.x =  label.x + (label.width - self.indicator.width) * 0.5;
     self.indicator.frame = frame;
 }
 
 - (void)setMenusScrollViewEnd:(CGPoint)endOffset{
-    
     NSInteger index = endOffset.x / [UIScreen mainScreen].bounds.size.width;
     UILabel *label = self.labels[index];
     CGFloat width = self.scrollView.frame.size.width;
@@ -109,6 +110,18 @@
     }
 }
 
+- (void)clicRightButton {
+    if (self.didClickRightBlock) {
+        self.didClickRightBlock();
+    }
+}
+
+- (void)clickLeftButton {
+    if (self.didClickLeftBlock) {
+        self.didClickLeftBlock();
+    }
+}
+
 - (NSMutableArray *)labels {
     if (_labels == nil) {
         _labels = [NSMutableArray array];
@@ -121,7 +134,6 @@
         _scrollView = [[UIScrollView alloc]init];
         _scrollView.frame = CGRectMake(CGRectGetMaxX(self.leftButton.frame), 0, [UIScreen mainScreen].bounds.size.width - CGRectGetMaxX(self.leftButton.frame) - 50 , 50);
         _scrollView.backgroundColor = [UIColor clearColor];
-        _scrollView.pagingEnabled = YES;
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 4, 0);
     }
@@ -146,6 +158,7 @@
         line.backgroundColor = [UIColor lightGrayColor];
         [_rightButton addSubview:line];
         [_rightButton setImage:[UIImage imageNamed:@"rightArrow"] forState:UIControlStateNormal];
+        [_rightButton addTarget:self action:@selector(clicRightButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightButton;
 }
@@ -155,6 +168,7 @@
         _leftButton = [[UIButton alloc]init];
         [_leftButton setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal];
         _leftButton.frame =  CGRectMake(0, 0, 50, 50);
+        [_leftButton addTarget:self action:@selector(clickLeftButton) forControlEvents:UIControlEventTouchUpInside];
         UIView *line = [[UIView alloc]init];
         line.frame = CGRectMake(50 - 1, 10, 0.3, 30);
         line.backgroundColor = [UIColor lightGrayColor];

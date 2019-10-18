@@ -117,7 +117,7 @@
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.frame.size.width * index  , 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.showsVerticalScrollIndicator = NO;
+        tableView.showsVerticalScrollIndicator = YES;
         [tableView registerClass:[GHSpecificationSelectionCell class] forCellReuseIdentifier:@"GHSpecificationSelectionCellID"];
         [self.scrollView addSubview:tableView];
     }
@@ -138,7 +138,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView == self.scrollView) {
-          [self scrollViewDidEndScrollingAnimation:scrollView];
+        [self scrollViewDidEndScrollingAnimation:scrollView];
     }
 }
 
@@ -179,14 +179,29 @@
     if (_scrollTitles == nil) {
         _scrollTitles = [[GHScrollTitles alloc]init];
         _scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, [UIScreen mainScreen].bounds.size.width, 50);
+        
         weakself(self);
         _scrollTitles.didClickTitleBlock = ^(NSInteger tag) {
-            CGPoint offset = weakSelf.scrollView.contentOffset;
-            offset.x = [UIScreen mainScreen].bounds.size.width * tag;
-            [weakSelf.scrollView setContentOffset:offset animated:YES];
+            [weakSelf scrollWithCurrentIndex:tag];
+        };
+        
+        _scrollTitles.didClickLeftBlock = ^{
+            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x - [UIScreen mainScreen].bounds.size.width , 0);
+            [weakSelf.scrollView setContentOffset:point animated:YES];
+        };
+        _scrollTitles.didClickRightBlock = ^{
+            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x + [UIScreen mainScreen].bounds.size.width , 0);
+            [weakSelf.scrollView setContentOffset:point animated:YES];
         };
     }
     return _scrollTitles;
+}
+
+- (void)scrollWithCurrentIndex:(NSInteger)currentIndex {
+    
+    CGPoint offset = self.scrollView.contentOffset;
+    offset.x =  [UIScreen mainScreen].bounds.size.width * currentIndex;
+    [self.scrollView setContentOffset:offset animated:YES];
 }
 
 - (UIView *)backGround {
@@ -202,7 +217,7 @@
         _icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, -20, 100, 100)];
         _icon.layer.masksToBounds = YES;
         _icon.layer.cornerRadius = 5;
-        _icon.backgroundColor = [UIColor redColor];
+        _icon.backgroundColor = [UIColor lightGrayColor];
     }
     return _icon;
 }

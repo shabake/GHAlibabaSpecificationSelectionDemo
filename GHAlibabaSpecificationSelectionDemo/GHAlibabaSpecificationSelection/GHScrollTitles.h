@@ -13,10 +13,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GHScrollTitles : UIView
 
 typedef void (^GHScrollTitlesDidClickTitleBlock)(NSInteger tag);
+typedef void (^GHScrollTitlesDidClickLeftBlock)(void);
+typedef void (^GHScrollTitlesDidClickRightBlock)(void);
 
 @property (nonatomic , strong) NSMutableArray *titles;
 
 @property (nonatomic , copy) GHScrollTitlesDidClickTitleBlock didClickTitleBlock;
+
+@property (nonatomic , copy) GHScrollTitlesDidClickLeftBlock didClickLeftBlock;
+
+@property (nonatomic , copy) GHScrollTitlesDidClickRightBlock didClickRightBlock;
 
 /** 菜单按钮移动位置 */
 - (void)setMenusScrollView:(CGPoint)contentOffset;
