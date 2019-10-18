@@ -1,0 +1,6 @@
+framework module Pods_GHAlibabaSpecificationSelectionDemo {
+  umbrella header "Pods-GHAlibabaSpecificationSelectionDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

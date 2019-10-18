@@ -10,6 +10,8 @@
 #import "GHScrollTitles.h"
 #import "GHTableView.h"
 #import "GHScrollView.h"
+#import "GHAlibabaSpecificationSelectionModel.h"
+#import "GHSpecificationSelectionModel.h"
 
 #define weakself(self)          __weak __typeof(self) weakSelf = self
 
@@ -90,6 +92,15 @@
 @end
 @implementation GHAlibabaSpecificationSelection
 
+- (void)setDataArray:(NSArray *)dataArray {
+    _dataArray =  dataArray;
+    NSMutableArray *titles = [NSMutableArray array];
+    for (GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel in dataArray) {
+        [titles addObject:alibabaSpecificationSelectionModel.colorStr];
+    }
+    self.scrollTitles.titles = titles.mutableCopy;
+    [self setTableViews];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
@@ -105,29 +116,23 @@
         [self.backGround addSubview:self.scrollView];
         self.currentPage = 0;
         self.contentViewHeight = 500;
-        self.scrollTitles.titles = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9"].mutableCopy;
-        [self setTableViews];
     }
     return self;
 }
 
 - (void)setTableViews {
     
-    for (NSInteger index = 0; index < self.scrollTitles.titles.count; index++) {
+    for (NSInteger index = 0; index < self.dataArray.count; index++) {
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.frame.size.width * index  , 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.tableFooterView = [UIView new];
         tableView.showsVerticalScrollIndicator = YES;
         [tableView registerClass:[GHSpecificationSelectionCell class] forCellReuseIdentifier:@"GHSpecificationSelectionCellID"];
         [self.scrollView addSubview:tableView];
     }
     self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * self.scrollTitles.titles.count, 0);
 }
-
-#pragma mark - 添加控件 结束
-//- (void)sliderView:(FSSliderView *)sliderView index: (NSInteger)index {
-///
-//}
 
 #pragma mark UIScrollViewDelegate
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
@@ -149,12 +154,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.scrollTitles.titles.count;
+    GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel = self.dataArray[self.currentPage];
+    
+    return alibabaSpecificationSelectionModel.specifications.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel = self.dataArray[self.currentPage];
+    GHSpecificationSelectionModel *specificationSelectionModel = alibabaSpecificationSelectionModel.specifications[indexPath.row];
     GHSpecificationSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GHSpecificationSelectionCellID"];
-    cell.textLabel.text =  self.scrollTitles.titles[indexPath.row];
+    cell.textLabel.text = specificationSelectionModel.sku_name;
     return cell;
 }
 
@@ -183,6 +192,8 @@
         weakself(self);
         _scrollTitles.didClickTitleBlock = ^(NSInteger tag) {
             [weakSelf scrollWithCurrentIndex:tag];
+            weakSelf.currentPage = tag;
+            [weakSelf.table reloadData];
         };
         
         _scrollTitles.didClickLeftBlock = ^{

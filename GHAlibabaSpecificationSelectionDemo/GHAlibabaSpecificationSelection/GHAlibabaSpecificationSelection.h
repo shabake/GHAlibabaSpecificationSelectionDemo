@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface GHAlibabaSpecificationSelection : GHPopView
+
+@property (nonatomic , strong) NSArray *dataArray;
 
 @end
 

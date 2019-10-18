@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,10 @@
 		040FA5D92355766C001D2877 /* GHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5D82355766C001D2877 /* GHTableView.m */; };
 		040FA5DC235589B3001D2877 /* GHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5DB235589B3001D2877 /* GHScrollView.m */; };
 		040FA60723581909001D2877 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA60523581909001D2877 /* UIView+Extension.m */; };
+		040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */; };
+		040FA6322359A2FF001D2877 /* GHSpecificationSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA6312359A2FF001D2877 /* GHSpecificationSelectionModel.m */; };
+		040FA6352359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA6342359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m */; };
+		F2990ADB9C9CE728232AA502 /* Pods_GHAlibabaSpecificationSelectionDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,15 @@
 		040FA5DB235589B3001D2877 /* GHScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHScrollView.m; sourceTree = "<group>"; };
 		040FA60523581909001D2877 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		040FA60623581909001D2877 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHHTTPSessionManager.h; sourceTree = "<group>"; };
+		040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHHTTPSessionManager.m; sourceTree = "<group>"; };
+		040FA6302359A2FF001D2877 /* GHSpecificationSelectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHSpecificationSelectionModel.h; sourceTree = "<group>"; };
+		040FA6312359A2FF001D2877 /* GHSpecificationSelectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionModel.m; sourceTree = "<group>"; };
+		040FA6332359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHAlibabaSpecificationSelectionModel.h; sourceTree = "<group>"; };
+		040FA6342359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHAlibabaSpecificationSelectionModel.m; sourceTree = "<group>"; };
+		1D64B2FE7F97A0941C374FA6 /* Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig"; path = "Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig"; sourceTree = "<group>"; };
+		AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHAlibabaSpecificationSelectionDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF6CA08E36706B06D4CE6A26 /* Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig"; path = "Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2990ADB9C9CE728232AA502 /* Pods_GHAlibabaSpecificationSelectionDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +79,8 @@
 			children = (
 				040FA5B323544A4E001D2877 /* GHAlibabaSpecificationSelectionDemo */,
 				040FA5B223544A4E001D2877 /* Products */,
+				B4F0B1F47559439ADCD9416E /* Pods */,
+				512CDB4D147EE6F6F97CADBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +103,8 @@
 				040FA5BA23544A4E001D2877 /* ViewController.h */,
 				040FA5BB23544A4E001D2877 /* ViewController.m */,
 				040FA5BD23544A4E001D2877 /* Main.storyboard */,
+				040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */,
+				040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */,
 				040FA5C023544A4F001D2877 /* Assets.xcassets */,
 				040FA5C223544A4F001D2877 /* LaunchScreen.storyboard */,
 				040FA5C523544A4F001D2877 /* Info.plist */,
@@ -110,8 +128,29 @@
 				040FA5D82355766C001D2877 /* GHTableView.m */,
 				040FA5DA235589B3001D2877 /* GHScrollView.h */,
 				040FA5DB235589B3001D2877 /* GHScrollView.m */,
+				040FA6302359A2FF001D2877 /* GHSpecificationSelectionModel.h */,
+				040FA6312359A2FF001D2877 /* GHSpecificationSelectionModel.m */,
+				040FA6332359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.h */,
+				040FA6342359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m */,
 			);
 			path = GHAlibabaSpecificationSelection;
+			sourceTree = "<group>";
+		};
+		512CDB4D147EE6F6F97CADBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4F0B1F47559439ADCD9416E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EF6CA08E36706B06D4CE6A26 /* Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig */,
+				1D64B2FE7F97A0941C374FA6 /* Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,9 +160,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 040FA5CA23544A4F001D2877 /* Build configuration list for PBXNativeTarget "GHAlibabaSpecificationSelectionDemo" */;
 			buildPhases = (
+				42E93C4C4E1CED15B8CB4857 /* [CP] Check Pods Manifest.lock */,
 				040FA5AD23544A4E001D2877 /* Sources */,
 				040FA5AE23544A4E001D2877 /* Frameworks */,
 				040FA5AF23544A4E001D2877 /* Resources */,
+				709CA1EB4814EF56DD6189A2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,20 +220,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		42E93C4C4E1CED15B8CB4857 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GHAlibabaSpecificationSelectionDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		709CA1EB4814EF56DD6189A2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		040FA5AD23544A4E001D2877 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				040FA60723581909001D2877 /* UIView+Extension.m in Sources */,
+				040FA6322359A2FF001D2877 /* GHSpecificationSelectionModel.m in Sources */,
 				040FA5DC235589B3001D2877 /* GHScrollView.m in Sources */,
 				040FA5D023544A62001D2877 /* GHPopView.m in Sources */,
+				040FA6352359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m in Sources */,
 				040FA5BC23544A4E001D2877 /* ViewController.m in Sources */,
 				040FA5D92355766C001D2877 /* GHTableView.m in Sources */,
 				040FA5D323544CBA001D2877 /* GHAlibabaSpecificationSelection.m in Sources */,
 				040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */,
 				040FA5D623545E97001D2877 /* GHScrollTitles.m in Sources */,
 				040FA5C723544A4F001D2877 /* main.m in Sources */,
+				040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */,
 				040FA5B923544A4E001D2877 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +417,7 @@
 		};
 		040FA5CB23544A4F001D2877 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF6CA08E36706B06D4CE6A26 /* Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -350,6 +437,7 @@
 		};
 		040FA5CC23544A4F001D2877 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D64B2FE7F97A0941C374FA6 /* Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
