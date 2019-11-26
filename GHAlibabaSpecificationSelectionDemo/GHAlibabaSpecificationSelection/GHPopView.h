@@ -25,9 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 显示 */
 - (void)show;
 /** 消失 */
-
 - (void)dismiss;
-- (void)addView:(UIView *)view;
 
 @end
 

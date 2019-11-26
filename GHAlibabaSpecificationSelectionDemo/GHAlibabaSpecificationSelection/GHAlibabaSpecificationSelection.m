@@ -94,14 +94,6 @@
 @end
 @implementation GHAlibabaSpecificationSelection
 
-- (void)show {
-    [super show];
-
-}
-
-- (void)reloadData {
-    
-}
 
 - (void)setDataArray:(NSArray *)dataArray {
     _dataArray = dataArray;
@@ -124,16 +116,17 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
-        
-        [self addView:self.backGround];
+
+        [self addSubview:self.backGround];
+        self.backGround.backgroundColor = [UIColor redColor];
         [self.backGround addSubview:self.icon];
-        [self.backGround addSubview:self.close];
-        [self.backGround addSubview:self.title];
-        [self.backGround addSubview:self.price];
-        [self.backGround addSubview:self.minimumOrder];
-        [self.backGround addSubview:self.shadow];
-        [self.backGround addSubview:self.scrollTitles];
-        [self.backGround addSubview:self.scrollView];
+//        [self.backGround addSubview:self.close];
+//        [self.backGround addSubview:self.title];
+//        [self.backGround addSubview:self.price];
+//        [self.backGround addSubview:self.minimumOrder];
+//        [self.backGround addSubview:self.shadow];
+//        [self.backGround addSubview:self.scrollTitles];
+//        [self.backGround addSubview:self.scrollView];
         self.currentPage = 0;
         self.contentViewHeight = 500;
     }
@@ -158,7 +151,6 @@
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self.scrollTitles setMenusScrollViewEnd:scrollView.contentOffset];
     NSInteger page = (NSInteger)self.scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
-    NSLog(@"page%ld",(long)page);
     [self loadIconWithIndex:page];
 }
 
@@ -176,7 +168,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel = self.dataArray[self.currentPage];
-    
     return alibabaSpecificationSelectionModel.specifications.count;
 }
 
@@ -240,6 +231,8 @@
     if (_backGround == nil) {
         _backGround = [[UIView alloc]init];
         _backGround.backgroundColor = [UIColor whiteColor];
+        _backGround.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width
+                                       , [UIScreen mainScreen].bounds.size.height);
     }
     return _backGround;
 }

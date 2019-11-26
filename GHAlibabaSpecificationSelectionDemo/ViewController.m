@@ -14,6 +14,7 @@
 #import "GHAlibabaSpecificationSelectionModel.h"
 #import "ToastTool.h"
 #import "GHSpecificationSelectionImageModel.h"
+#import "GHPopView.h"
 
 #define weakself(self)          __weak __typeof(self) weakSelf = self
 
@@ -34,7 +35,6 @@
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -45,10 +45,10 @@
     [ToastTool makeToastActivity:self.view];
     weakself(self);
 
-
-    NSString *url = @"http://5da9613ee44c790014cd5598.mockapi.io/GHGoodDetails/mac";
+    NSString *url = @"http://mock-api.com/7zxXywz3.mock/data";
     [[GHHTTPSessionManager sharedManager] getGoodDetailsWithUrl:url finishedBlock:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
-         NSDictionary *dict = responseObject[0];
+        NSLog(@"responseObject%@",responseObject);
+         NSDictionary *dict = (NSDictionary *)responseObject;
         NSArray *colors = dict[@"color"];
         NSArray *data = dict[@"data"];
         NSDictionary *sectePrice = dict[@"sectePrice"];
@@ -64,7 +64,6 @@
             specificationSelectionModel.images = imagesArray.copy;
             [specifications addObject:specificationSelectionModel];
         }
-//
         NSMutableArray *dataArray = [NSMutableArray array];
         for (NSInteger i = 0; i < colors.count; i++) {
             GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel = [[GHAlibabaSpecificationSelectionModel alloc]init];
@@ -72,21 +71,20 @@
             for (NSInteger j = 0; j < specifications.count; j++) {
                 GHSpecificationSelectionModel *specificationSelectionModel = specifications[j];
                 NSMutableArray *dataArray = [NSMutableArray array];
-//                if ([specificationSelectionModel.color isEqualToString:colorStr]) {
+                if ([specificationSelectionModel.color isEqualToString:colorStr]) {
                     [dataArray addObject:specificationSelectionModel];
-//                }
+                }
                 alibabaSpecificationSelectionModel.specifications = dataArray.copy;
             }
             alibabaSpecificationSelectionModel.colorStr = colorStr;
             [dataArray addObject:alibabaSpecificationSelectionModel];
         }
-        weakSelf.alibabaSpecificationSelection.dataArray = dataArray;
         [ToastTool makeToastActivity:weakSelf.view toastToolCompleteBlock:^{
+            weakSelf.alibabaSpecificationSelection.dataArray = dataArray;
             [weakSelf.alibabaSpecificationSelection show];
         }];
     }];
 }
-
 
 - (GHAlibabaSpecificationSelection *)alibabaSpecificationSelection {
     if (_alibabaSpecificationSelection == nil) {

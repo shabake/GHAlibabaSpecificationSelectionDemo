@@ -46,7 +46,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 - (instancetype)init {
     if (self == [super init]) {
         [self configuration];
-       
         [self configDefaultUI];
     }
     return self;
@@ -70,7 +69,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     self.frame = kKeyWindow.bounds;
     //BackView
     [self addSubview:self.backView];
-    
     [kKeyWindow addSubview:self];
 }
 
@@ -89,7 +87,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 - (void)show {
     [kKeyWindow bringSubviewToFront:self];
     self.contentView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, self.contentViewHeight);
-    
     WS(weakSelf);
     [UIView animateWithDuration:animateDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         weakSelf.contentView.frame = CGRectMake(0, kScreenHeight-weakSelf.contentViewHeight - kSafeAreaBottomHeight, weakSelf.contentView.frame.size.width, weakSelf.contentViewHeight + kSafeAreaBottomHeight);
