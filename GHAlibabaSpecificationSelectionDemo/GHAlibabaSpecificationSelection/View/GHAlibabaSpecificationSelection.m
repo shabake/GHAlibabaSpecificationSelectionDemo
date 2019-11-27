@@ -686,6 +686,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
             }
         }
     }
+    [self.scrollTitles resetData];
     self.getDataBlock? self.getDataBlock(skuIdNumlist):nil;
 }
 

@@ -1,4 +1,3 @@
-## GHAlibabaSpecificationSelectionDemo
 
 #### 前言
 

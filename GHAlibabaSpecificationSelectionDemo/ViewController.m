@@ -16,7 +16,7 @@
 #import "GHSpecificationSelectionImageModel.h"
 #import "GHPopView.h"
 
-@interface ViewController ()
+@interface ViewController ()<UIWebViewDelegate>
 
 @property (nonatomic , strong) NSMutableArray *dataArray;
 
@@ -28,11 +28,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadData];
+    self.navigationItem.title = @"GHAlibabaSpecificationSelection";
+    UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    webView.scrollView.backgroundColor = [UIColor whiteColor];
+    webView.delegate = self;
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelectionDemo" ofType:@"html"];
+     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
+    [self.view addSubview:webView];
+    UIButton *show = [[UIButton alloc]init];
+    [show setTitle:@"弹出" forState:UIControlStateNormal];
+    [show setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [show sizeToFit];
+    [show addTarget:self action:@selector(clickShow) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:show];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.alibabaSpecificationSelection show];
+- (void)clickShow {
+    [self loadData];
 }
 
 - (void)loadData {

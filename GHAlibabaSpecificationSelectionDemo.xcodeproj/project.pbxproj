@@ -23,6 +23,7 @@
 		040359B2238EB40000151AC2 /* GHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359A8238EB40000151AC2 /* GHTableView.m */; };
 		040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AA238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */; };
 		040359B5238EB40000151AC2 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AD238EB40000151AC2 /* GHTextField.m */; };
+		040359B9238ED4D700151AC2 /* GHAlibabaSpecificationSelectionDemo.html in Resources */ = {isa = PBXBuildFile; fileRef = 040359B8238ED4D700151AC2 /* GHAlibabaSpecificationSelectionDemo.html */; };
 		040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B523544A4E001D2877 /* AppDelegate.m */; };
 		040FA5BC23544A4E001D2877 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5BB23544A4E001D2877 /* ViewController.m */; };
 		040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5BD23544A4E001D2877 /* Main.storyboard */; };
@@ -67,6 +68,7 @@
 		040359AB238EB40000151AC2 /* GHPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHPopView.h; sourceTree = "<group>"; };
 		040359AD238EB40000151AC2 /* GHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
 		040359AE238EB40000151AC2 /* GHScrollTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHScrollTitles.h; sourceTree = "<group>"; };
+		040359B8238ED4D700151AC2 /* GHAlibabaSpecificationSelectionDemo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHAlibabaSpecificationSelectionDemo.html; sourceTree = "<group>"; };
 		040FA5B123544A4E001D2877 /* GHAlibabaSpecificationSelectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHAlibabaSpecificationSelectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040FA5B423544A4E001D2877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		040FA5B523544A4E001D2877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				040FA5BD23544A4E001D2877 /* Main.storyboard */,
 				040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */,
 				040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */,
+				040359B8238ED4D700151AC2 /* GHAlibabaSpecificationSelectionDemo.html */,
 				04628044238E835200C4C277 /* PrefixHeader.pch */,
 				040FA5C023544A4F001D2877 /* Assets.xcassets */,
 				040FA5C223544A4F001D2877 /* LaunchScreen.storyboard */,
@@ -288,6 +291,7 @@
 			files = (
 				040FA5C423544A4F001D2877 /* LaunchScreen.storyboard in Resources */,
 				040FA5C123544A4F001D2877 /* Assets.xcassets in Resources */,
+				040359B9238ED4D700151AC2 /* GHAlibabaSpecificationSelectionDemo.html in Resources */,
 				040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
