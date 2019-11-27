@@ -264,6 +264,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         _skuName = [[UILabel alloc]init];
         _skuName.font =  [UIFont systemFontOfSize:10];
         _skuName.textColor = UIColorFromRGB(0x999999);
+        _skuName.numberOfLines = 0;
     }
     return _skuName;
 }
@@ -657,7 +658,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         _icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, -20, 100, 100)];
         _icon.layer.masksToBounds = YES;
         _icon.layer.cornerRadius = 5;
-        _icon.backgroundColor = [UIColor redColor];
     }
     return _icon;
 }
