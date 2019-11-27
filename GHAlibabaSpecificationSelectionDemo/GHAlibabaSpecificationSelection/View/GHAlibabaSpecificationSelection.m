@@ -9,7 +9,6 @@
 #import "GHAlibabaSpecificationSelection.h"
 #import "GHScrollTitles.h"
 #import "GHTableView.h"
-#import "GHScrollView.h"
 #import "GHAlibabaSpecificationSelectionModel.h"
 #import "GHSpecificationSelectionModel.h"
 #import "UIImageView+WebCache.h"
@@ -372,7 +371,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 /**
  *
  */
-@property (nonatomic , strong) GHScrollView *scrollView;
+@property (nonatomic , strong) UIScrollView *scrollView;
 
 /**
  *
@@ -640,9 +639,9 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     return _scrollTitles;
 }
 
-- (GHScrollView *)scrollView {
+- (UIScrollView *)scrollView {
     if (_scrollView == nil) {
-        _scrollView = [[GHScrollView alloc]init];
+        _scrollView = [[UIScrollView alloc]init];
         _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,self.contentViewHeight -CGRectGetMaxY(self.scrollTitles.frame));
         _scrollView.pagingEnabled = YES;
         _scrollView.delegate = self;
@@ -671,6 +670,23 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         [_close addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
     }
     return _close;
+}
+
+- (void)clickSure {
+    [self dismiss];
+    NSMutableArray *skuIdNumlist = [NSMutableArray array];
+    for (GHSpecificationSelectionTitleModel *titleModel in self.scrollTitles.titles) {
+        for (GHSpecificationSelectionModel *skuModel in titleModel.skuList) {
+            if (ValidStr(skuModel.count) && skuModel.count.integerValue > 0) {
+                NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                dict[@"skuId"] = skuModel.sku_id;
+                dict[@"skuNum"] = skuModel.count;
+                dict[@"color"] = skuModel.color;
+                [skuIdNumlist addObject:dict];
+            }
+        }
+    }
+    self.getDataBlock? self.getDataBlock(skuIdNumlist):nil;
 }
 
 - (UIView *)shadow {
@@ -729,6 +745,10 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 - (GHAlibabaSpecificationSelectionBottomView *)bottomView {
     if (_bottomView == nil) {
         _bottomView = [[GHAlibabaSpecificationSelectionBottomView alloc]init];
+        weakself(self);
+        _bottomView.didClickSureBlock = ^{
+            [weakSelf clickSure];
+        };
     }
     return _bottomView;
 }

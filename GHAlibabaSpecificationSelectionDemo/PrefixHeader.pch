@@ -47,6 +47,10 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #else
 #define NSLog(...) {}
 #endif
+
+#define KAlert(title,msg) [[[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show]
+
+
 #import "UIView+Extension.h"
 #import "Masonry.h"
 

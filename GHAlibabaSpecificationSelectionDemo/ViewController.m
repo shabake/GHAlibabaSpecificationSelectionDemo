@@ -72,7 +72,7 @@
             [dataArray addObject:alibabaSpecificationSelectionModel];
         }
         [ToastTool makeToastActivity:weakSelf.view toastToolCompleteBlock:^{
-            [weakSelf.alibabaSpecificationSelection setSkuList:specifications colors:nil sectePrice:sectePrice];
+            [weakSelf.alibabaSpecificationSelection setSkuList:specifications colors:colors sectePrice:sectePrice];
             [weakSelf.alibabaSpecificationSelection show];
         }];
     }];
@@ -82,6 +82,14 @@
     if (_alibabaSpecificationSelection == nil) {
         _alibabaSpecificationSelection = [[GHAlibabaSpecificationSelection alloc]init];
         _alibabaSpecificationSelection.contentViewHeight = 500;
+        _alibabaSpecificationSelection.getDataBlock = ^(NSArray * _Nonnull dataArray) {
+            NSLog(@"用户选择的数据%@",dataArray);
+            NSMutableString *string = [NSMutableString string];
+            for (NSDictionary *dict in dataArray) {
+                [string appendFormat:@"颜色:%@  数量:%@  id:%@\n",dict[@"color"],dict[@"skuNum"],dict[@"skuId"]];
+            }
+            KAlert(@"用户选择的数据", string);
+        };
     }
     return _alibabaSpecificationSelection;
 }

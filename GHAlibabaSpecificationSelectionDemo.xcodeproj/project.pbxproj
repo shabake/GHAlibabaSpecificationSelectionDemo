@@ -21,11 +21,9 @@
 		040359B0238EB40000151AC2 /* GHPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359A3238EB40000151AC2 /* GHPopView.m */; };
 		040359B1238EB40000151AC2 /* GHScrollTitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359A6238EB40000151AC2 /* GHScrollTitles.m */; };
 		040359B2238EB40000151AC2 /* GHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359A8238EB40000151AC2 /* GHTableView.m */; };
-		040359B3238EB40000151AC2 /* GHScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359A9238EB40000151AC2 /* GHScrollView.m */; };
 		040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AA238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */; };
 		040359B5238EB40000151AC2 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AD238EB40000151AC2 /* GHTextField.m */; };
 		040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B523544A4E001D2877 /* AppDelegate.m */; };
-		040FA5B923544A4E001D2877 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B823544A4E001D2877 /* SceneDelegate.m */; };
 		040FA5BC23544A4E001D2877 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5BB23544A4E001D2877 /* ViewController.m */; };
 		040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5BD23544A4E001D2877 /* Main.storyboard */; };
 		040FA5C123544A4F001D2877 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5C023544A4F001D2877 /* Assets.xcassets */; };
@@ -65,17 +63,13 @@
 		040359A6238EB40000151AC2 /* GHScrollTitles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHScrollTitles.m; sourceTree = "<group>"; };
 		040359A7238EB40000151AC2 /* GHAlibabaSpecificationSelection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAlibabaSpecificationSelection.h; sourceTree = "<group>"; };
 		040359A8238EB40000151AC2 /* GHTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTableView.m; sourceTree = "<group>"; };
-		040359A9238EB40000151AC2 /* GHScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHScrollView.m; sourceTree = "<group>"; };
 		040359AA238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAlibabaSpecificationSelectionBottomView.m; sourceTree = "<group>"; };
 		040359AB238EB40000151AC2 /* GHPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHPopView.h; sourceTree = "<group>"; };
-		040359AC238EB40000151AC2 /* GHScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHScrollView.h; sourceTree = "<group>"; };
 		040359AD238EB40000151AC2 /* GHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
 		040359AE238EB40000151AC2 /* GHScrollTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHScrollTitles.h; sourceTree = "<group>"; };
 		040FA5B123544A4E001D2877 /* GHAlibabaSpecificationSelectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHAlibabaSpecificationSelectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040FA5B423544A4E001D2877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		040FA5B523544A4E001D2877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		040FA5B723544A4E001D2877 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		040FA5B823544A4E001D2877 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		040FA5BA23544A4E001D2877 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		040FA5BB23544A4E001D2877 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		040FA5BE23544A4E001D2877 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -168,8 +162,6 @@
 				040FA5CD23544A61001D2877 /* GHAlibabaSpecificationSelection */,
 				040FA5B423544A4E001D2877 /* AppDelegate.h */,
 				040FA5B523544A4E001D2877 /* AppDelegate.m */,
-				040FA5B723544A4E001D2877 /* SceneDelegate.h */,
-				040FA5B823544A4E001D2877 /* SceneDelegate.m */,
 				040FA5BA23544A4E001D2877 /* ViewController.h */,
 				040FA5BB23544A4E001D2877 /* ViewController.m */,
 				040FA5BD23544A4E001D2877 /* Main.storyboard */,
@@ -206,8 +198,6 @@
 				040359A3238EB40000151AC2 /* GHPopView.m */,
 				040359AE238EB40000151AC2 /* GHScrollTitles.h */,
 				040359A6238EB40000151AC2 /* GHScrollTitles.m */,
-				040359AC238EB40000151AC2 /* GHScrollView.h */,
-				040359A9238EB40000151AC2 /* GHScrollView.m */,
 				040359A4238EB40000151AC2 /* GHTableView.h */,
 				040359A8238EB40000151AC2 /* GHTableView.m */,
 				040359A1238EB40000151AC2 /* GHTextField.h */,
@@ -371,9 +361,7 @@
 				040FA5C723544A4F001D2877 /* main.m in Sources */,
 				040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */,
 				040359B5238EB40000151AC2 /* GHTextField.m in Sources */,
-				040359B3238EB40000151AC2 /* GHScrollView.m in Sources */,
 				040359B2238EB40000151AC2 /* GHTableView.m in Sources */,
-				040FA5B923544A4E001D2877 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^GHAlibabaSpecificationSelectionGetDataBlock)(NSArray *dataArray);
 
 @interface GHAlibabaSpecificationSelection : GHPopView
 
@@ -23,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
  * @param sectePrice 价格区间字典
  */
 - (void)setSkuList:(NSArray *)skuList colors:(NSArray *)colors sectePrice:(NSDictionary *)sectePrice;
+
+@property (nonatomic , copy) GHAlibabaSpecificationSelectionGetDataBlock getDataBlock;
 
 @end
 
