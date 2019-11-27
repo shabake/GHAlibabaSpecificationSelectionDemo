@@ -22,6 +22,8 @@
 
 @property (nonatomic , strong) GHAlibabaSpecificationSelection *alibabaSpecificationSelection;
 
+@property (nonatomic , strong) UIWebView *webView;
+
 @end
 
 @implementation ViewController
@@ -30,6 +32,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"GHAlibabaSpecificationSelection";
     UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+    self.webView = webView;
     webView.scrollView.backgroundColor = [UIColor whiteColor];
     webView.delegate = self;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelectionDemo" ofType:@"html"];
@@ -41,6 +44,18 @@
     [show sizeToFit];
     [show addTarget:self action:@selector(clickShow) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:show];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
+    [ToastTool makeToastActivity:self.view];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
+    [ToastTool hideToastActivity:self.view];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
+    [ToastTool hideToastActivity:self.view];
 }
 
 - (void)clickShow {

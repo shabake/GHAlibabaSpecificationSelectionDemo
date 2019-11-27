@@ -93,7 +93,9 @@
     for (UILabel *label in self.labels) {
         [label removeFromSuperview];
     }
-    
+    [self.labels removeAllObjects];
+    CGFloat width = self.scrollView.frame.size.width / 3.01f;
+
     for (NSInteger index = 0 ; index < titles.count; index++) {
         GHSpecificationSelectionTitleModel *titleModel = titles[index];
         UILabel *label = [[UILabel alloc]init];
@@ -106,10 +108,11 @@
         label.textAlignment = NSTextAlignmentCenter;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelClick:)];
         [label addGestureRecognizer:tap];
+        label.frame = CGRectMake(index * width, 0, width, self.scrollView.frame.size.height);
+        [self.scrollView addSubview:label];
         [self.labels addObject:label];
     }
-    
-    CGFloat width = self.scrollView.frame.size.width / 3.01f;
+      
     self.scrollView.contentSize = CGSizeMake(width * titles.count, 0);
     [self.indicator removeFromSuperview];
     UIView *indicator = [[UIView alloc]init];
@@ -120,7 +123,6 @@
 }
 
 - (void)labelClick:(UITapGestureRecognizer *)tap{
-    
     NSInteger index = (NSInteger)tap.view.tag;
     self.currentIndex = index;
     if (self.didClickTitleBlock) {
@@ -158,12 +160,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    CGFloat width = self.scrollView.frame.size.width / 3.01f;
-    for (NSInteger index = 0; index < self.labels.count; index++) {
-        UILabel *label = self.labels[index];
-        label.frame = CGRectMake(index * width, 0, width, self.scrollView.frame.size.height);
-        [self.scrollView addSubview:label];
-    }
+   
 }
 
 - (void)clicRightButton {

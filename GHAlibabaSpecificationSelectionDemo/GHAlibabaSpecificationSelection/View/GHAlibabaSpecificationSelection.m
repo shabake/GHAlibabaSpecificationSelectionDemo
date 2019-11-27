@@ -67,22 +67,11 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 - (void)setSkuModel:(GHSpecificationSelectionModel *)skuModel {
     _skuModel = skuModel;
     NSMutableArray *iconTypes = [NSMutableArray array];
-    //    if ([skuModel.isHaveActivity isEqualToString:@"1"]) {
-    //        XFSIconType iconType = 0;
-    //        if ([skuModel.activityType isEqualToString: @"10"]) {
-    //            iconType = XFSIconTypeSpecialPrice;
-    //            self.price.attributedText = [self getActivityPrice];
-    //        } else if ([skuModel.activityType isEqualToString:@"20"]) {
-    //            iconType = XFSIconTypeFullReduction;
-    //            self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
-    //        }
-    //        [iconTypes addObject:@(iconType)];
-    //    } else {
-    //        iconTypes = nil;
+
     self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
     //    }
     self.skuName.text = [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
-    //    [self.skuName setTitleString: [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""] iconTypeArray:iconTypes];
+ 
     
     self.skuCode.text = [NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code];
     NSString *estimatedDate = @"";
@@ -543,14 +532,15 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     CGFloat scrollViewY = self.colors.count > 1 ? CGRectGetMaxY(self.scrollTitles.frame):CGRectGetMaxY(self.shadow.frame) + 10;
     CGFloat scrollViewH = 500 - CGRectGetMaxY(self.scrollTitles.frame) - 50;
     self.scrollView.frame = CGRectMake(0,scrollViewY, kScreenWidth,scrollViewH);
-    [self setTableViews];
     [self.contentView addSubview:self.bottomView];
     self.bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.scrollView.frame), kScreenWidth, 50 + kSafeAreaBottomHeight);
 }
 
 - (void)setTableViews {
     [self.tables removeAllObjects];
-    
+    for (UITableView *tab in self.tables) {
+        [tab removeFromSuperview];
+    }
     for (NSInteger index = 0; index < (self.colors.count > 1 ? self.colors.count:1); index++) {
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.frame.size.width * index  , 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) style:UITableViewStylePlain];
         tableView.delegate = self;
@@ -646,7 +636,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,self.contentViewHeight -CGRectGetMaxY(self.scrollTitles.frame));
         _scrollView.pagingEnabled = YES;
         _scrollView.delegate = self;
-        _scrollView.backgroundColor = [UIColor redColor];
         _scrollView.bounces = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
     }
@@ -753,6 +742,5 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     }
     return _bottomView;
 }
-
 
 @end

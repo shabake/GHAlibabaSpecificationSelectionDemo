@@ -63,12 +63,8 @@
   };
 ```
 
-####联系
+####与我联系
 
-[45329453@qq.com](45329453@qq.com)
-
-[Github](https://github.com/shabake/)
-
-[demo](https://github.com/shabake/GHAlibabaSpecificationSelectionDemo)
+45329453@qq.com
 
 --
