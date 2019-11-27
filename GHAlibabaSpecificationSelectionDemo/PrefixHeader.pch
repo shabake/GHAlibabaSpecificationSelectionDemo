@@ -42,8 +42,11 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define UIColorFromRGBA(rgbValue,a)        [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 #define weakself(self)          __weak __typeof(self) weakSelf = self
-
-
+#ifdef DEBUG
+#define NSLog(format, ...) printf("%s\n", [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(...) {}
+#endif
 #import "UIView+Extension.h"
 #import "Masonry.h"
 

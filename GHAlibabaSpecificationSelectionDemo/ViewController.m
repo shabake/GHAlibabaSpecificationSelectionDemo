@@ -16,15 +16,6 @@
 #import "GHSpecificationSelectionImageModel.h"
 #import "GHPopView.h"
 
-#define weakself(self)          __weak __typeof(self) weakSelf = self
-
-
-#ifdef DEBUG
-#define NSLog(format, ...) printf("%s\n", [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String]);
-#else
-#define NSLog(...) {}
-#endif
-
 @interface ViewController ()
 
 @property (nonatomic , strong) NSMutableArray *dataArray;
@@ -49,7 +40,7 @@
     weakself(self);
     NSString *url = @"http://mock-api.com/7zxXywz3.mock/data";
     [[GHHTTPSessionManager sharedManager] getGoodDetailsWithUrl:url finishedBlock:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
-         NSDictionary *dict = (NSDictionary *)responseObject;
+        NSDictionary *dict = (NSDictionary *)responseObject;
         NSArray *colors = dict[@"color"];
         NSArray *data = dict[@"data"];
         NSDictionary *sectePrice = dict[@"sectePrice"];
@@ -81,7 +72,7 @@
             [dataArray addObject:alibabaSpecificationSelectionModel];
         }
         [ToastTool makeToastActivity:weakSelf.view toastToolCompleteBlock:^{
-            [weakSelf.alibabaSpecificationSelection setSkuList:specifications colors:colors sectePrice:sectePrice];
+            [weakSelf.alibabaSpecificationSelection setSkuList:specifications colors:nil sectePrice:sectePrice];
             [weakSelf.alibabaSpecificationSelection show];
         }];
     }];
