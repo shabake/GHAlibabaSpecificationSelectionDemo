@@ -30,7 +30,8 @@
 
 初始化对象
 
-引入`#import "GHAlibabaSpecificationSelection.h`
+引入
+`#import GHAlibabaSpecificationSelection.h`
 
 ```objective-c
 - (GHAlibabaSpecificationSelection *)alibabaSpecificationSelection {
@@ -62,6 +63,12 @@
   };
 ```
 
+####联系
 
+[45329453@qq.com](45329453@qq.com)
 
+[Github](https://github.com/shabake/)
 
+[demo](https://github.com/shabake/GHAlibabaSpecificationSelectionDemo)
+
+--
