@@ -25,6 +25,8 @@
 		040FA6352359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA6342359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m */; };
 		040FA6382359BBCC001D2877 /* ToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA6362359BBCC001D2877 /* ToastTool.m */; };
 		040FA63B2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA63A2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m */; };
+		04628047238E83B600C4C277 /* GHSpecificationSelectionTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04628046238E83B600C4C277 /* GHSpecificationSelectionTitleModel.m */; };
+		0462804B238EA09500C4C277 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0462804A238EA09500C4C277 /* GHTextField.m */; };
 		F2990ADB9C9CE728232AA502 /* Pods_GHAlibabaSpecificationSelectionDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,11 @@
 		040FA6372359BBCC001D2877 /* ToastTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastTool.h; sourceTree = "<group>"; };
 		040FA6392359C7FB001D2877 /* GHSpecificationSelectionImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHSpecificationSelectionImageModel.h; sourceTree = "<group>"; };
 		040FA63A2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionImageModel.m; sourceTree = "<group>"; };
+		04628044238E835200C4C277 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		04628045238E83B600C4C277 /* GHSpecificationSelectionTitleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHSpecificationSelectionTitleModel.h; sourceTree = "<group>"; };
+		04628046238E83B600C4C277 /* GHSpecificationSelectionTitleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionTitleModel.m; sourceTree = "<group>"; };
+		04628049238EA09500C4C277 /* GHTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTextField.h; sourceTree = "<group>"; };
+		0462804A238EA09500C4C277 /* GHTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
 		1D64B2FE7F97A0941C374FA6 /* Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig"; path = "Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig"; sourceTree = "<group>"; };
 		AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHAlibabaSpecificationSelectionDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6CA08E36706B06D4CE6A26 /* Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig"; path = "Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +118,7 @@
 				040FA5BD23544A4E001D2877 /* Main.storyboard */,
 				040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */,
 				040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */,
+				04628044238E835200C4C277 /* PrefixHeader.pch */,
 				040FA5C023544A4F001D2877 /* Assets.xcassets */,
 				040FA5C223544A4F001D2877 /* LaunchScreen.storyboard */,
 				040FA5C523544A4F001D2877 /* Info.plist */,
@@ -122,6 +130,7 @@
 		040FA5CD23544A61001D2877 /* GHAlibabaSpecificationSelection */ = {
 			isa = PBXGroup;
 			children = (
+				04628048238EA08000C4C277 /* View */,
 				040FA6372359BBCC001D2877 /* ToastTool.h */,
 				040FA6362359BBCC001D2877 /* ToastTool.m */,
 				040FA60623581909001D2877 /* UIView+Extension.h */,
@@ -138,12 +147,23 @@
 				040FA5DB235589B3001D2877 /* GHScrollView.m */,
 				040FA6302359A2FF001D2877 /* GHSpecificationSelectionModel.h */,
 				040FA6312359A2FF001D2877 /* GHSpecificationSelectionModel.m */,
+				04628045238E83B600C4C277 /* GHSpecificationSelectionTitleModel.h */,
+				04628046238E83B600C4C277 /* GHSpecificationSelectionTitleModel.m */,
 				040FA6332359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.h */,
 				040FA6342359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m */,
 				040FA6392359C7FB001D2877 /* GHSpecificationSelectionImageModel.h */,
 				040FA63A2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m */,
 			);
 			path = GHAlibabaSpecificationSelection;
+			sourceTree = "<group>";
+		};
+		04628048238EA08000C4C277 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04628049238EA09500C4C277 /* GHTextField.h */,
+				0462804A238EA09500C4C277 /* GHTextField.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		512CDB4D147EE6F6F97CADBE /* Frameworks */ = {
@@ -285,6 +305,8 @@
 				040FA5BC23544A4E001D2877 /* ViewController.m in Sources */,
 				040FA5D92355766C001D2877 /* GHTableView.m in Sources */,
 				040FA5D323544CBA001D2877 /* GHAlibabaSpecificationSelection.m in Sources */,
+				0462804B238EA09500C4C277 /* GHTextField.m in Sources */,
+				04628047238E83B600C4C277 /* GHSpecificationSelectionTitleModel.m in Sources */,
 				040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */,
 				040FA5D623545E97001D2877 /* GHScrollTitles.m in Sources */,
 				040FA5C723544A4F001D2877 /* main.m in Sources */,
@@ -435,6 +457,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KZ9JB9ZT4S;
+				GCC_PREFIX_HEADER = GHAlibabaSpecificationSelectionDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = GHAlibabaSpecificationSelectionDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -455,6 +478,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KZ9JB9ZT4S;
+				GCC_PREFIX_HEADER = GHAlibabaSpecificationSelectionDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = GHAlibabaSpecificationSelectionDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

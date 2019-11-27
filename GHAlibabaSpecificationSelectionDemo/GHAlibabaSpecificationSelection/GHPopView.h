@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 消失 */
 - (void)dismiss;
 
+@property (nonatomic, strong) UIView *contentView;
+
 @end
 
 NS_ASSUME_NONNULL_END

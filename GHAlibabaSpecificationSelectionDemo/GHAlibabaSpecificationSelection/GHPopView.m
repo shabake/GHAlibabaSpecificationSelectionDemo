@@ -32,7 +32,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 /** 背景按钮 */
 @property (nonatomic, strong) UIButton *backView;
 
-@property (nonatomic, strong) UIView *contentView;
 
 @end
 @implementation GHPopView
@@ -62,6 +61,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #pragma mark - ConfigUI && Configuration
 
 - (void)configuration {
+    
     self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
 }
 
@@ -69,12 +69,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     self.frame = kKeyWindow.bounds;
     //BackView
     [self addSubview:self.backView];
+    [self.backView addSubview:self.contentView];
     [kKeyWindow addSubview:self];
-}
-
-- (void)addView:(UIView *)view {
-    [self.backView addSubview:view];
-    self.contentView = view;
 }
 
 #pragma mark - Event
@@ -85,15 +81,15 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 #pragma mark 显示
 - (void)show {
+    
     [kKeyWindow bringSubviewToFront:self];
     self.contentView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, self.contentViewHeight);
+    self.backgroundColor = [UIColor orangeColor];
     WS(weakSelf);
     [UIView animateWithDuration:animateDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        weakSelf.contentView.frame = CGRectMake(0, kScreenHeight-weakSelf.contentViewHeight - kSafeAreaBottomHeight, weakSelf.contentView.frame.size.width, weakSelf.contentViewHeight + kSafeAreaBottomHeight);
+        weakSelf.contentView.frame = CGRectMake(0, kScreenHeight - weakSelf.contentViewHeight - kSafeAreaBottomHeight, kScreenWidth, weakSelf.contentViewHeight + kSafeAreaBottomHeight);
     } completion:^(BOOL finished) {
-        if (weakSelf.showFinish) {
-            weakSelf.showFinish(self.contentView.frame);
-        }
+        
     }];
 }
 
@@ -102,7 +98,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     WS(weakSelf);
     [UIView animateWithDuration:animateDuration delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         weakSelf.backgroundColor = [UIColor clearColor];
-        weakSelf.contentView.frame = CGRectMake(0, kScreenHeight, weakSelf.contentView.frame.size.width, weakSelf.contentViewHeight);
+        weakSelf.contentView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, weakSelf.contentViewHeight);
     } completion:^(BOOL finished) {
         [weakSelf.contentView removeFromSuperview];
         [weakSelf.backView removeFromSuperview];
@@ -124,5 +120,14 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     }
     return _backView;
 }
+
+- (UIView *)contentView {
+    if (_contentView == nil) {
+        _contentView = [[UIView alloc] init];
+        _contentView.backgroundColor = [UIColor whiteColor];
+    }
+    return _contentView;
+}
+
 
 @end

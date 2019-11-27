@@ -160,7 +160,24 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *volume_small;
 @property (nonatomic , copy) NSString *parts_number;
 @property (nonatomic , copy) NSString *unit_large;
+@property (nonatomic , copy) NSString *activityPlatform;
+@property (nonatomic , copy) NSString *count;
+/**
+ * 是否被选择
+ */
+@property (nonatomic, assign) BOOL seleted;
 
+/**
+ * sku序号
+ */
+@property (nonatomic, assign) NSInteger index;
+
+@property (nonatomic, copy) NSString *activity_price;
+
+/**
+ * 是否有活动 isHaveActivity = 1 有 ; isHaveActivity = 2 无
+*/
+@property (nonatomic, copy) NSString *isHaveActivity;
 @end
 
 NS_ASSUME_NONNULL_END

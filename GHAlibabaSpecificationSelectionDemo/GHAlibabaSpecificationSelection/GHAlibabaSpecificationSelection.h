@@ -15,7 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , strong) NSArray *dataArray;
 
-- (void)reloadData;
+
+/**
+ * 数据源
+ * @param skuList 装skuModel数组
+ * @param colors 颜色数组
+ * @param sectePrice 价格区间字典
+ */
+- (void)setSkuList:(NSArray *)skuList colors:(NSArray *)colors sectePrice:(NSDictionary *)sectePrice;
 
 @end
 

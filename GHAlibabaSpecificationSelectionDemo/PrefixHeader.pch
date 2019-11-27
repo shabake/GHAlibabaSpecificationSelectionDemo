@@ -1,0 +1,50 @@
+//
+//  PrefixHeader.pch
+//  GHAlibabaSpecificationSelectionDemo
+//
+//  Created by mac on 2019/11/27.
+//  Copyright © 2019 macBookPro. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define StrValid(f)         (f!=nil && [f isKindOfClass:[NSString class]] && ![f isEqualToString:@""])
+
+#define ValidStr(f)         StrValid(f)
+#define ValidDict(f)        (f!=nil && [f isKindOfClass:[NSDictionary class]] && [f count]>0)
+#define ValidArray(f)       (f!=nil && [f isKindOfClass:[NSArray class]] && [f count]>0)
+
+#define kScreenWidth                ([UIScreen mainScreen].bounds.size.width)   //屏幕宽度
+#define kScreenHeight               ([UIScreen mainScreen].bounds.size.height)  //屏幕高度
+#define kNavHeight                  kSafeAreaTopHeight       //导航的高度
+#define kSafeAreaBottomHeight       (IS_PhoneXAll ? 34.0f : 0.0f)
+// StatusbarH + NavigationH
+#define kSafeAreaTopHeight          (IS_PhoneXAll ? 88.0f : 64.0f)
+// StatusBarHeight
+#define kStatusBarHeight            (IS_PhoneXAll ? 44.0f : 20.0f)
+// NavigationBarHeigth
+#define kNavBarHeight               44.0f
+//kTabBarHeight
+#define kTabBarHeight               49.0f
+// TabBarHeight+kSafeAreaBottomHeight
+#define kBottomAreaHeight           (kTabBarHeight + kSafeAreaBottomHeight)
+
+#define IS_PhoneXAll \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+
+#define UIColorFromRGB(rgbValue)        UIColorFromRGBA(rgbValue,1.0)
+
+#define UIColorFromRGBA(rgbValue,a)        [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
+
+#define weakself(self)          __weak __typeof(self) weakSelf = self
+
+
+#import "UIView+Extension.h"
+#import "Masonry.h"
+
+#endif /* PrefixHeader_pch */

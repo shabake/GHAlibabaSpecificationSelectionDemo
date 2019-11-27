@@ -41,6 +41,10 @@
     [self loadData];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.alibabaSpecificationSelection show];
+}
+
 - (void)loadData {
     [ToastTool makeToastActivity:self.view];
     weakself(self);
@@ -80,7 +84,7 @@
             [dataArray addObject:alibabaSpecificationSelectionModel];
         }
         [ToastTool makeToastActivity:weakSelf.view toastToolCompleteBlock:^{
-            weakSelf.alibabaSpecificationSelection.dataArray = dataArray;
+            [weakSelf.alibabaSpecificationSelection setSkuList:specifications colors:colors sectePrice:sectePrice];
             [weakSelf.alibabaSpecificationSelection show];
         }];
     }];
@@ -89,6 +93,7 @@
 - (GHAlibabaSpecificationSelection *)alibabaSpecificationSelection {
     if (_alibabaSpecificationSelection == nil) {
         _alibabaSpecificationSelection = [[GHAlibabaSpecificationSelection alloc]init];
+        _alibabaSpecificationSelection.contentViewHeight = 500;
     }
     return _alibabaSpecificationSelection;
 }

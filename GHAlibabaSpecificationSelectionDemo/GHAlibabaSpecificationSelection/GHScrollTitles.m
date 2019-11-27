@@ -7,7 +7,7 @@
 //
 
 #import "GHScrollTitles.h"
-#import "UIView+Extension.h"
+#import "GHSpecificationSelectionTitleModel.h"
 
 @interface GHScrollTitles()
 
@@ -20,7 +20,9 @@
  *  右侧剪头
  */
 @property (nonatomic , strong) UIButton *rightButton;
+
 @property (nonatomic , strong) UIView *bottomLine;
+
 @property (nonatomic , strong) UIScrollView *scrollView;
 
 /**
@@ -59,8 +61,9 @@
     }
     
     for (NSInteger index = 0 ; index < titles.count; index++) {
+        GHSpecificationSelectionTitleModel *titleModel = titles[index];
         UILabel *label = [[UILabel alloc]init];
-        label.text = titles[index];
+        label.text = titleModel.color;
         label.tag = index;
         label.userInteractionEnabled = YES;
         label.textAlignment = NSTextAlignmentCenter;
