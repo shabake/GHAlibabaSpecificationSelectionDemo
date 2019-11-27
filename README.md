@@ -25,7 +25,7 @@
 
 #### 演示
 
-![Untitled.gif](https://upload-images.jianshu.io/upload_images/1419035-ed0c9fce0ac0503e.gif?imageMogr2/auto-orient/strip)
+![Untitled.gif](https://upload-images.jianshu.io/upload_images/1419035-d077a726fdb7f320.gif?imageMogr2/auto-orient/strip)
 
 #### 部分代码
 
