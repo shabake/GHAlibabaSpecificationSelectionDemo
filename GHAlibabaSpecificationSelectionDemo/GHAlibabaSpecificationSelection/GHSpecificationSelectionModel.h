@@ -162,6 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *unit_large;
 @property (nonatomic , copy) NSString *activityPlatform;
 @property (nonatomic , copy) NSString *count;
+@property (nonatomic , copy) NSString *activityType;
 /**
  * 是否被选择
  */

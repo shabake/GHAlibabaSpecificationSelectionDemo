@@ -32,7 +32,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 /** 背景按钮 */
 @property (nonatomic, strong) UIButton *backView;
 
-
 @end
 @implementation GHPopView
 
@@ -58,16 +57,12 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     return self;
 }
 
-#pragma mark - ConfigUI && Configuration
-
 - (void)configuration {
-    
     self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
 }
 
 - (void)configDefaultUI {
     self.frame = kKeyWindow.bounds;
-    //BackView
     [self addSubview:self.backView];
     [self.backView addSubview:self.contentView];
     [kKeyWindow addSubview:self];
@@ -84,7 +79,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     
     [kKeyWindow bringSubviewToFront:self];
     self.contentView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, self.contentViewHeight);
-    self.backgroundColor = [UIColor orangeColor];
     WS(weakSelf);
     [UIView animateWithDuration:animateDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         weakSelf.contentView.frame = CGRectMake(0, kScreenHeight - weakSelf.contentViewHeight - kSafeAreaBottomHeight, kScreenWidth, weakSelf.contentViewHeight + kSafeAreaBottomHeight);
@@ -128,6 +122,5 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     }
     return _contentView;
 }
-
 
 @end

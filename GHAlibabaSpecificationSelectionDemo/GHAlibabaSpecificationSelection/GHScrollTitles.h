@@ -29,6 +29,16 @@ typedef void (^GHScrollTitlesDidClickRightBlock)(void);
 /** 滑动停止的时候 */
 - (void)setMenusScrollViewEnd:(CGPoint)endOffset;
 
+/**
+ *  刷新数据
+ */
+- (void)reloadData;
+
+/**
+ *  重置所有数据(去掉红点,index = 0,数据清空)
+ */
+- (void)resetData;
+
 @end
 
 NS_ASSUME_NONNULL_END

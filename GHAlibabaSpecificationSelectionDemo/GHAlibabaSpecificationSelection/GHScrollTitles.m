@@ -8,6 +8,8 @@
 
 #import "GHScrollTitles.h"
 #import "GHSpecificationSelectionTitleModel.h"
+#import "GHSpecificationSelectionModel.h"
+#import "PPBadgeView.h"
 
 @interface GHScrollTitles()
 
@@ -43,6 +45,38 @@
 @end
 @implementation GHScrollTitles
 
+- (void)resetData {
+    self.currentIndex = 0;
+    [self setMenusScrollView:CGPointZero];
+    [self reloadData];
+}
+
+- (void)reloadData {
+    
+    for (NSInteger index = 0 ; index < self.titles.count; index++) {
+        GHSpecificationSelectionTitleModel *titleModel = self.titles[index];
+        NSInteger count = 0;
+        for (NSInteger j = 0 ; j < titleModel.skuList.count; j++) {
+            GHSpecificationSelectionModel *skuModel = titleModel.skuList[j];
+            count += skuModel.count.integerValue;
+        }
+        titleModel.count = [NSString stringWithFormat:@"%ld",(long)count];
+        UILabel *label = self.labels[index];
+        if (titleModel.count.integerValue > 0) {
+            [label pp_addBadgeWithText:titleModel.count];
+            if (titleModel.count.integerValue > 99) {
+                [label pp_addBadgeWithText:@"99+"];
+            }
+            [label pp_moveBadgeWithX:-20 Y:20];
+            [label pp_setBadgeLabelAttributes:^(PPBadgeLabel *badgeLabel) {
+                badgeLabel.backgroundColor = [UIColor redColor];
+            }];
+        } else {
+            [label pp_hiddenBadge];
+        }
+    }
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
         [self addSubview:self.leftButton];
@@ -66,6 +100,9 @@
         label.text = titleModel.color;
         label.tag = index;
         label.userInteractionEnabled = YES;
+        if (index == 0) {
+            label.textColor = [UIColor redColor];
+        }
         label.textAlignment = NSTextAlignmentCenter;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelClick:)];
         [label addGestureRecognizer:tap];

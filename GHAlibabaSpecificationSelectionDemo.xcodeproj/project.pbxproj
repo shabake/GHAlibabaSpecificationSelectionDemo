@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0403597F238EAA4600151AC2 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403597E238EAA4600151AC2 /* NSString+Extension.m */; };
+		04035982238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035981238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */; };
+		04035986238EAF2200151AC2 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035985238EAF2200151AC2 /* UIButton+Extension.m */; };
+		04035989238EAF9000151AC2 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035988238EAF9000151AC2 /* UIImage+Extension.m */; };
 		040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B523544A4E001D2877 /* AppDelegate.m */; };
 		040FA5B923544A4E001D2877 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B823544A4E001D2877 /* SceneDelegate.m */; };
 		040FA5BC23544A4E001D2877 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5BB23544A4E001D2877 /* ViewController.m */; };
@@ -31,6 +35,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0403597D238EAA4600151AC2 /* NSString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		0403597E238EAA4600151AC2 /* NSString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		04035980238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHAlibabaSpecificationSelectionBottomView.h; sourceTree = "<group>"; };
+		04035981238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHAlibabaSpecificationSelectionBottomView.m; sourceTree = "<group>"; };
+		04035984238EAF2200151AC2 /* UIButton+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extension.h"; sourceTree = "<group>"; };
+		04035985238EAF2200151AC2 /* UIButton+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extension.m"; sourceTree = "<group>"; };
+		04035987238EAF9000151AC2 /* UIImage+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
+		04035988238EAF9000151AC2 /* UIImage+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		040FA5B123544A4E001D2877 /* GHAlibabaSpecificationSelectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHAlibabaSpecificationSelectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040FA5B423544A4E001D2877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		040FA5B523544A4E001D2877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -87,6 +99,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04035983238EAF0A00151AC2 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				04035984238EAF2200151AC2 /* UIButton+Extension.h */,
+				04035985238EAF2200151AC2 /* UIButton+Extension.m */,
+				04035987238EAF9000151AC2 /* UIImage+Extension.h */,
+				04035988238EAF9000151AC2 /* UIImage+Extension.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		040FA5A823544A4E001D2877 = {
 			isa = PBXGroup;
 			children = (
@@ -130,11 +153,14 @@
 		040FA5CD23544A61001D2877 /* GHAlibabaSpecificationSelection */ = {
 			isa = PBXGroup;
 			children = (
+				04035983238EAF0A00151AC2 /* Category */,
 				04628048238EA08000C4C277 /* View */,
 				040FA6372359BBCC001D2877 /* ToastTool.h */,
 				040FA6362359BBCC001D2877 /* ToastTool.m */,
 				040FA60623581909001D2877 /* UIView+Extension.h */,
 				040FA60523581909001D2877 /* UIView+Extension.m */,
+				0403597D238EAA4600151AC2 /* NSString+Extension.h */,
+				0403597E238EAA4600151AC2 /* NSString+Extension.m */,
 				040FA5CE23544A61001D2877 /* GHPopView.h */,
 				040FA5CF23544A61001D2877 /* GHPopView.m */,
 				040FA5D123544CBA001D2877 /* GHAlibabaSpecificationSelection.h */,
@@ -162,6 +188,8 @@
 			children = (
 				04628049238EA09500C4C277 /* GHTextField.h */,
 				0462804A238EA09500C4C277 /* GHTextField.m */,
+				04035980238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.h */,
+				04035981238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,13 +330,17 @@
 				040FA5DC235589B3001D2877 /* GHScrollView.m in Sources */,
 				040FA5D023544A62001D2877 /* GHPopView.m in Sources */,
 				040FA6352359B4FC001D2877 /* GHAlibabaSpecificationSelectionModel.m in Sources */,
+				04035986238EAF2200151AC2 /* UIButton+Extension.m in Sources */,
 				040FA5BC23544A4E001D2877 /* ViewController.m in Sources */,
 				040FA5D92355766C001D2877 /* GHTableView.m in Sources */,
+				0403597F238EAA4600151AC2 /* NSString+Extension.m in Sources */,
 				040FA5D323544CBA001D2877 /* GHAlibabaSpecificationSelection.m in Sources */,
 				0462804B238EA09500C4C277 /* GHTextField.m in Sources */,
 				04628047238E83B600C4C277 /* GHSpecificationSelectionTitleModel.m in Sources */,
 				040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */,
+				04035982238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */,
 				040FA5D623545E97001D2877 /* GHScrollTitles.m in Sources */,
+				04035989238EAF9000151AC2 /* UIImage+Extension.m in Sources */,
 				040FA5C723544A4F001D2877 /* main.m in Sources */,
 				040FA63B2359C7FB001D2877 /* GHSpecificationSelectionImageModel.m in Sources */,
 				040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */,

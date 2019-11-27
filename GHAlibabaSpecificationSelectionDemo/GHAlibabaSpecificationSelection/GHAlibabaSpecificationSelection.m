@@ -16,8 +16,14 @@
 #import "GHSpecificationSelectionImageModel.h"
 #import "GHSpecificationSelectionTitleModel.h"
 #import "GHTextField.h"
+#import "NSString+Extension.h"
+#import "GHAlibabaSpecificationSelectionBottomView.h"
 
-@interface GHSpecificationSelectionCell : UITableViewCell
+typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionModel *skuModel);
+
+@interface GHSpecificationSelectionCell : UITableViewCell<UITextFieldDelegate>
+
++ (CGFloat)getCellHeightWithSkuModel:(GHSpecificationSelectionModel *)skuModel;
 
 @property (nonatomic , strong) GHSpecificationSelectionModel *skuModel;
 
@@ -53,6 +59,8 @@
 
 @property (nonatomic , strong) UIView *line;
 
+@property (nonatomic , copy) GHSpecificationSelectionCellCountBlock countBlock;
+
 @end
 
 @implementation GHSpecificationSelectionCell
@@ -60,22 +68,22 @@
 - (void)setSkuModel:(GHSpecificationSelectionModel *)skuModel {
     _skuModel = skuModel;
     NSMutableArray *iconTypes = [NSMutableArray array];
-//    if ([skuModel.isHaveActivity isEqualToString:@"1"]) {
-//        XFSIconType iconType = 0;
-//        if ([skuModel.activityType isEqualToString: @"10"]) {
-//            iconType = XFSIconTypeSpecialPrice;
-//            self.price.attributedText = [self getActivityPrice];
-//        } else if ([skuModel.activityType isEqualToString:@"20"]) {
-//            iconType = XFSIconTypeFullReduction;
-//            self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
-//        }
-//        [iconTypes addObject:@(iconType)];
-//    } else {
-//        iconTypes = nil;
-        self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
-//    }
-    
-//    [self.skuName setTitleString: [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""] iconTypeArray:iconTypes];
+    //    if ([skuModel.isHaveActivity isEqualToString:@"1"]) {
+    //        XFSIconType iconType = 0;
+    //        if ([skuModel.activityType isEqualToString: @"10"]) {
+    //            iconType = XFSIconTypeSpecialPrice;
+    //            self.price.attributedText = [self getActivityPrice];
+    //        } else if ([skuModel.activityType isEqualToString:@"20"]) {
+    //            iconType = XFSIconTypeFullReduction;
+    //            self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
+    //        }
+    //        [iconTypes addObject:@(iconType)];
+    //    } else {
+    //        iconTypes = nil;
+    self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
+    //    }
+    self.skuName.text = [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
+    //    [self.skuName setTitleString: [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""] iconTypeArray:iconTypes];
     
     self.skuCode.text = [NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code];
     NSString *estimatedDate = @"";
@@ -92,7 +100,7 @@
     
     /**
      * 购买限制类型(0起订量的正整数倍,1不低于起订量的正整数)
-    */
+     */
     if ([skuModel.order_limit_type isEqualToString:@"0"]) {
         self.countField.miniOrderType = GHCountFieldMiniOrderTypeMultiple;
     } else {
@@ -101,14 +109,11 @@
     [self actionControlState];
 }
 
-
 - (NSMutableAttributedString *)getActivityPrice {
     NSString *price = [NSString stringWithFormat:@"¥%.2f",self.skuModel.sale_price.doubleValue];;
     NSString *activity_price = [NSString stringWithFormat:@"¥%.2f",self.skuModel.activity_price.doubleValue];
-    
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",activity_price,price]];
     [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:NSMakeRange(0, activity_price.length)];
-     
     [att addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x999999),NSStrikethroughStyleAttributeName: @(1),NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(activity_price.length + 1, price.length)];
     return att;
 }
@@ -191,6 +196,47 @@
     }];
 }
 
++ (CGFloat)getCellHeightWithSkuModel:(GHSpecificationSelectionModel *)skuModel {
+    CGFloat width = (kScreenWidth - 50) / 3.01;
+    UILabel *skuName = [[UILabel alloc]init];
+    UILabel *priceLab = [[UILabel alloc]init];
+    NSMutableArray *iconTypes = [NSMutableArray array];
+    if ([skuModel.isHaveActivity isEqualToString:@"1"]) {
+        if ([skuModel.activityType isEqualToString: @"10"]) {
+            NSString *price = [NSString stringWithFormat:@"¥%.2f",skuModel.sale_price.doubleValue];;
+            NSString *activity_price = [NSString stringWithFormat:@"¥%.2f",skuModel.activity_price.doubleValue];
+            NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",activity_price,price]];
+            [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:NSMakeRange(0, activity_price.length)];
+            
+            [att addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x999999),NSStrikethroughStyleAttributeName: @(1),NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(activity_price.length + 1, price.length)];
+            priceLab.attributedText = att;
+        } else if ([skuModel.activityType isEqualToString:@"20"]) {
+            priceLab.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
+        }
+    } else {
+        iconTypes = nil;
+        priceLab.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
+    }
+    skuName.text= [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
+    
+    CGSize skuNameSzie = [skuName sizeThatFits:CGSizeMake(width, MAXFLOAT)];
+    CGSize skuCodeSzie = [NSString sizeWithText:[NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code] andFont:[UIFont systemFontOfSize:10] andMaxSize:CGSizeMake(width, MAXFLOAT)];
+    CGFloat leftHeight = 15 + skuNameSzie.height + 10 + skuCodeSzie.height + 15;
+    CGSize priceSzie = [priceLab sizeThatFits:CGSizeMake(width, MAXFLOAT)];
+    NSString *estimatedDate = @"";
+    if (skuModel.count.integerValue <= skuModel.actual_stock.integerValue && skuModel.actual_stock.integerValue > 0) {
+        estimatedDate = @"1天";
+    } else {
+        estimatedDate = [NSString stringWithFormat:@"%ld天",skuModel.arrival_cycle.integerValue + 1];
+    }
+    CGSize estimatedDateSzie = [NSString sizeWithText:[NSString stringWithFormat:@"预计出货日:%@",estimatedDate] andFont:[UIFont systemFontOfSize:10] andMaxSize:CGSizeMake(width, MAXFLOAT)];
+    CGFloat rightHeight = 15 + priceSzie.height + 10 + estimatedDateSzie.height + 15;
+    if (leftHeight >= rightHeight) {
+        return leftHeight;
+    }
+    return rightHeight;
+}
+
 - (UILabel *)price {
     if (_price == nil) {
         _price = [[UILabel alloc]init];
@@ -262,12 +308,12 @@
         _countField.delegate = self;
         _countField.tintColor = [UIColor redColor];
         weakself(self);
-//        _countField.countDidChangeBlock = ^(NSInteger count) {
-//            weakSelf.skuModel.count = [NSString stringWithFormat:@"%ld",(long)count];
-//            if (weakSelf.countBlock) {
-//                weakSelf.countBlock(weakSelf.skuModel);
-//            }
-//        };
+        _countField.countDidChangeBlock = ^(NSInteger count) {
+            weakSelf.skuModel.count = [NSString stringWithFormat:@"%ld",(long)count];
+            if (weakSelf.countBlock) {
+                weakSelf.countBlock(weakSelf.skuModel);
+            }
+        };
     }
     return _countField;
 }
@@ -349,6 +395,8 @@
 
 @property (nonatomic , strong) NSArray *colors;
 
+@property (nonatomic , strong) GHAlibabaSpecificationSelectionBottomView *bottomView;
+
 @end
 
 @implementation GHAlibabaSpecificationSelection
@@ -357,16 +405,20 @@
     [self dismiss];
 }
 
+- (void)show {
+    [self configuration];
+    [self configDefaultUI];
+    [super show];
+}
+
 - (void)setSkuList:(NSArray *)skuList colors:(NSArray *)colors sectePrice:(NSDictionary *)sectePrice {
     self.skuList = skuList;
     self.colors = colors;
     NSString *max_price = sectePrice[@"max_price"];
     NSString *min_price = sectePrice[@"min_price"];
-    
     self.price.attributedText = [self getRealPirceWithMaxPrice:max_price min_price:min_price];
-    
     NSMutableArray *titles = [NSMutableArray array];
-    if ( colors.count > 1) {
+    if (colors.count > 1) {
         for (NSInteger i = 0; i < colors.count; i++) {
             GHSpecificationSelectionTitleModel *titleModel = [[GHSpecificationSelectionTitleModel alloc]init];
             NSString *colorStr = colors[i];
@@ -417,16 +469,13 @@
     NSString *priceStr = [NSString stringWithFormat:@"￥%.2f",price.doubleValue];
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:priceStr];
     [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:18]} range:NSMakeRange(0, priceStr.length)];
-    
     [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, 1)];
-    
     [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(priceStr.length - 2, 2)];
     
     return att;
 }
 
 - (void)loadIconWithIndex:(NSInteger)index {
-    
     GHSpecificationSelectionTitleModel *titleModel = self.scrollTitles.titles[index];
     GHSpecificationSelectionModel *skuModelFirst = titleModel.skuList.firstObject;
     GHSpecificationSelectionImageModel *imagesModel = skuModelFirst.images.firstObject;
@@ -470,20 +519,38 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    [self.contentView addSubview:self.icon];
+    CGFloat width = kScreenWidth - (CGRectGetMaxX(self.icon.frame) + 20) - (kScreenWidth - CGRectGetMinX(self.close.frame)) - 10;
+    CGSize titleSize = [NSString sizeWithText:self.title.text andFont:[UIFont systemFontOfSize:16] andMaxSize:CGSizeMake(width, MAXFLOAT)];
+    self.title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 5, width, titleSize.height);
     [self.contentView addSubview:self.close];
     [self.contentView addSubview:self.title];
-    [self.contentView addSubview:self.icon];
     [self.contentView addSubview:self.price];
+    self.price.frame = CGRectMake(CGRectGetMinX(self.title.frame), CGRectGetMaxY(self.title.frame) + 3, self.title.width , 21);
     [self.contentView addSubview:self.minimumOrder];
+    self.minimumOrder.frame = CGRectMake(CGRectGetMinX(self.price.frame), CGRectGetMaxY(self.price.frame) + 2, self.price.width, 21);
     [self.contentView addSubview:self.shadow];
+    self.shadow.frame = CGRectMake(0, CGRectGetMaxY(self.icon.frame) + 10, kScreenWidth, 10);
+    
     [self.contentView addSubview:self.scrollTitles];
+    if (self.colors.count > 1) {
+        [self.contentView addSubview:self.scrollTitles];
+        self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 50);
+    } else {
+        self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 0);
+    }
     [self.contentView addSubview:self.scrollView];
+    CGFloat scrollViewY = self.colors.count > 1 ? CGRectGetMaxY(self.scrollTitles.frame):CGRectGetMaxY(self.shadow.frame) + 10;
+    CGFloat scrollViewH = 500 - CGRectGetMaxY(self.scrollTitles.frame) - 50;
+    self.scrollView.frame = CGRectMake(0,scrollViewY, kScreenWidth,scrollViewH);
     [self setTableViews];
+    [self.contentView addSubview:self.bottomView];
+    self.bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.scrollView.frame), kScreenWidth, 50 + kSafeAreaBottomHeight);
 }
 
 - (void)setTableViews {
     [self.tables removeAllObjects];
-
+    
     for (NSInteger index = 0; index < (self.colors.count > 1 ? self.colors.count:1); index++) {
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.frame.size.width * index  , 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) style:UITableViewStylePlain];
         tableView.delegate = self;
@@ -519,20 +586,37 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     GHSpecificationSelectionTitleModel *titleModel = self.scrollTitles.titles[self.currentPage];
-     return titleModel.skuList.count;
+    return titleModel.skuList.count;
 }
 
+#pragma mark 创建cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GHSpecificationSelectionTitleModel *titleModel = self.scrollTitles.titles[self.currentPage];
     GHSpecificationSelectionModel *skuModel = titleModel.skuList[indexPath.row];
     GHSpecificationSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GHSpecificationSelectionCellID"];
     cell.skuModel = skuModel;
+    weakself(self);
+    cell.countBlock = ^(GHSpecificationSelectionModel * _Nonnull skuModel) {
+        [weakSelf.scrollTitles reloadData];
+        [weakSelf.bottomView changeStatusWithTitles:weakSelf.scrollTitles.titles];
+    };
     return cell;
 }
 
+#pragma mark - 计算高度
 -  (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80;
+    GHSpecificationSelectionTitleModel *titleModel = self.scrollTitles.titles[self.currentPage];
+    GHSpecificationSelectionModel *skuModel = titleModel.skuList[indexPath.row];
+    return [GHSpecificationSelectionCell getCellHeightWithSkuModel:skuModel];
 }
+
+- (void)scrollWithCurrentIndex:(NSInteger)currentIndex {
+    CGPoint offset = self.scrollView.contentOffset;
+    offset.x =  [UIScreen mainScreen].bounds.size.width * currentIndex;
+    [self.scrollView setContentOffset:offset animated:YES];
+}
+
+#pragma mark - get
 
 - (GHScrollTitles *)scrollTitles {
     if (_scrollTitles == nil) {
@@ -554,12 +638,6 @@
         };
     }
     return _scrollTitles;
-}
-
-- (void)scrollWithCurrentIndex:(NSInteger)currentIndex {
-    CGPoint offset = self.scrollView.contentOffset;
-    offset.x =  [UIScreen mainScreen].bounds.size.width * currentIndex;
-    [self.scrollView setContentOffset:offset animated:YES];
 }
 
 - (GHScrollView *)scrollView {
@@ -647,5 +725,13 @@
     }
     return _tables;
 }
+
+- (GHAlibabaSpecificationSelectionBottomView *)bottomView {
+    if (_bottomView == nil) {
+        _bottomView = [[GHAlibabaSpecificationSelectionBottomView alloc]init];
+    }
+    return _bottomView;
+}
+
 
 @end

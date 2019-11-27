@@ -165,6 +165,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD-framework/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension-framework/MJExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry-framework/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PPBadgeView-framework/PPBadgeView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -172,6 +173,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD-framework/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension-framework/MJExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry-framework/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PPBadgeView-framework/PPBadgeView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

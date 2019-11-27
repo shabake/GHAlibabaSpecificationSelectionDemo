@@ -37,7 +37,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self loadData];
 }
 
@@ -48,10 +47,8 @@
 - (void)loadData {
     [ToastTool makeToastActivity:self.view];
     weakself(self);
-
     NSString *url = @"http://mock-api.com/7zxXywz3.mock/data";
     [[GHHTTPSessionManager sharedManager] getGoodDetailsWithUrl:url finishedBlock:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
-        NSLog(@"responseObject%@",responseObject);
          NSDictionary *dict = (NSDictionary *)responseObject;
         NSArray *colors = dict[@"color"];
         NSArray *data = dict[@"data"];
