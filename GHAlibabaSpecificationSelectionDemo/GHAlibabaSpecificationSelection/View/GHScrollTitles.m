@@ -69,7 +69,7 @@
             }
             [label pp_moveBadgeWithX:-20 Y:20];
             [label pp_setBadgeLabelAttributes:^(PPBadgeLabel *badgeLabel) {
-                badgeLabel.backgroundColor = [UIColor redColor];
+                badgeLabel.backgroundColor = KMainColor;
             }];
         } else {
             [label pp_hiddenBadge];
@@ -103,7 +103,7 @@
         label.tag = index;
         label.userInteractionEnabled = YES;
         if (index == 0) {
-            label.textColor = [UIColor redColor];
+            label.textColor = KMainColor;
         }
         label.textAlignment = NSTextAlignmentCenter;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelClick:)];
@@ -117,7 +117,7 @@
     [self.indicator removeFromSuperview];
     UIView *indicator = [[UIView alloc]init];
     self.indicator = indicator;
-    indicator.backgroundColor = [UIColor redColor];
+    indicator.backgroundColor = KMainColor;
     indicator.frame = CGRectMake((width -width * 0.25) * 0.5,CGRectGetMaxY(self.leftButton.frame) - 1, width * 0.25, 1);
     [self.scrollView addSubview:indicator];
 }
@@ -140,7 +140,7 @@
     }
     
     UILabel *label = self.labels[self.currentIndex];
-    label.textColor = [UIColor redColor];
+    label.textColor = KMainColor;
     CGRect frame = self.indicator.frame;
     frame.origin.x =  label.x + (label.width - self.indicator.width) * 0.5;
     self.indicator.frame = frame;

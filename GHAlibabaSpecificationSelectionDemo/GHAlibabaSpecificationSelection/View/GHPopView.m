@@ -8,7 +8,9 @@
 
 #import "GHPopView.h"
 
-/** 动画时间 */
+/**
+ * 动画时间
+ */
 #define animateDuration 0.3
 
 #define WS(weakSelf)            __weak __typeof(&*self)weakSelf = self;
@@ -29,18 +31,18 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 @interface GHPopView()
 
-/** 背景按钮 */
+/**
+ * 背景
+ */
 @property (nonatomic, strong) UIButton *backView;
 
 @end
 @implementation GHPopView
 
-#pragma mark - SetData
 - (void)setContentViewHeight:(CGFloat)contentViewHeight {
     _contentViewHeight = contentViewHeight;
 }
 
-#pragma mark - Init
 - (instancetype)init {
     if (self == [super init]) {
         [self configuration];
@@ -106,7 +108,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
     }];
 }
 
-#pragma mark - LazyGet
 - (UIButton *)backView {
     if (_backView == nil) {
         _backView = [[UIButton alloc] initWithFrame:[UIApplication sharedApplication].keyWindow.bounds];

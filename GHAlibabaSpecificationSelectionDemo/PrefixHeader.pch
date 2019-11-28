@@ -50,7 +50,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 #define KAlert(title,msg) [[[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show]
 
-
+#define KMainColor UIColorFromRGB(0x017fff)
 #import "UIView+Extension.h"
 #import "Masonry.h"
 #import "ToastTool.h"

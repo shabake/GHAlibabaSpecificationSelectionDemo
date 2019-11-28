@@ -35,16 +35,16 @@
     webView.scrollView.backgroundColor = [UIColor whiteColor];
     webView.delegate = self;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelection" ofType:@"html"];
-     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
     [self.view addSubview:webView];
     UIButton *show = [[UIButton alloc]init];
     [show setTitle:@"弹出" forState:UIControlStateNormal];
-    [show setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    show.titleLabel.font = [UIFont systemFontOfSize:14];
+    [show setTitleColor:KMainColor forState:UIControlStateNormal];
     [show sizeToFit];
     [show addTarget:self action:@selector(clickShow) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:show];
     [ToastTool makeToastActivity:self.view];
-
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
@@ -70,25 +70,25 @@
         NSDictionary *sectePrice = dict[@"sectePrice"];
         NSMutableArray *specifications = [NSMutableArray array];
         for (NSDictionary *dataDict in data) {
-            GHSpecificationSelectionModel *specificationSelectionModel = [GHSpecificationSelectionModel mj_objectWithKeyValues:dataDict];
+            GHSpecificationSelectionModel *skuModel = [GHSpecificationSelectionModel mj_objectWithKeyValues:dataDict];
             NSArray *images = dataDict[@"images"];
             NSMutableArray *imagesArray = [NSMutableArray array];
             for (NSDictionary *imageDict in images) {
                 GHSpecificationSelectionImageModel *specificationSelectionImageModel = [GHSpecificationSelectionImageModel mj_objectWithKeyValues:imageDict];
                 [imagesArray addObject:specificationSelectionImageModel];
             }
-            specificationSelectionModel.images = imagesArray.copy;
-            [specifications addObject:specificationSelectionModel];
+            skuModel.images = imagesArray.copy;
+            [specifications addObject:skuModel];
         }
         NSMutableArray *dataArray = [NSMutableArray array];
         for (NSInteger i = 0; i < colors.count; i++) {
             GHSpecificationSelectionTitleModel *alibabaSpecificationSelectionModel = [[GHSpecificationSelectionTitleModel alloc]init];
             NSString *colorStr = colors[i];
             for (NSInteger j = 0; j < specifications.count; j++) {
-                GHSpecificationSelectionModel *specificationSelectionModel = specifications[j];
+                GHSpecificationSelectionModel *skuModel = specifications[j];
                 NSMutableArray *dataArray = [NSMutableArray array];
-                if ([specificationSelectionModel.color isEqualToString:colorStr]) {
-                    [dataArray addObject:specificationSelectionModel];
+                if ([skuModel.color isEqualToString:colorStr]) {
+                    [dataArray addObject:skuModel];
                 }
                 alibabaSpecificationSelectionModel.skuList = dataArray.copy;
             }

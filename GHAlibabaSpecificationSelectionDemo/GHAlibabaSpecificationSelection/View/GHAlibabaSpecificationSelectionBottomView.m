@@ -59,7 +59,7 @@
     if (_sure == nil) {
         _sure = [[UIButton alloc]init];
         [_sure setTitle:@"确定" forState:UIControlStateNormal];
-        [_sure setBackgroundColor:[UIColor redColor] forState:UIControlStateNormal];
+        [_sure setBackgroundColor:KMainColor forState:UIControlStateNormal];
         [_sure setBackgroundColor:UIColorFromRGB(0xe5e5e5) forState:UIControlStateDisabled];
         [_sure addTarget:self action:@selector(clickSure) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -65,7 +65,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 - (void)setSkuModel:(GHSpecificationSelectionModel *)skuModel {
     _skuModel = skuModel;
-    
+
     self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
     self.skuName.text = [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
     self.skuCode.text = [NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code];
@@ -93,7 +93,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     NSString *price = [NSString stringWithFormat:@"¥%.2f",self.skuModel.sale_price.doubleValue];;
     NSString *activity_price = [NSString stringWithFormat:@"¥%.2f",self.skuModel.activity_price.doubleValue];
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",activity_price,price]];
-    [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:NSMakeRange(0, activity_price.length)];
+    [att addAttributes:@{NSForegroundColorAttributeName:KMainColor} range:NSMakeRange(0, activity_price.length)];
     [att addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x999999),NSStrikethroughStyleAttributeName: @(1),NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(activity_price.length + 1, price.length)];
     return att;
 }
@@ -184,26 +184,10 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     CGFloat width = (kScreenWidth - 50) / 3.01;
     UILabel *skuName = [[UILabel alloc]init];
     UILabel *priceLab = [[UILabel alloc]init];
-    NSMutableArray *iconTypes = [NSMutableArray array];
-    if ([skuModel.isHaveActivity isEqualToString:@"1"]) {
-        if ([skuModel.activityType isEqualToString: @"10"]) {
-            NSString *price = [NSString stringWithFormat:@"¥%.2f",skuModel.sale_price.doubleValue];;
-            NSString *activity_price = [NSString stringWithFormat:@"¥%.2f",skuModel.activity_price.doubleValue];
-            NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",activity_price,price]];
-            [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:NSMakeRange(0, activity_price.length)];
-            [att addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x999999),NSStrikethroughStyleAttributeName: @(1),NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(activity_price.length + 1, price.length)];
-            priceLab.attributedText = att;
-        } else if ([skuModel.activityType isEqualToString:@"20"]) {
-            priceLab.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
-        }
-    } else {
-        iconTypes = nil;
-        priceLab.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
-    }
-    skuName.text= [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
-    CGSize skuNameSzie = [skuName sizeThatFits:CGSizeMake(width, MAXFLOAT)];
+    priceLab.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
+    CGSize skuNameSize = [NSString sizeWithText:[NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""]andFont:[UIFont systemFontOfSize:10] andMaxSize:CGSizeMake(width, MAXFLOAT)]; [skuName sizeThatFits:CGSizeMake(width, MAXFLOAT)];
     CGSize skuCodeSzie = [NSString sizeWithText:[NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code] andFont:[UIFont systemFontOfSize:10] andMaxSize:CGSizeMake(width, MAXFLOAT)];
-    CGFloat leftHeight = 15 + skuNameSzie.height + 10 + skuCodeSzie.height + 15;
+    CGFloat leftHeight = 15 + skuNameSize.height + 10 + skuCodeSzie.height + 15;
     CGSize priceSzie = [priceLab sizeThatFits:CGSizeMake(width, MAXFLOAT)];
     NSString *estimatedDate = @"";
     if (skuModel.count.integerValue <= skuModel.actual_stock.integerValue && skuModel.actual_stock.integerValue > 0) {
@@ -245,7 +229,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 - (UILabel *)skuName {
     if (_skuName == nil) {
         _skuName = [[UILabel alloc]init];
-        _skuName.font =  [UIFont systemFontOfSize:10];
+        _skuName.font = [UIFont systemFontOfSize:10];
         _skuName.textColor = UIColorFromRGB(0x999999);
         _skuName.numberOfLines = 0;
     }
@@ -265,23 +249,12 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     if (_inventory == nil) {
         _inventory = [[UILabel alloc]init];
         _inventory.font =  [UIFont systemFontOfSize:10];
-        _inventory.textColor = [UIColor redColor];
+        _inventory.textColor = KMainColor;
         _inventory.text = @"库存不足";
         _inventory.textAlignment = NSTextAlignmentCenter;
     }
     return _inventory;
 }
-
-//- (XFSIconLabel *)skuName {
-//    if (_skuName == nil) {
-//        _skuName = [[XFSIconLabel alloc]init];
-//        _skuName.font = JZGFont(12);
-//        _skuName.textColor = UIColorFromRGB(0x333333);
-//        _skuName.textAlignment = NSTextAlignmentLeft;
-//        _skuName.numberOfLines = 0;
-//    }
-//    return _skuName;
-//}
 
 - (GHTextField *)countField {
     if (_countField == nil) {
@@ -289,7 +262,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         _countField.backgroundColor = [UIColor whiteColor];
         _countField.showBorderLine = YES;
         _countField.delegate = self;
-        _countField.tintColor = [UIColor redColor];
+        _countField.tintColor = KMainColor;
         weakself(self);
         _countField.countDidChangeBlock = ^(NSInteger count) {
             weakSelf.skuModel.count = [NSString stringWithFormat:@"%ld",(long)count];
@@ -451,9 +424,9 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     
     NSString *priceStr = [NSString stringWithFormat:@"￥%.2f",price.doubleValue];
     NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:priceStr];
-    [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:18]} range:NSMakeRange(0, priceStr.length)];
-    [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, 1)];
-    [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(priceStr.length - 2, 2)];
+    [att addAttributes:@{NSForegroundColorAttributeName:[UIColor orangeColor],NSFontAttributeName:[UIFont systemFontOfSize:18]} range:NSMakeRange(0, priceStr.length)];
+    [att addAttributes:@{NSForegroundColorAttributeName:[UIColor orangeColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, 1)];
+    [att addAttributes:@{NSForegroundColorAttributeName:[UIColor orangeColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(priceStr.length - 2, 2)];
     return att;
 }
 
