@@ -25,6 +25,12 @@
 
 @property (nonatomic , strong) UIWebView *webView;
 
+@property (nonatomic , strong) UIImageView *cartAnimView;
+
+@property (nonatomic , strong) UIButton *shopCar;
+
+@property (nonatomic , assign) CGRect shopCarRect;
+
 @end
 
 @implementation ViewController
@@ -40,6 +46,8 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelection" ofType:@"html"];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
     [self.view addSubview:webView];
+    [ToastTool makeToastActivity:self.view];
+
     UIButton *show = [[UIButton alloc]init];
     [show setTitle:@"弹出" forState:UIControlStateNormal];
     show.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -47,7 +55,12 @@
     [show sizeToFit];
     [show addTarget:self action:@selector(clickShow) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:show];
-    [ToastTool makeToastActivity:self.view];
+    UIButton *shopCar = [[UIButton alloc]init];
+    self.shopCar = shopCar;
+    [shopCar setImage:[UIImage imageNamed:@"shopCar"] forState:UIControlStateNormal];
+    [shopCar sizeToFit];
+    [shopCar addTarget:self action:@selector(clickShow) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:shopCar];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
@@ -78,6 +91,8 @@
 }
 
 - (void)loadDataWithNavColorMachine:(BOOL)isHave {
+    CGRect shopCarRect = [self.navigationController.view convertRect:self.shopCar.frame fromView:self.shopCar.superview];
+    self.shopCarRect = shopCarRect;
     [ToastTool makeToastActivity:self.view];
     weakself(self);
     NSString *url = @"http://mock-api.com/7zxXywz3.mock/data";
@@ -124,13 +139,15 @@
     if (_alibabaSpecificationSelection == nil) {
         _alibabaSpecificationSelection = [[GHAlibabaSpecificationSelection alloc]init];
         _alibabaSpecificationSelection.contentViewHeight = 500;
+        _alibabaSpecificationSelection.shopCarRect = self.shopCarRect;
+        weakself(self);
         _alibabaSpecificationSelection.getDataBlock = ^(NSArray * _Nonnull dataArray) {
             NSLog(@"用户选择的数据%@",dataArray);
             NSMutableString *string = [NSMutableString string];
             for (NSDictionary *dict in dataArray) {
                 [string appendFormat:@"颜色:%@  数量:%@  id:%@\n",dict[@"color"],dict[@"skuNum"],dict[@"skuId"]];
             }
-            KAlert(@"用户选择的数据", string);
+            [weakSelf.shopCar pp_addBadgeWithText:[NSString stringWithFormat:@"%lu",(unsigned long)dataArray.count]];
         };
     }
     return _alibabaSpecificationSelection;

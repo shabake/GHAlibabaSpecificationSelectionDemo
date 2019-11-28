@@ -377,8 +377,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 @property (nonatomic , assign) NSInteger currentPage;
 
-@property (nonatomic , assign) int lastContentOffset;
-
 @property (nonatomic , strong) UITableView *table;
 
 @property (nonatomic , strong) UILabel *t;
@@ -574,7 +572,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-
     if (scrollView == self.scrollView) {
         [self scrollViewDidEndScrollingAnimation:scrollView];
     }
@@ -614,7 +611,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 - (void)scrollWithCurrentIndex:(NSInteger)currentIndex {
     CGPoint offset = self.scrollView.contentOffset;
-    offset.x =  [UIScreen mainScreen].bounds.size.width * currentIndex;
+    offset.x = kScreenWidth * currentIndex;
     [self.scrollView setContentOffset:offset animated:YES];
 }
 
@@ -627,14 +624,54 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
             skuModel.count = @"";
         }
     }
+    for (UITableView *tab in self.tables) {
+        [tab reloadData];
+    }
     [self.scrollTitles resetData];
     self.currentPage = 0;
     [self.bottomView changeStatusWithTitles:self.scrollTitles.titles];
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
+- (void)showAnimation {
+    UIImageView *icon = [[UIImageView alloc]initWithImage:self.icon.image];
+    icon.backgroundColor = [UIColor redColor];
+    icon.frame = [self relativeFrameForScreenWithView];
+    [[UIApplication sharedApplication].keyWindow addSubview:icon];
+    CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 11.0 ];
+    rotationAnimation.duration = 1.0;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 0;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [icon.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    });
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        icon.frame = self.shopCarRect;
+    } completion:^(BOOL finished) {
+        [icon removeFromSuperview];
+    }];
+}
+
+- (CGRect)relativeFrameForScreenWithView {
+    UIView *view = self.icon;
+    CGFloat x = .0;
+    CGFloat y = .0;
+    while (view != [UIApplication sharedApplication].keyWindow && nil != view) {
+        x += view.frame.origin.x;
+        y += view.frame.origin.y;
+        view = view.superview;
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            x -= ((UIScrollView *) view).contentOffset.x;
+            y -= ((UIScrollView *) view).contentOffset.y;
+        }
+    }
+    return CGRectMake(x, y, self.icon.size.width, self.icon.size.height);
+}
+
 - (void)clickSure {
-    [self dismiss];
+    [self showAnimation];
     NSMutableArray *skuIdNumlist = [NSMutableArray array];
     for (GHSpecificationSelectionTitleModel *titleModel in self.scrollTitles.titles) {
         for (GHSpecificationSelectionModel *skuModel in titleModel.skuList) {
@@ -666,11 +703,11 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
             [weakSelf scrollWithCurrentIndex:tag];
         };
         _scrollTitles.didClickLeftBlock = ^{
-            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x - [UIScreen mainScreen].bounds.size.width , 0);
+            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x - kScreenWidth , 0);
             [weakSelf.scrollView setContentOffset:point animated:YES];
         };
         _scrollTitles.didClickRightBlock = ^{
-            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x + [UIScreen mainScreen].bounds.size.width , 0);
+            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x + kScreenWidth , 0);
             [weakSelf.scrollView setContentOffset:point animated:YES];
         };
     }
@@ -680,7 +717,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 - (UIScrollView *)scrollView {
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc]init];
-        _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,self.contentViewHeight -CGRectGetMaxY(self.scrollTitles.frame));
+        _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), kScreenWidth,self.contentViewHeight - CGRectGetMaxY(self.scrollTitles.frame));
         _scrollView.pagingEnabled = YES;
         _scrollView.delegate = self;
         _scrollView.backgroundColor = [UIColor redColor];
@@ -712,7 +749,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 - (UIView *)shadow {
     if (_shadow == nil) {
         _shadow = [[UIView alloc]init];
-        _shadow.frame = CGRectMake(0, CGRectGetMaxY(self.icon.frame) + 10, [UIScreen mainScreen].bounds.size.width, 10);
+        _shadow.frame = CGRectMake(0, CGRectGetMaxY(self.icon.frame) + 10, kScreenWidth, 10);
         _shadow.backgroundColor = [UIColor whiteColor];
         _shadow.layer.shadowColor = [UIColor blackColor].CGColor;
         _shadow.layer.shadowOffset = CGSizeMake(0, 5);

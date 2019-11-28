@@ -25,8 +25,8 @@
             filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHScrollTitles.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "-setMenusScrollView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -44,6 +44,22 @@
             startingLineNumber = "227"
             endingLineNumber = "227"
             landmarkName = "+getCellHeightWithSkuModel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE7CC693-8507-4C3B-9732-EB87AE387659"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "642"
+            endingLineNumber = "642"
+            landmarkName = "-showAnimation"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

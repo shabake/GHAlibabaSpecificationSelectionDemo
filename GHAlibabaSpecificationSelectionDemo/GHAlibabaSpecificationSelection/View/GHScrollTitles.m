@@ -9,7 +9,6 @@
 #import "GHScrollTitles.h"
 #import "GHSpecificationSelectionTitleModel.h"
 #import "GHSpecificationSelectionModel.h"
-#import "PPBadgeView.h"
 #import "UIButton+Extension.h"
 
 @interface GHScrollTitles()
@@ -133,7 +132,7 @@
 
 - (void)setMenusScrollView:(CGPoint)contentOffset{
     
-    CGFloat scale = contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    CGFloat scale = contentOffset.x / kScreenWidth;
     if (scale < 0 || scale > self.scrollView.subviews.count - 1 - 1) return;
     self.currentIndex = scale;
     for (UILabel *label in self.labels) {
@@ -148,7 +147,7 @@
 }
 
 - (void)setMenusScrollViewEnd:(CGPoint)endOffset{
-    NSInteger index = endOffset.x / [UIScreen mainScreen].bounds.size.width;
+    NSInteger index = endOffset.x / kScreenWidth;
     UILabel *label = self.labels[index];
     CGFloat width = self.scrollView.frame.size.width;
     CGPoint titleOffset = self.scrollView.contentOffset;
@@ -197,7 +196,6 @@
         _scrollView.scrollEnabled = NO;
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 4, 0);
     }
     return _scrollView;
 }
@@ -206,7 +204,7 @@
     if (_bottomLine == nil) {
         _bottomLine = [[UIView alloc]init];
         _bottomLine.backgroundColor = [UIColor lightGrayColor];
-        _bottomLine.frame = CGRectMake(0,CGRectGetMaxY(self.leftButton.frame) - 1, [UIScreen mainScreen].bounds.size.width, 0.3);
+        _bottomLine.frame = CGRectMake(0,CGRectGetMaxY(self.leftButton.frame) - 1, kScreenWidth, 0.3);
     }
     return _bottomLine;
 }
@@ -214,7 +212,7 @@
 - (UIButton *)rightButton {
     if (_rightButton == nil) {
         _rightButton = [[UIButton alloc]init];
-        _rightButton.frame =  CGRectMake([UIScreen mainScreen].bounds.size.width - 50, 0, 50, 50);
+        _rightButton.frame =  CGRectMake(kScreenWidth - 50, 0, 50, 50);
         UIView *line = [[UIView alloc]init];
         line.frame = CGRectMake(0, 10, 0.3, 30);
         line.backgroundColor = [UIColor lightGrayColor];

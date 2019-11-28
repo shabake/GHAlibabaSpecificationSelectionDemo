@@ -14,9 +14,6 @@ typedef void (^GHAlibabaSpecificationSelectionGetDataBlock)(NSArray *dataArray);
 
 @interface GHAlibabaSpecificationSelection : GHPopView
 
-@property (nonatomic , strong) NSArray *dataArray;
-
-
 /**
  * 数据源
  * @param skuList 装skuModel数组
@@ -27,7 +24,12 @@ typedef void (^GHAlibabaSpecificationSelectionGetDataBlock)(NSArray *dataArray);
 
 @property (nonatomic , copy) GHAlibabaSpecificationSelectionGetDataBlock getDataBlock;
 
+/**
+ *  重置数据
+ */
 - (void)resetData;
+
+@property (nonatomic , assign) CGRect shopCarRect;
 
 @end
 
