@@ -10,6 +10,7 @@
 #import "GHSpecificationSelectionTitleModel.h"
 #import "GHSpecificationSelectionModel.h"
 #import "PPBadgeView.h"
+#import "UIButton+Extension.h"
 
 @interface GHScrollTitles()
 
@@ -192,7 +193,8 @@
 - (UIScrollView *)scrollView {
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc]init];
-        _scrollView.frame = CGRectMake(CGRectGetMaxX(self.leftButton.frame), 0, [UIScreen mainScreen].bounds.size.width - CGRectGetMaxX(self.leftButton.frame) - 50 , 50);
+        _scrollView.frame = CGRectMake(CGRectGetMaxX(self.leftButton.frame), 0, kScreenWidth - CGRectGetMaxX(self.leftButton.frame) - 50 , 50);
+        _scrollView.scrollEnabled = NO;
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width * 4, 0);
@@ -219,6 +221,7 @@
         [_rightButton addSubview:line];
         [_rightButton setImage:[UIImage imageNamed:@"rightArrow"] forState:UIControlStateNormal];
         [_rightButton addTarget:self action:@selector(clicRightButton) forControlEvents:UIControlEventTouchUpInside];
+        _rightButton.acceptEventInterval = 0.5;
     }
     return _rightButton;
 }
@@ -228,6 +231,7 @@
         _leftButton = [[UIButton alloc]init];
         [_leftButton setImage:[UIImage imageNamed:@"leftArrow"] forState:UIControlStateNormal];
         _leftButton.frame =  CGRectMake(0, 0, 50, 50);
+        _leftButton.acceptEventInterval = 0.5;
         [_leftButton addTarget:self action:@selector(clickLeftButton) forControlEvents:UIControlEventTouchUpInside];
         UIView *line = [[UIView alloc]init];
         line.frame = CGRectMake(50 - 1, 10, 0.3, 30);

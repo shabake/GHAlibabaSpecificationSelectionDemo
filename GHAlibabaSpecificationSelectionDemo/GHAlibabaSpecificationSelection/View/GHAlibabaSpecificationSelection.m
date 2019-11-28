@@ -569,11 +569,12 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 #pragma mark UIScrollViewDelegate
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self.scrollTitles setMenusScrollViewEnd:scrollView.contentOffset];
-    NSInteger page = (NSInteger)self.scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    NSInteger page = (NSInteger)self.scrollView.contentOffset.x / kScreenWidth;
     [self loadIconWithIndex:page];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+
     if (scrollView == self.scrollView) {
         [self scrollViewDidEndScrollingAnimation:scrollView];
     }
@@ -616,6 +617,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     offset.x =  [UIScreen mainScreen].bounds.size.width * currentIndex;
     [self.scrollView setContentOffset:offset animated:YES];
 }
+
 
 #pragma mark - 重置所有数据
 - (void)resetData {
