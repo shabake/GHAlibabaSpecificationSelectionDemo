@@ -32,11 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UIImage *image = [UIImage imageWithFrame:CGRectMake(0, 0, 44, 21) backGroundColor:KMainColor text:@"特价" textColor:[UIColor whiteColor] textFontOfSize:10];
-//    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, 44 , 21)];
-//    imageView.image = image;
-//    [self.view addSubview:imageView];
-    
     self.navigationItem.title = @"GHAlibabaSpecificationSelection";
     UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
     self.webView = webView;

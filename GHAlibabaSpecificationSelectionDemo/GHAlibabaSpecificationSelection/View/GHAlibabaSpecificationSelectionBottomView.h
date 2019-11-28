@@ -16,7 +16,6 @@ typedef void (^GHAlibabaSpecificationSelectionBottomViewDidClickSureBlock)(void)
 
 @property (nonatomic , copy) GHAlibabaSpecificationSelectionBottomViewDidClickSureBlock didClickSureBlock;
 
-
 /**
  *   根据数据来决定确定按钮的状态
  */

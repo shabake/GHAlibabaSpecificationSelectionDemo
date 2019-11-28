@@ -547,7 +547,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 0);
     }
     [self.contentView addSubview:self.scrollView];
-    CGFloat scrollViewH = 500 - CGRectGetMaxY(self.scrollTitles.frame) - 50;
+    CGFloat scrollViewH = 500 - CGRectGetMaxY(self.scrollTitles.frame) - 80;
     CGFloat scrollViewY = self.colors.count > 1 ? CGRectGetMaxY(self.scrollTitles.frame):CGRectGetMaxY(self.shadow.frame) + 10;
     self.scrollView.frame = CGRectMake(0,scrollViewY, kScreenWidth,scrollViewH);
     for (NSInteger index = 0; index < (self.colors.count > 1 ? self.colors.count:1); index++) {
@@ -563,7 +563,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     }
     self.scrollView.contentSize = CGSizeMake(kScreenWidth * self.scrollTitles.titles.count, 0);
     [self.contentView addSubview:self.bottomView];
-    self.bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.scrollView.frame), kScreenWidth, 50 + kSafeAreaBottomHeight);
+    self.bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.scrollView.frame), kScreenWidth, 80 + kSafeAreaBottomHeight);
 }
 
 #pragma mark UIScrollViewDelegate

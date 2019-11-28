@@ -13,6 +13,13 @@
 
 @interface GHAlibabaSpecificationSelectionBottomView()
 
+@property (nonatomic , strong) UIView *line;
+
+/**
+ *  金额
+ */
+@property (nonatomic , strong) UILabel *amount;
+
 /**
  *  确定
  */
@@ -23,14 +30,17 @@
 
 - (void)changeStatusWithTitles:(NSMutableArray *)titles {
     NSInteger count = 0;
+    double amount = 0;
     for (NSInteger i = 0 ; i < titles.count; i ++) {
         GHSpecificationSelectionTitleModel *titleModel = titles[i ];
         for (NSInteger j = 0 ; j < titleModel.skuList.count; j++) {
             GHSpecificationSelectionModel *skuModel = titleModel.skuList[j];
             count += skuModel.count.integerValue;
+            amount += [skuModel.activityType isEqualToString:@"1"] ?skuModel.count.doubleValue * skuModel.activity_price.doubleValue: skuModel.count.doubleValue * skuModel.sale_price.doubleValue;
         }
     }
     self.sure.enabled = count == 0 ? NO:YES;
+    self.amount.text = [NSString stringWithFormat:@"￥%.2f",amount];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -42,9 +52,23 @@
 }
 
 - (void)setupUI {
+    [self addSubview:self.line];
+    [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.left.top.right.equalTo(self);
+       make.height.equalTo(@1);
+    }];
+    
+    [self addSubview:self.amount];
+    [self.amount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-20);
+        make.top.equalTo(self.line).offset(5);
+        make.height.equalTo(@20);
+        make.left.equalTo(self).offset(20);
+    }];
+    
     [self addSubview:self.sure];
     [self.sure mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self);
+        make.left.right.bottom.equalTo(self);
         make.height.equalTo(@50);
     }];
 }
@@ -53,6 +77,24 @@
     if (self.didClickSureBlock) {
         self.didClickSureBlock();
     }
+}
+
+- (UIView *)line {
+    if (_line == nil) {
+        _line = [[UIView alloc]init];
+        _line.backgroundColor = UIColorFromRGB(0xe5e5e5);
+    }
+    return _line;
+}
+
+- (UILabel *)amount {
+    if (_amount == nil) {
+        _amount = [[UILabel alloc]init];
+        _amount.textColor = KMainColor;
+        _amount.font = [UIFont systemFontOfSize:16];
+        _amount.textAlignment = NSTextAlignmentRight;
+    }
+    return _amount;
 }
 
 - (UIButton *)sure {
