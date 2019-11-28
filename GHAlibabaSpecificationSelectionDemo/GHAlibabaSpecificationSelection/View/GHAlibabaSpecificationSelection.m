@@ -65,9 +65,9 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 - (void)setSkuModel:(GHSpecificationSelectionModel *)skuModel {
     _skuModel = skuModel;
-
+    
     self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
-    self.skuName.text = [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];    
+    self.skuName.text = [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
     self.skuCode.text = [NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code];
     NSString *estimatedDate = @"";
     if (skuModel.count.integerValue <= skuModel.actual_stock.integerValue && skuModel.actual_stock.integerValue > 0) {
@@ -81,9 +81,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     self.countField.count = skuModel.count.integerValue;
     self.countField.miniOrder = skuModel.mini_order.integerValue;
     
-    /**
-     * 购买限制类型(0起订量的正整数倍,1不低于起订量的正整数)
-     */
     if ([skuModel.order_limit_type isEqualToString:@"0"]) {
         self.countField.miniOrderType = GHCountFieldMiniOrderTypeMultiple;
     } else {
@@ -119,58 +116,62 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self addSubview];
     }
     return self;
+}
+
+- (void)addSubview {
+    [self.contentView addSubview:self.skuCode];
+    [self.contentView addSubview:self.estimatedDate];
+    [self.contentView addSubview:self.inventory];
+    [self.contentView addSubview:self.skuName];
+    [self.contentView addSubview:self.price];
+    [self.contentView addSubview:self.countField];
+    [self.contentView addSubview:self.line];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     
     CGFloat width = (kScreenWidth - 50) / 3.01;
-    [self.contentView addSubview:self.skuCode];
-    [self.skuCode mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.skuCode mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(15);
         make.bottom.equalTo(self.contentView).offset(-15);
         make.width.equalTo(@(width));
     }];
     
-    [self.contentView addSubview:self.estimatedDate];
-    [self.estimatedDate mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.estimatedDate mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.skuCode.mas_right).offset(10);
         make.centerY.equalTo(self.skuCode);
         make.width.equalTo(@(width));
     }];
     
-    [self.contentView addSubview:self.inventory];
-    [self.inventory mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.inventory mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.estimatedDate.mas_right).offset(10);
         make.centerY.equalTo(self.estimatedDate);
         make.width.equalTo(@(width));
     }];
     
-    [self.contentView addSubview:self.skuName];
-    [self.skuName mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.skuName mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.skuCode);
         make.bottom.equalTo(self.skuCode.mas_top).offset(-10);
         make.width.equalTo(@(width));
     }];
     
-    [self.contentView addSubview:self.price];
-    [self.price mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.price mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.skuName.mas_right).offset(10);
         make.centerY.equalTo(self.skuName);
         make.width.equalTo(@(width));
     }];
     
-    [self.contentView addSubview:self.countField];
-    [self.countField mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.countField mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.price.mas_right).offset(10);
         make.centerY.equalTo(self.price);
         make.width.equalTo(@(width));
         make.height.equalTo(@(26));
     }];
     
-    [self.contentView addSubview:self.line];
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.skuName);
         make.right.equalTo(self.countField);
@@ -190,7 +191,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
             NSString *activity_price = [NSString stringWithFormat:@"¥%.2f",skuModel.activity_price.doubleValue];
             NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",activity_price,price]];
             [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} range:NSMakeRange(0, activity_price.length)];
-            
             [att addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x999999),NSStrikethroughStyleAttributeName: @(1),NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(activity_price.length + 1, price.length)];
             priceLab.attributedText = att;
         } else if ([skuModel.activityType isEqualToString:@"20"]) {
@@ -201,7 +201,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         priceLab.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
     }
     skuName.text= [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
-    
     CGSize skuNameSzie = [skuName sizeThatFits:CGSizeMake(width, MAXFLOAT)];
     CGSize skuCodeSzie = [NSString sizeWithText:[NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code] andFont:[UIFont systemFontOfSize:10] andMaxSize:CGSizeMake(width, MAXFLOAT)];
     CGFloat leftHeight = 15 + skuNameSzie.height + 10 + skuCodeSzie.height + 15;
@@ -455,7 +454,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:18]} range:NSMakeRange(0, priceStr.length)];
     [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, 1)];
     [att addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor],NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(priceStr.length - 2, 2)];
-    
     return att;
 }
 
@@ -623,8 +621,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         weakself(self);
         _scrollTitles.didClickTitleBlock = ^(NSInteger tag) {
             [weakSelf scrollWithCurrentIndex:tag];
-            weakSelf.currentPage = tag;
-            [weakSelf.table reloadData];
         };
         _scrollTitles.didClickLeftBlock = ^{
             CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x - [UIScreen mainScreen].bounds.size.width , 0);
