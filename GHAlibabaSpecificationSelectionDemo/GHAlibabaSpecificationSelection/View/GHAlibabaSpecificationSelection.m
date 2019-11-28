@@ -16,6 +16,8 @@
 #import "GHTextField.h"
 #import "NSString+Extension.h"
 #import "GHAlibabaSpecificationSelectionBottomView.h"
+#import "UIView+ActivityIndicator.h"
+#import "UIImage+ViewToImage.h"
 
 typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionModel *skuModel);
 
@@ -65,9 +67,8 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 - (void)setSkuModel:(GHSpecificationSelectionModel *)skuModel {
     _skuModel = skuModel;
-
+    self.skuName.attributedText = [self getRealString:skuModel];
     self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
-    self.skuName.text = [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
     self.skuCode.text = [NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code];
     NSString *estimatedDate = @"";
     if (skuModel.count.integerValue <= skuModel.actual_stock.integerValue && skuModel.actual_stock.integerValue > 0) {
@@ -111,6 +112,34 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         self.userInteractionEnabled = YES;
         self.inventory.hidden = YES;
     }
+}
+
+- (UIImage *)getImageWithSkuModel:(GHSpecificationSelectionModel *)skuModel {
+    UIImage *image = nil;
+    if ([skuModel.activityType isEqualToString:@"1"]) {
+        image = [UIImage imageWithFrame:CGRectMake(0, 0, 30, 14) backGroundColor:KMainColor text:@"特价" textColor:[UIColor whiteColor] textFontOfSize:8];
+    } else if ([skuModel.activityType isEqualToString:@"2"]) {
+        image = [UIImage imageWithFrame:CGRectMake(0, 0, 30, 14) backGroundColor:[UIColor orangeColor] text:@"满减" textColor:[UIColor whiteColor] textFontOfSize:8];
+    } else {
+        image = nil;
+    }
+    return image;
+}
+
+- (NSAttributedString *)getRealString:(GHSpecificationSelectionModel *)skuModel{
+    
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""]];
+    NSTextAttachment *location = [[NSTextAttachment alloc]init];
+    UIImage *image = [self getImageWithSkuModel:skuModel];
+    location.image = image;
+    location.bounds = CGRectMake(0, -3, 30, 14);
+    NSAttributedString *firstImage = [NSAttributedString attributedStringWithAttachment:location];
+    NSMutableAttributedString *space = [[NSMutableAttributedString alloc] initWithString:@"  "];
+    if (image) {
+        [attriStr insertAttributedString:space atIndex:0];
+        [attriStr insertAttributedString:firstImage atIndex:0];
+    }
+    return attriStr;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -437,7 +466,13 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     GHSpecificationSelectionModel *skuModelFirst = titleModel.skuList.firstObject;
     GHSpecificationSelectionImageModel *imagesModel = skuModelFirst.images.firstObject;
     self.title.text = [NSString stringWithFormat:@"%@",skuModelFirst.sku_name];
-    [self.icon sd_setImageWithURL:[NSURL URLWithString:imagesModel.img_url]];
+    weakself(self);
+    [self.icon gh_startAnimating];
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:imagesModel.img_url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.icon gh_stopAnimating];
+        });
+    }];
     self.minimumOrder.text = [NSString stringWithFormat:@"最少起订量: %@%@",skuModelFirst.mini_order,skuModelFirst.unit];
     UITableView *tabele = self.tables[index];
     self.currentPage = index;
@@ -496,12 +531,12 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         [tab removeFromSuperview];
     }
     [self.contentView addSubview:self.scrollTitles];
-     if (self.colors.count > 1) {
-         [self.contentView addSubview:self.scrollTitles];
-         self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 50);
-     } else {
-         self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 0);
-     }
+    if (self.colors.count > 1) {
+        [self.contentView addSubview:self.scrollTitles];
+        self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 50);
+    } else {
+        self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 0);
+    }
     [self.contentView addSubview:self.scrollView];
     CGFloat scrollViewH = 500 - CGRectGetMaxY(self.scrollTitles.frame) - 50;
     CGFloat scrollViewY = self.colors.count > 1 ? CGRectGetMaxY(self.scrollTitles.frame):CGRectGetMaxY(self.shadow.frame) + 10;
@@ -649,6 +684,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         _icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, -20, 100, 100)];
         _icon.layer.masksToBounds = YES;
         _icon.layer.cornerRadius = 5;
+        [_icon addActivityIndicator];
     }
     return _icon;
 }

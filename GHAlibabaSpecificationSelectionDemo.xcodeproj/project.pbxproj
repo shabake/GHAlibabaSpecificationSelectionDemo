@@ -23,6 +23,8 @@
 		040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AA238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */; };
 		040359B5238EB40000151AC2 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AD238EB40000151AC2 /* GHTextField.m */; };
 		040359BF238F647500151AC2 /* GHAlibabaSpecificationSelection.html in Resources */ = {isa = PBXBuildFile; fileRef = 040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */; };
+		040359C5238F9F7100151AC2 /* UIView+ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359C4238F9F7100151AC2 /* UIView+ActivityIndicator.m */; };
+		040359C8238FA95F00151AC2 /* UIImage+ViewToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359C7238FA95F00151AC2 /* UIImage+ViewToImage.m */; };
 		040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B523544A4E001D2877 /* AppDelegate.m */; };
 		040FA5BC23544A4E001D2877 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5BB23544A4E001D2877 /* ViewController.m */; };
 		040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5BD23544A4E001D2877 /* Main.storyboard */; };
@@ -66,6 +68,10 @@
 		040359AD238EB40000151AC2 /* GHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
 		040359AE238EB40000151AC2 /* GHScrollTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHScrollTitles.h; sourceTree = "<group>"; };
 		040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHAlibabaSpecificationSelection.html; sourceTree = "<group>"; };
+		040359C3238F9F7100151AC2 /* UIView+ActivityIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ActivityIndicator.h"; sourceTree = "<group>"; };
+		040359C4238F9F7100151AC2 /* UIView+ActivityIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ActivityIndicator.m"; sourceTree = "<group>"; };
+		040359C6238FA95F00151AC2 /* UIImage+ViewToImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ViewToImage.h"; sourceTree = "<group>"; };
+		040359C7238FA95F00151AC2 /* UIImage+ViewToImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ViewToImage.m"; sourceTree = "<group>"; };
 		040FA5B123544A4E001D2877 /* GHAlibabaSpecificationSelectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHAlibabaSpecificationSelectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040FA5B423544A4E001D2877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		040FA5B523544A4E001D2877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -109,6 +115,10 @@
 				04035985238EAF2200151AC2 /* UIButton+Extension.m */,
 				04035987238EAF9000151AC2 /* UIImage+Extension.h */,
 				04035988238EAF9000151AC2 /* UIImage+Extension.m */,
+				040359C6238FA95F00151AC2 /* UIImage+ViewToImage.h */,
+				040359C7238FA95F00151AC2 /* UIImage+ViewToImage.m */,
+				040359C3238F9F7100151AC2 /* UIView+ActivityIndicator.h */,
+				040359C4238F9F7100151AC2 /* UIView+ActivityIndicator.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -343,8 +353,10 @@
 				0403599F238EB3BD00151AC2 /* GHSpecificationSelectionTitleModel.m in Sources */,
 				040359B0238EB40000151AC2 /* GHPopView.m in Sources */,
 				04035986238EAF2200151AC2 /* UIButton+Extension.m in Sources */,
+				040359C8238FA95F00151AC2 /* UIImage+ViewToImage.m in Sources */,
 				040FA5BC23544A4E001D2877 /* ViewController.m in Sources */,
 				040359A0238EB3BD00151AC2 /* GHSpecificationSelectionImageModel.m in Sources */,
+				040359C5238F9F7100151AC2 /* UIView+ActivityIndicator.m in Sources */,
 				040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */,
 				0462804B238EA09500C4C277 /* GHTextField.m in Sources */,
 				040359AF238EB40000151AC2 /* GHAlibabaSpecificationSelection.m in Sources */,

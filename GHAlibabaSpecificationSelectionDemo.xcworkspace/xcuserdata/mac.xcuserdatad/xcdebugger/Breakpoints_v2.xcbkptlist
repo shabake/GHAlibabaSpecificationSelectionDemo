@@ -18,54 +18,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9D4BF11C-AFAE-4491-867E-8DF3B7EAEF04"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "+getCellHeightWithSkuModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5C33C1B6-D340-46E7-AF9E-8BEB79DAC4A8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "-price"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CE87CC09-46C6-4804-BD3B-87960E7557F1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-price"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9996A04D-04C1-479C-B673-3CC638A487FD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -82,16 +34,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7FF26F0F-F5EF-4ADB-9CB3-F20447C1D1C9"
+            uuid = "E9A0D9EB-5405-44AD-87C2-A4CA8F7EA9E0"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "581"
-            endingLineNumber = "581"
-            landmarkName = "-resetData"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "+getCellHeightWithSkuModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

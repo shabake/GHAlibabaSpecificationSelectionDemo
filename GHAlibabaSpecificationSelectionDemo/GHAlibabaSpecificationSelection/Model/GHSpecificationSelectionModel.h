@@ -28,41 +28,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic , copy) NSString *sale_price;
 
-@property (nonatomic , copy) NSString *isActivityBegin;
-
 @property (nonatomic , strong) NSArray *images;
 
 @property (nonatomic , copy) NSString *specifications;
 
 @property (nonatomic , copy) NSString *actual_stock;
 
-
-@property (nonatomic , copy) NSString *onActivitySku;
-
-@property (nonatomic , copy) NSString *spu_code;
-
 @property (nonatomic , copy) NSString *color;
+
 @property (nonatomic , copy) NSString *unit;
 
-@property (nonatomic , copy) NSString *activityPlatform;
 @property (nonatomic , copy) NSString *count;
-@property (nonatomic , copy) NSString *activityType;
-/**
- * 是否被选择
- */
-@property (nonatomic, assign) BOOL seleted;
 
 /**
- * sku序号
+ *  0 = 无活动 1 特价 2 满减
  */
-@property (nonatomic, assign) NSInteger index;
+@property (nonatomic , copy) NSString *activityType;
 
 @property (nonatomic, copy) NSString *activity_price;
 
-/**
- * 是否有活动 isHaveActivity = 1 有 ; isHaveActivity = 2 无
-*/
-@property (nonatomic, copy) NSString *isHaveActivity;
 @end
 
 NS_ASSUME_NONNULL_END
