@@ -7,6 +7,7 @@ pod 'MBProgressHUD', '0.9.2'
 pod 'SDWebImage', '~> 5.0'
 pod 'Masonry', '1.0.0'
 pod 'PPBadgeView','2.1.0'
+pod 'YYModel'
 
 target 'GHAlibabaSpecificationSelectionDemo' do
   # Comment the next line if you don't want to use dynamic frameworks

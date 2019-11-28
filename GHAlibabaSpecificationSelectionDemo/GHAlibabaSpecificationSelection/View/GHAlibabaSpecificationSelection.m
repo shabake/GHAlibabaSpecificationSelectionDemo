@@ -69,11 +69,11 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     _skuModel = skuModel;
     self.skuName.attributedText = [self getRealString:skuModel];
     if ([skuModel.activityType isEqualToString:@"1"]) {
-            NSString *price = [NSString stringWithFormat:@"¥%.2f",skuModel.sale_price.doubleValue];;
-            NSString *activity_price = [NSString stringWithFormat:@"¥%.2f",skuModel.activity_price.doubleValue];
-            NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",activity_price,price]];
-            [att addAttributes:@{NSForegroundColorAttributeName:KMainColor} range:NSMakeRange(0, activity_price.length)];
-            [att addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x999999),NSStrikethroughStyleAttributeName: @(1),NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(activity_price.length + 1, price.length)];
+        NSString *price = [NSString stringWithFormat:@"¥%.2f",skuModel.sale_price.doubleValue];;
+        NSString *activity_price = [NSString stringWithFormat:@"¥%.2f",skuModel.activity_price.doubleValue];
+        NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",activity_price,price]];
+        [att addAttributes:@{NSForegroundColorAttributeName:KMainColor} range:NSMakeRange(0, activity_price.length)];
+        [att addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x999999),NSStrikethroughStyleAttributeName: @(1),NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(activity_price.length + 1, price.length)];
         self.price.attributedText = att;
     } else {
         self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
@@ -615,7 +615,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     [self.scrollView setContentOffset:offset animated:YES];
 }
 
-
 #pragma mark - 重置所有数据
 - (void)resetData {
     for (GHSpecificationSelectionTitleModel *titleModel in self.scrollTitles.titles) {
@@ -628,9 +627,9 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         [tab reloadData];
     }
     [self.scrollTitles resetData];
-    self.currentPage = 0;
+//    self.currentPage = 0;
     [self.bottomView changeStatusWithTitles:self.scrollTitles.titles];
-    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+//    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 - (void)showAnimation {
@@ -672,24 +671,26 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 - (void)clickSure {
     [self showAnimation];
-    NSMutableArray *skuIdNumlist = [NSMutableArray array];
+    NSMutableArray *skuList = [NSMutableArray array];
     for (GHSpecificationSelectionTitleModel *titleModel in self.scrollTitles.titles) {
-        for (GHSpecificationSelectionModel *skuModel in titleModel.skuList) {
-            if (ValidStr(skuModel.count) && skuModel.count.integerValue > 0) {
-                NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-                dict[@"skuId"] = skuModel.sku_id;
-                dict[@"skuNum"] = skuModel.count;
-                dict[@"color"] = skuModel.color;
-                [skuIdNumlist addObject:dict];
-            }
-        }
+        [skuList addObject:titleModel];
     }
-    if (skuIdNumlist.count == 0) {
+    
+    NSArray <GHSpecificationSelectionTitleModel *>*deepCopyArray = [[NSArray alloc]initWithArray:skuList.copy copyItems:YES];
+    for (NSInteger i = 0 ; i < deepCopyArray.count; i ++) {
+        GHSpecificationSelectionTitleModel *titleModel = deepCopyArray[i];
+        titleModel.skuList = [[NSArray alloc]initWithArray:titleModel.skuList copyItems:YES];
+        
+    }
+    if (skuList.count == 0) {
         [ToastTool makeToast:@"至少选择一种商品" targetView:self.scrollView];
         return;
     }
-    [self resetData];
-    self.getDataBlock? self.getDataBlock(skuIdNumlist):nil;
+    weakself(self);
+    [ToastTool makeToast:@"添加成功" targetView:self.scrollView toastToolCompleteBlock:^{
+        [weakSelf resetData];
+        weakSelf.getDataBlock? weakSelf.getDataBlock(deepCopyArray):nil;
+    }];
 }
 
 #pragma mark - get

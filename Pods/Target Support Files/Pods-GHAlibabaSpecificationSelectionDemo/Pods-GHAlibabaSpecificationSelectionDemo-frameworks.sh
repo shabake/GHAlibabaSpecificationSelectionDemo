@@ -167,6 +167,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry-framework/Masonry.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PPBadgeView-framework/PPBadgeView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YYModel-framework/YYModel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking-framework/AFNetworking.framework"
@@ -175,6 +176,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry-framework/Masonry.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PPBadgeView-framework/PPBadgeView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YYModel-framework/YYModel.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

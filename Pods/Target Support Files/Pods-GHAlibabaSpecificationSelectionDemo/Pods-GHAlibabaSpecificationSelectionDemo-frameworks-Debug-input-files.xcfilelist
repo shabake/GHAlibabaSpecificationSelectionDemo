@@ -5,3 +5,4 @@ ${BUILT_PRODUCTS_DIR}/MJExtension-framework/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/Masonry-framework/Masonry.framework
 ${BUILT_PRODUCTS_DIR}/PPBadgeView-framework/PPBadgeView.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage-framework/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/YYModel-framework/YYModel.framework

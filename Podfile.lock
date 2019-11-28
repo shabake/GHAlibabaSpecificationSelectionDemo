@@ -21,6 +21,7 @@ PODS:
   - SDWebImage (5.2.2):
     - SDWebImage/Core (= 5.2.2)
   - SDWebImage/Core (5.2.2)
+  - YYModel (1.0.4)
 
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - MJExtension (= 3.0.10)
   - PPBadgeView (= 2.1.0)
   - SDWebImage (~> 5.0)
+  - YYModel
 
 SPEC REPOS:
   trunk:
@@ -38,6 +40,7 @@ SPEC REPOS:
     - MJExtension
     - PPBadgeView
     - SDWebImage
+    - YYModel
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -46,7 +49,8 @@ SPEC CHECKSUMS:
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   PPBadgeView: 167006b3497ebb6222942313a6b827e79791aae6
   SDWebImage: 5fcdb02cc35e05fc35791ec514b191d27189f872
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 136e46dad88e8aa954223c1bd8de9418e31008de
+PODFILE CHECKSUM: 73d6c916c2e83e9a4e0eed5587e98d7f46eda7eb
 
 COCOAPODS: 1.8.3

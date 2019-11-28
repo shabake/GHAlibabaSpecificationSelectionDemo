@@ -46,8 +46,8 @@
 @implementation GHScrollTitles
 
 - (void)resetData {
-    self.currentIndex = 0;
-    [self setMenusScrollView:CGPointZero];
+//    self.currentIndex = 0;
+//    [self setMenusScrollView:CGPointZero];
     [self reloadData];
 }
 

@@ -25,6 +25,8 @@
 		040359BF238F647500151AC2 /* GHAlibabaSpecificationSelection.html in Resources */ = {isa = PBXBuildFile; fileRef = 040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */; };
 		040359C5238F9F7100151AC2 /* UIView+ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359C4238F9F7100151AC2 /* UIView+ActivityIndicator.m */; };
 		040359C8238FA95F00151AC2 /* UIImage+ViewToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359C7238FA95F00151AC2 /* UIImage+ViewToImage.m */; };
+		040359CC2390250800151AC2 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359CB2390250800151AC2 /* GHButton.m */; };
+		040359CF2390253700151AC2 /* GHSkuListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359CE2390253700151AC2 /* GHSkuListViewController.m */; };
 		040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B523544A4E001D2877 /* AppDelegate.m */; };
 		040FA5BC23544A4E001D2877 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5BB23544A4E001D2877 /* ViewController.m */; };
 		040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5BD23544A4E001D2877 /* Main.storyboard */; };
@@ -33,6 +35,7 @@
 		040FA5C723544A4F001D2877 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5C623544A4F001D2877 /* main.m */; };
 		040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */; };
 		0462804B238EA09500C4C277 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0462804A238EA09500C4C277 /* GHTextField.m */; };
+		04C99BEA23902825005991EA /* GHSpecificationSelectionBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C99BE923902825005991EA /* GHSpecificationSelectionBaseModel.m */; };
 		F2990ADB9C9CE728232AA502 /* Pods_GHAlibabaSpecificationSelectionDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +75,10 @@
 		040359C4238F9F7100151AC2 /* UIView+ActivityIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ActivityIndicator.m"; sourceTree = "<group>"; };
 		040359C6238FA95F00151AC2 /* UIImage+ViewToImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ViewToImage.h"; sourceTree = "<group>"; };
 		040359C7238FA95F00151AC2 /* UIImage+ViewToImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ViewToImage.m"; sourceTree = "<group>"; };
+		040359CA2390250800151AC2 /* GHButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHButton.h; sourceTree = "<group>"; };
+		040359CB2390250800151AC2 /* GHButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHButton.m; sourceTree = "<group>"; };
+		040359CD2390253700151AC2 /* GHSkuListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHSkuListViewController.h; sourceTree = "<group>"; };
+		040359CE2390253700151AC2 /* GHSkuListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHSkuListViewController.m; sourceTree = "<group>"; };
 		040FA5B123544A4E001D2877 /* GHAlibabaSpecificationSelectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHAlibabaSpecificationSelectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040FA5B423544A4E001D2877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		040FA5B523544A4E001D2877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -87,6 +94,8 @@
 		04628044238E835200C4C277 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		04628049238EA09500C4C277 /* GHTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTextField.h; sourceTree = "<group>"; };
 		0462804A238EA09500C4C277 /* GHTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
+		04C99BE823902825005991EA /* GHSpecificationSelectionBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHSpecificationSelectionBaseModel.h; sourceTree = "<group>"; };
+		04C99BE923902825005991EA /* GHSpecificationSelectionBaseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionBaseModel.m; sourceTree = "<group>"; };
 		1D64B2FE7F97A0941C374FA6 /* Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig"; path = "Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo.release.xcconfig"; sourceTree = "<group>"; };
 		AFE7BDF1FC910CEB0A31B80C /* Pods_GHAlibabaSpecificationSelectionDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHAlibabaSpecificationSelectionDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6CA08E36706B06D4CE6A26 /* Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig"; path = "Target Support Files/Pods-GHAlibabaSpecificationSelectionDemo/Pods-GHAlibabaSpecificationSelectionDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,8 +150,19 @@
 				04035996238EB3BD00151AC2 /* GHSpecificationSelectionModel.m */,
 				0403599A238EB3BD00151AC2 /* GHSpecificationSelectionTitleModel.h */,
 				04035997238EB3BD00151AC2 /* GHSpecificationSelectionTitleModel.m */,
+				04C99BE823902825005991EA /* GHSpecificationSelectionBaseModel.h */,
+				04C99BE923902825005991EA /* GHSpecificationSelectionBaseModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		040359C92390249000151AC2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				040359CD2390253700151AC2 /* GHSkuListViewController.h */,
+				040359CE2390253700151AC2 /* GHSkuListViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		040FA5A823544A4E001D2877 = {
@@ -187,6 +207,7 @@
 		040FA5CD23544A61001D2877 /* GHAlibabaSpecificationSelection */ = {
 			isa = PBXGroup;
 			children = (
+				040359C92390249000151AC2 /* Controller */,
 				04035994238EB39D00151AC2 /* Model */,
 				0403598A238EB31900151AC2 /* Tool */,
 				04035983238EAF0A00151AC2 /* Category */,
@@ -214,6 +235,8 @@
 				0462804A238EA09500C4C277 /* GHTextField.m */,
 				04035980238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.h */,
 				04035981238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */,
+				040359CA2390250800151AC2 /* GHButton.h */,
+				040359CB2390250800151AC2 /* GHButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -359,14 +382,17 @@
 				040359C5238F9F7100151AC2 /* UIView+ActivityIndicator.m in Sources */,
 				040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */,
 				0462804B238EA09500C4C277 /* GHTextField.m in Sources */,
+				040359CF2390253700151AC2 /* GHSkuListViewController.m in Sources */,
 				040359AF238EB40000151AC2 /* GHAlibabaSpecificationSelection.m in Sources */,
 				04035992238EB38000151AC2 /* UIView+Extension.m in Sources */,
 				040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */,
 				0403598D238EB35100151AC2 /* ToastTool.m in Sources */,
+				04C99BEA23902825005991EA /* GHSpecificationSelectionBaseModel.m in Sources */,
 				04035993238EB38000151AC2 /* NSString+Extension.m in Sources */,
 				04035982238EAE3300151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */,
 				0403599E238EB3BD00151AC2 /* GHSpecificationSelectionModel.m in Sources */,
 				040359B1238EB40000151AC2 /* GHScrollTitles.m in Sources */,
+				040359CC2390250800151AC2 /* GHButton.m in Sources */,
 				04035989238EAF9000151AC2 /* UIImage+Extension.m in Sources */,
 				040FA5C723544A4F001D2877 /* main.m in Sources */,
 				040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */,

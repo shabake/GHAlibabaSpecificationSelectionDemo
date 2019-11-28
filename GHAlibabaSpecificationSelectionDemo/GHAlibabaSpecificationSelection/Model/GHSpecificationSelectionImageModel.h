@@ -6,11 +6,11 @@
 //  Copyright © 2019 macBookPro. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "GHSpecificationSelectionBaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GHSpecificationSelectionImageModel : NSObject
+@interface GHSpecificationSelectionImageModel : GHSpecificationSelectionBaseModel
 
 @property (nonatomic , copy) NSString *spu_code;
 
