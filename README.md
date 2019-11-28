@@ -43,7 +43,8 @@
 
 #### 演示
 
-![Untitled-2.gif](https://upload-images.jianshu.io/upload_images/1419035-a794247ba7dae2f6.gif?imageMogr2/auto-orient/strip)
+
+![Untitled.gif](https://upload-images.jianshu.io/upload_images/1419035-8bdb57d69448450d.gif?imageMogr2/auto-orient/strip)
 
 #### 使用
 
