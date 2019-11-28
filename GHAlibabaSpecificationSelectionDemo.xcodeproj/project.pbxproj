@@ -13,7 +13,6 @@
 		0403598D238EB35100151AC2 /* ToastTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0403598C238EB35100151AC2 /* ToastTool.m */; };
 		04035992238EB38000151AC2 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035990238EB38000151AC2 /* UIView+Extension.m */; };
 		04035993238EB38000151AC2 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035991238EB38000151AC2 /* NSString+Extension.m */; };
-		0403599D238EB3BD00151AC2 /* GHAlibabaSpecificationSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035995238EB3BD00151AC2 /* GHAlibabaSpecificationSelectionModel.m */; };
 		0403599E238EB3BD00151AC2 /* GHSpecificationSelectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035996238EB3BD00151AC2 /* GHSpecificationSelectionModel.m */; };
 		0403599F238EB3BD00151AC2 /* GHSpecificationSelectionTitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035997238EB3BD00151AC2 /* GHSpecificationSelectionTitleModel.m */; };
 		040359A0238EB3BD00151AC2 /* GHSpecificationSelectionImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04035998238EB3BD00151AC2 /* GHSpecificationSelectionImageModel.m */; };
@@ -23,7 +22,7 @@
 		040359B2238EB40000151AC2 /* GHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359A8238EB40000151AC2 /* GHTableView.m */; };
 		040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AA238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */; };
 		040359B5238EB40000151AC2 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AD238EB40000151AC2 /* GHTextField.m */; };
-		040359BD238ED8F100151AC2 /* GHAlibabaSpecificationSelectionDemo.html in Resources */ = {isa = PBXBuildFile; fileRef = 040359BC238ED8F100151AC2 /* GHAlibabaSpecificationSelectionDemo.html */; };
+		040359BF238F647500151AC2 /* GHAlibabaSpecificationSelection.html in Resources */ = {isa = PBXBuildFile; fileRef = 040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */; };
 		040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B523544A4E001D2877 /* AppDelegate.m */; };
 		040FA5BC23544A4E001D2877 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5BB23544A4E001D2877 /* ViewController.m */; };
 		040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5BD23544A4E001D2877 /* Main.storyboard */; };
@@ -48,11 +47,9 @@
 		0403598F238EB38000151AC2 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		04035990238EB38000151AC2 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		04035991238EB38000151AC2 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
-		04035995238EB3BD00151AC2 /* GHAlibabaSpecificationSelectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAlibabaSpecificationSelectionModel.m; sourceTree = "<group>"; };
 		04035996238EB3BD00151AC2 /* GHSpecificationSelectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionModel.m; sourceTree = "<group>"; };
 		04035997238EB3BD00151AC2 /* GHSpecificationSelectionTitleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionTitleModel.m; sourceTree = "<group>"; };
 		04035998238EB3BD00151AC2 /* GHSpecificationSelectionImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSpecificationSelectionImageModel.m; sourceTree = "<group>"; };
-		04035999238EB3BD00151AC2 /* GHAlibabaSpecificationSelectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAlibabaSpecificationSelectionModel.h; sourceTree = "<group>"; };
 		0403599A238EB3BD00151AC2 /* GHSpecificationSelectionTitleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSpecificationSelectionTitleModel.h; sourceTree = "<group>"; };
 		0403599B238EB3BD00151AC2 /* GHSpecificationSelectionImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSpecificationSelectionImageModel.h; sourceTree = "<group>"; };
 		0403599C238EB3BD00151AC2 /* GHSpecificationSelectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSpecificationSelectionModel.h; sourceTree = "<group>"; };
@@ -68,7 +65,7 @@
 		040359AB238EB40000151AC2 /* GHPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHPopView.h; sourceTree = "<group>"; };
 		040359AD238EB40000151AC2 /* GHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
 		040359AE238EB40000151AC2 /* GHScrollTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHScrollTitles.h; sourceTree = "<group>"; };
-		040359BC238ED8F100151AC2 /* GHAlibabaSpecificationSelectionDemo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHAlibabaSpecificationSelectionDemo.html; sourceTree = "<group>"; };
+		040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHAlibabaSpecificationSelection.html; sourceTree = "<group>"; };
 		040FA5B123544A4E001D2877 /* GHAlibabaSpecificationSelectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHAlibabaSpecificationSelectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040FA5B423544A4E001D2877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		040FA5B523544A4E001D2877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -128,8 +125,6 @@
 		04035994238EB39D00151AC2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				04035999238EB3BD00151AC2 /* GHAlibabaSpecificationSelectionModel.h */,
-				04035995238EB3BD00151AC2 /* GHAlibabaSpecificationSelectionModel.m */,
 				0403599B238EB3BD00151AC2 /* GHSpecificationSelectionImageModel.h */,
 				04035998238EB3BD00151AC2 /* GHSpecificationSelectionImageModel.m */,
 				0403599C238EB3BD00151AC2 /* GHSpecificationSelectionModel.h */,
@@ -168,8 +163,8 @@
 				040FA5BB23544A4E001D2877 /* ViewController.m */,
 				040FA5BD23544A4E001D2877 /* Main.storyboard */,
 				040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */,
-				040359BC238ED8F100151AC2 /* GHAlibabaSpecificationSelectionDemo.html */,
 				040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */,
+				040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */,
 				04628044238E835200C4C277 /* PrefixHeader.pch */,
 				040FA5C023544A4F001D2877 /* Assets.xcassets */,
 				040FA5C223544A4F001D2877 /* LaunchScreen.storyboard */,
@@ -290,8 +285,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				040FA5C423544A4F001D2877 /* LaunchScreen.storyboard in Resources */,
+				040359BF238F647500151AC2 /* GHAlibabaSpecificationSelection.html in Resources */,
 				040FA5C123544A4F001D2877 /* Assets.xcassets in Resources */,
-				040359BD238ED8F100151AC2 /* GHAlibabaSpecificationSelectionDemo.html in Resources */,
 				040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +344,6 @@
 				040359B0238EB40000151AC2 /* GHPopView.m in Sources */,
 				04035986238EAF2200151AC2 /* UIButton+Extension.m in Sources */,
 				040FA5BC23544A4E001D2877 /* ViewController.m in Sources */,
-				0403599D238EB3BD00151AC2 /* GHAlibabaSpecificationSelectionModel.m in Sources */,
 				040359A0238EB3BD00151AC2 /* GHSpecificationSelectionImageModel.m in Sources */,
 				040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */,
 				0462804B238EA09500C4C277 /* GHTextField.m in Sources */,

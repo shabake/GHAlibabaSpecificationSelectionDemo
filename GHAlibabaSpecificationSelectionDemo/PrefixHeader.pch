@@ -53,5 +53,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 #import "UIView+Extension.h"
 #import "Masonry.h"
+#import "ToastTool.h"
 
 #endif /* PrefixHeader_pch */

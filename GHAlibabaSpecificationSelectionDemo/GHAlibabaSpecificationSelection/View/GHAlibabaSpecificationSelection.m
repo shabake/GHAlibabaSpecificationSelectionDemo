@@ -9,7 +9,6 @@
 #import "GHAlibabaSpecificationSelection.h"
 #import "GHScrollTitles.h"
 #import "GHTableView.h"
-#import "GHAlibabaSpecificationSelectionModel.h"
 #import "GHSpecificationSelectionModel.h"
 #import "UIImageView+WebCache.h"
 #import "GHSpecificationSelectionImageModel.h"
@@ -66,13 +65,9 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 - (void)setSkuModel:(GHSpecificationSelectionModel *)skuModel {
     _skuModel = skuModel;
-    NSMutableArray *iconTypes = [NSMutableArray array];
 
     self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
-    //    }
-    self.skuName.text = [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];
- 
-    
+    self.skuName.text = [NSString stringWithFormat:@"%@%@%@", ValidStr(skuModel.color)? skuModel.color:@"", ValidStr(skuModel.color) ? @"/":@"", ValidStr(skuModel.specifications) ? skuModel.specifications :@""];    
     self.skuCode.text = [NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code];
     NSString *estimatedDate = @"";
     if (skuModel.count.integerValue <= skuModel.actual_stock.integerValue && skuModel.actual_stock.integerValue > 0) {
@@ -606,6 +601,19 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     [self.scrollView setContentOffset:offset animated:YES];
 }
 
+#pragma mark - 重置所有数据
+- (void)resetData {
+    for (GHSpecificationSelectionTitleModel *titleModel in self.scrollTitles.titles) {
+        titleModel.count = @"";
+        for (GHSpecificationSelectionModel *skuModel in titleModel.skuList) {
+            skuModel.count = @"";
+        }
+    }
+    [self.scrollTitles resetData];
+    [self.bottomView changeStatusWithTitles:self.scrollTitles.titles];
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
 #pragma mark - get
 
 - (GHScrollTitles *)scrollTitles {
@@ -675,7 +683,11 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
             }
         }
     }
-    [self.scrollTitles resetData];
+    if (skuIdNumlist.count == 0) {
+        [ToastTool makeToast:@"至少选择一种商品" targetView:self.scrollView];
+        return;
+    }
+    [self resetData];
     self.getDataBlock? self.getDataBlock(skuIdNumlist):nil;
 }
 

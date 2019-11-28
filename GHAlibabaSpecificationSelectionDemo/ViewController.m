@@ -11,8 +11,7 @@
 #import "GHHTTPSessionManager.h"
 #import "MJExtension.h"
 #import "GHSpecificationSelectionModel.h"
-#import "GHAlibabaSpecificationSelectionModel.h"
-#import "ToastTool.h"
+#import "GHSpecificationSelectionTitleModel.h"
 #import "GHSpecificationSelectionImageModel.h"
 #import "GHPopView.h"
 
@@ -35,7 +34,7 @@
     self.webView = webView;
     webView.scrollView.backgroundColor = [UIColor whiteColor];
     webView.delegate = self;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelectionDemo" ofType:@"html"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelection" ofType:@"html"];
      [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
     [self.view addSubview:webView];
     UIButton *show = [[UIButton alloc]init];
@@ -44,10 +43,8 @@
     [show sizeToFit];
     [show addTarget:self action:@selector(clickShow) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:show];
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
     [ToastTool makeToastActivity:self.view];
+
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
@@ -85,7 +82,7 @@
         }
         NSMutableArray *dataArray = [NSMutableArray array];
         for (NSInteger i = 0; i < colors.count; i++) {
-            GHAlibabaSpecificationSelectionModel *alibabaSpecificationSelectionModel = [[GHAlibabaSpecificationSelectionModel alloc]init];
+            GHSpecificationSelectionTitleModel *alibabaSpecificationSelectionModel = [[GHSpecificationSelectionTitleModel alloc]init];
             NSString *colorStr = colors[i];
             for (NSInteger j = 0; j < specifications.count; j++) {
                 GHSpecificationSelectionModel *specificationSelectionModel = specifications[j];
@@ -93,9 +90,9 @@
                 if ([specificationSelectionModel.color isEqualToString:colorStr]) {
                     [dataArray addObject:specificationSelectionModel];
                 }
-                alibabaSpecificationSelectionModel.specifications = dataArray.copy;
+                alibabaSpecificationSelectionModel.skuList = dataArray.copy;
             }
-            alibabaSpecificationSelectionModel.colorStr = colorStr;
+            alibabaSpecificationSelectionModel.color = colorStr;
             [dataArray addObject:alibabaSpecificationSelectionModel];
         }
         [ToastTool makeToastActivity:weakSelf.view toastToolCompleteBlock:^{

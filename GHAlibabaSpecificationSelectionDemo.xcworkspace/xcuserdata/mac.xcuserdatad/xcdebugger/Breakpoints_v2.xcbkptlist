@@ -25,8 +25,8 @@
             filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "+getCellHeightWithSkuModel:"
             landmarkType = "7">
          </BreakpointContent>
@@ -41,8 +41,8 @@
             filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "+getCellHeightWithSkuModel:"
             landmarkType = "7">
          </BreakpointContent>
@@ -57,8 +57,8 @@
             filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "+getCellHeightWithSkuModel:"
             landmarkType = "7">
          </BreakpointContent>
