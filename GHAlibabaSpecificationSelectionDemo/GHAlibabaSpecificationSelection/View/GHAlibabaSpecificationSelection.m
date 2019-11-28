@@ -68,7 +68,16 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 - (void)setSkuModel:(GHSpecificationSelectionModel *)skuModel {
     _skuModel = skuModel;
     self.skuName.attributedText = [self getRealString:skuModel];
-    self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
+    if ([skuModel.activityType isEqualToString:@"1"]) {
+            NSString *price = [NSString stringWithFormat:@"¥%.2f",skuModel.sale_price.doubleValue];;
+            NSString *activity_price = [NSString stringWithFormat:@"¥%.2f",skuModel.activity_price.doubleValue];
+            NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@",activity_price,price]];
+            [att addAttributes:@{NSForegroundColorAttributeName:KMainColor} range:NSMakeRange(0, activity_price.length)];
+            [att addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x999999),NSStrikethroughStyleAttributeName: @(1),NSBaselineOffsetAttributeName : @(NSUnderlineStyleSingle)} range:NSMakeRange(activity_price.length + 1, price.length)];
+        self.price.attributedText = att;
+    } else {
+        self.price.text = [NSString stringWithFormat:@"￥%@",skuModel.sale_price];
+    }
     self.skuCode.text = [NSString stringWithFormat:@"商品编码:%@",skuModel.sku_code];
     NSString *estimatedDate = @"";
     if (skuModel.count.integerValue <= skuModel.actual_stock.integerValue && skuModel.actual_stock.integerValue > 0) {
@@ -278,7 +287,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     if (_inventory == nil) {
         _inventory = [[UILabel alloc]init];
         _inventory.font =  [UIFont systemFontOfSize:10];
-        _inventory.textColor = KMainColor;
+        _inventory.textColor = [UIColor redColor];
         _inventory.text = @"库存不足";
         _inventory.textAlignment = NSTextAlignmentCenter;
     }

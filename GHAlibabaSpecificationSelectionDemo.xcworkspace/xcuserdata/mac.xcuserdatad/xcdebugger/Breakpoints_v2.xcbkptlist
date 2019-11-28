@@ -41,8 +41,8 @@
             filePath = "GHAlibabaSpecificationSelectionDemo/GHAlibabaSpecificationSelection/View/GHAlibabaSpecificationSelection.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "+getCellHeightWithSkuModel:"
             landmarkType = "7">
          </BreakpointContent>
