@@ -56,10 +56,25 @@
 }
 
 - (void)clickShow {
-    [self loadData];
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"GHAlibabaSpecificationSelection" message:@"选择类型" preferredStyle:UIAlertControllerStyleActionSheet];
+    weakself(self);
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"带颜色导航器" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf loadDataWithNavColorMachine:YES];
+    }];
+    
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"不带颜色导航器" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf loadDataWithNavColorMachine:NO];
+    }];
+    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    
+    [actionSheet addAction:action1];
+    [actionSheet addAction:action2];
+    [actionSheet addAction:action3];
+    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
-- (void)loadData {
+- (void)loadDataWithNavColorMachine:(BOOL)isHave {
     [ToastTool makeToastActivity:self.view];
     weakself(self);
     NSString *url = @"http://mock-api.com/7zxXywz3.mock/data";
@@ -96,7 +111,7 @@
             [dataArray addObject:alibabaSpecificationSelectionModel];
         }
         [ToastTool makeToastActivity:weakSelf.view toastToolCompleteBlock:^{
-            [weakSelf.alibabaSpecificationSelection setSkuList:specifications colors:colors sectePrice:sectePrice];
+            [weakSelf.alibabaSpecificationSelection setSkuList:specifications colors:isHave ? colors:nil sectePrice:sectePrice];
             [weakSelf.alibabaSpecificationSelection show];
         }];
     }];

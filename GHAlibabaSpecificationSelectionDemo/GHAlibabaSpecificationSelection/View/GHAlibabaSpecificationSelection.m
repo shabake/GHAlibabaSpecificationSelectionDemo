@@ -369,6 +369,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 - (void)setSkuList:(NSArray *)skuList colors:(NSArray *)colors sectePrice:(NSDictionary *)sectePrice {
     self.skuList = skuList;
+    self.colors = nil;
     self.colors = colors;
     NSString *max_price = sectePrice[@"max_price"];
     NSString *min_price = sectePrice[@"min_price"];
@@ -396,6 +397,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
             GHSpecificationSelectionModel *skuModel = skuList[j];
             [skus addObject:skuModel];
         }
+        self.currentPage = 0;
         titleModel.skuList = skus.copy;
         [titles addObject:titleModel];
     }
@@ -446,6 +448,11 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     if (self == [super initWithFrame:frame]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidShow:) name:UIKeyboardWillShowNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidHide:) name:UIKeyboardWillHideNotification object:nil];
+        [self.contentView addSubview:self.icon];
+        [self.contentView addSubview:self.close];
+        [self.contentView addSubview:self.title];
+        [self.contentView addSubview:self.price];
+        [self.contentView addSubview:self.shadow];
     }
     return self;
 }
@@ -474,32 +481,13 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self.contentView addSubview:self.icon];
     CGFloat width = kScreenWidth - (CGRectGetMaxX(self.icon.frame) + 20) - (kScreenWidth - CGRectGetMinX(self.close.frame)) - 10;
     CGSize titleSize = [NSString sizeWithText:self.title.text andFont:[UIFont systemFontOfSize:16] andMaxSize:CGSizeMake(width, MAXFLOAT)];
     self.title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 5, width, titleSize.height);
-    [self.contentView addSubview:self.close];
-    [self.contentView addSubview:self.title];
-    [self.contentView addSubview:self.price];
     self.price.frame = CGRectMake(CGRectGetMinX(self.title.frame), CGRectGetMaxY(self.title.frame) + 3, self.title.width , 21);
     [self.contentView addSubview:self.minimumOrder];
     self.minimumOrder.frame = CGRectMake(CGRectGetMinX(self.price.frame), CGRectGetMaxY(self.price.frame) + 2, self.price.width, 21);
-    [self.contentView addSubview:self.shadow];
     self.shadow.frame = CGRectMake(0, CGRectGetMaxY(self.icon.frame) + 10, kScreenWidth, 10);
-    
-    [self.contentView addSubview:self.scrollTitles];
-    if (self.colors.count > 1) {
-        [self.contentView addSubview:self.scrollTitles];
-        self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 50);
-    } else {
-        self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 0);
-    }
-    [self.contentView addSubview:self.scrollView];
-    CGFloat scrollViewY = self.colors.count > 1 ? CGRectGetMaxY(self.scrollTitles.frame):CGRectGetMaxY(self.shadow.frame) + 10;
-    CGFloat scrollViewH = 500 - CGRectGetMaxY(self.scrollTitles.frame) - 50;
-    self.scrollView.frame = CGRectMake(0,scrollViewY, kScreenWidth,scrollViewH);
-    [self.contentView addSubview:self.bottomView];
-    self.bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.scrollView.frame), kScreenWidth, 50 + kSafeAreaBottomHeight);
 }
 
 - (void)setTableViews {
@@ -507,8 +495,19 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     for (UITableView *tab in self.tables) {
         [tab removeFromSuperview];
     }
+    [self.contentView addSubview:self.scrollTitles];
+     if (self.colors.count > 1) {
+         [self.contentView addSubview:self.scrollTitles];
+         self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 50);
+     } else {
+         self.scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 0);
+     }
+    [self.contentView addSubview:self.scrollView];
+    CGFloat scrollViewH = 500 - CGRectGetMaxY(self.scrollTitles.frame) - 50;
+    CGFloat scrollViewY = self.colors.count > 1 ? CGRectGetMaxY(self.scrollTitles.frame):CGRectGetMaxY(self.shadow.frame) + 10;
+    self.scrollView.frame = CGRectMake(0,scrollViewY, kScreenWidth,scrollViewH);
     for (NSInteger index = 0; index < (self.colors.count > 1 ? self.colors.count:1); index++) {
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.frame.size.width * index  , 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.scrollView.frame.size.width * index  , 0, self.scrollView.frame.size.width, scrollViewH) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.tableFooterView = [UIView new];
@@ -519,6 +518,8 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         [self.scrollView addSubview:tableView];
     }
     self.scrollView.contentSize = CGSizeMake(kScreenWidth * self.scrollTitles.titles.count, 0);
+    [self.contentView addSubview:self.bottomView];
+    self.bottomView.frame = CGRectMake(0, CGRectGetMaxY(self.scrollView.frame), kScreenWidth, 50 + kSafeAreaBottomHeight);
 }
 
 #pragma mark UIScrollViewDelegate
@@ -581,61 +582,9 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
         }
     }
     [self.scrollTitles resetData];
+    self.currentPage = 0;
     [self.bottomView changeStatusWithTitles:self.scrollTitles.titles];
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-}
-
-#pragma mark - get
-
-- (GHScrollTitles *)scrollTitles {
-    if (_scrollTitles == nil) {
-        _scrollTitles = [[GHScrollTitles alloc]init];
-        _scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, [UIScreen mainScreen].bounds.size.width, 50);
-        weakself(self);
-        _scrollTitles.didClickTitleBlock = ^(NSInteger tag) {
-            [weakSelf scrollWithCurrentIndex:tag];
-        };
-        _scrollTitles.didClickLeftBlock = ^{
-            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x - [UIScreen mainScreen].bounds.size.width , 0);
-            [weakSelf.scrollView setContentOffset:point animated:YES];
-        };
-        _scrollTitles.didClickRightBlock = ^{
-            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x + [UIScreen mainScreen].bounds.size.width , 0);
-            [weakSelf.scrollView setContentOffset:point animated:YES];
-        };
-    }
-    return _scrollTitles;
-}
-
-- (UIScrollView *)scrollView {
-    if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc]init];
-        _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,self.contentViewHeight -CGRectGetMaxY(self.scrollTitles.frame));
-        _scrollView.pagingEnabled = YES;
-        _scrollView.delegate = self;
-        _scrollView.bounces = NO;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-    }
-    return _scrollView;
-}
-
-- (UIImageView *)icon {
-    if (_icon == nil) {
-        _icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, -20, 100, 100)];
-        _icon.layer.masksToBounds = YES;
-        _icon.layer.cornerRadius = 5;
-    }
-    return _icon;
-}
-
-- (UIButton *)close {
-    if (_close == nil) {
-        _close = [[UIButton alloc]init];
-        [_close setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-        _close.frame = CGRectMake(self.frame.size.width - 30 - 10, 20, 30, 30);
-        [_close addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _close;
 }
 
 - (void)clickSure {
@@ -660,6 +609,59 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     self.getDataBlock? self.getDataBlock(skuIdNumlist):nil;
 }
 
+#pragma mark - get
+
+- (GHScrollTitles *)scrollTitles {
+    if (_scrollTitles == nil) {
+        _scrollTitles = [[GHScrollTitles alloc]init];
+        _scrollTitles.frame = CGRectMake(0, CGRectGetMaxY(self.shadow.frame) + 10, kScreenWidth, 50);
+        weakself(self);
+        _scrollTitles.didClickTitleBlock = ^(NSInteger tag) {
+            [weakSelf scrollWithCurrentIndex:tag];
+        };
+        _scrollTitles.didClickLeftBlock = ^{
+            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x - [UIScreen mainScreen].bounds.size.width , 0);
+            [weakSelf.scrollView setContentOffset:point animated:YES];
+        };
+        _scrollTitles.didClickRightBlock = ^{
+            CGPoint point = CGPointMake(weakSelf.scrollView.contentOffset.x + [UIScreen mainScreen].bounds.size.width , 0);
+            [weakSelf.scrollView setContentOffset:point animated:YES];
+        };
+    }
+    return _scrollTitles;
+}
+
+- (UIScrollView *)scrollView {
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc]init];
+        _scrollView.frame = CGRectMake(0,CGRectGetMaxY(self.scrollTitles.frame), [UIScreen mainScreen].bounds.size.width,self.contentViewHeight -CGRectGetMaxY(self.scrollTitles.frame));
+        _scrollView.pagingEnabled = YES;
+        _scrollView.delegate = self;
+        _scrollView.backgroundColor = [UIColor redColor];
+        _scrollView.bounces = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+    }
+    return _scrollView;
+}
+
+- (UIImageView *)icon {
+    if (_icon == nil) {
+        _icon = [[UIImageView alloc]initWithFrame:CGRectMake(10, -20, 100, 100)];
+        _icon.layer.masksToBounds = YES;
+        _icon.layer.cornerRadius = 5;
+    }
+    return _icon;
+}
+
+- (UIButton *)close {
+    if (_close == nil) {
+        _close = [[UIButton alloc]init];
+        [_close setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        _close.frame = CGRectMake(self.frame.size.width - 30 - 10, 20, 30, 30);
+        [_close addTarget:self action:@selector(clickClose) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _close;
+}
 - (UIView *)shadow {
     if (_shadow == nil) {
         _shadow = [[UIView alloc]init];
@@ -676,7 +678,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     if (_minimumOrder == nil) {
         _minimumOrder = [[UILabel alloc]init];
         _minimumOrder.frame = CGRectMake(CGRectGetMinX(self.price.frame), CGRectGetMaxY(self.price.frame) + 5, 100, 21);
-        _minimumOrder.text = @"标题";
     }
     return _minimumOrder;
 }
@@ -685,7 +686,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     if (_price == nil) {
         _price = [[UILabel alloc]init];
         _price.frame = CGRectMake(CGRectGetMinX(self.title.frame), CGRectGetMaxY(self.title.frame) + 5, 100, 21);
-        _price.text = @"标题";
+        _price.textColor = [UIColor orangeColor];
     }
     return _price;
 }
@@ -694,7 +695,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     if (_title == nil) {
         _title = [[UILabel alloc]init];
         _title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 10, 200, 21);
-        _title.text = @"标题";
+        _title.numberOfLines = 0;
     }
     return _title;
 }

@@ -27,6 +27,8 @@ typedef void (^GHAlibabaSpecificationSelectionGetDataBlock)(NSArray *dataArray);
 
 @property (nonatomic , copy) GHAlibabaSpecificationSelectionGetDataBlock getDataBlock;
 
+- (void)resetData;
+
 @end
 
 NS_ASSUME_NONNULL_END
