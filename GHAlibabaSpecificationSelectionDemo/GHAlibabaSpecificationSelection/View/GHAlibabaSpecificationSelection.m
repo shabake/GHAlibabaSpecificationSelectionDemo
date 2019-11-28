@@ -527,7 +527,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     [super layoutSubviews];
     CGFloat width = kScreenWidth - (CGRectGetMaxX(self.icon.frame) + 20) - (kScreenWidth - CGRectGetMinX(self.close.frame)) - 10;
     CGSize titleSize = [NSString sizeWithText:self.title.text andFont:[UIFont systemFontOfSize:16] andMaxSize:CGSizeMake(width, MAXFLOAT)];
-    self.title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 5, width, titleSize.height);
+    self.title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 10, width, titleSize.height);
     self.price.frame = CGRectMake(CGRectGetMinX(self.title.frame), CGRectGetMaxY(self.title.frame) + 3, self.title.width , 21);
     [self.contentView addSubview:self.minimumOrder];
     self.minimumOrder.frame = CGRectMake(CGRectGetMinX(self.price.frame), CGRectGetMaxY(self.price.frame) + 2, self.price.width, 21);
@@ -739,7 +739,7 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
 - (UILabel *)title {
     if (_title == nil) {
         _title = [[UILabel alloc]init];
-        _title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 10, 200, 21);
+        _title.frame = CGRectMake(CGRectGetMaxX(self.icon.frame) + 20, 30, 200, 21);
         _title.numberOfLines = 0;
     }
     return _title;
