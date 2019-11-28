@@ -40,7 +40,7 @@
         }
     }
     self.sure.enabled = count == 0 ? NO:YES;
-    self.amount.text = [NSString stringWithFormat:@"￥%.2f",amount];
+    self.amount.text = [NSString stringWithFormat:@"共 %ld个￥%.2f",(long)count,amount];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -68,8 +68,9 @@
     
     [self addSubview:self.sure];
     [self.sure mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self);
+        make.left.right.equalTo(self);
         make.height.equalTo(@50);
+        make.bottom.equalTo(self).offset(-kSafeAreaBottomHeight);
     }];
 }
 
@@ -91,7 +92,7 @@
     if (_amount == nil) {
         _amount = [[UILabel alloc]init];
         _amount.textColor = KMainColor;
-        _amount.font = [UIFont systemFontOfSize:16];
+        _amount.font = [UIFont systemFontOfSize:14];
         _amount.textAlignment = NSTextAlignmentRight;
     }
     return _amount;
