@@ -17,6 +17,7 @@
 #import "UIView+ActivityIndicator.h"
 #import "UIImage+ViewToImage.h"
 #import "GHButton.h"
+#import "UIView+EmptyPage.h"
 
 @interface ViewController ()<UIWebViewDelegate>
 
@@ -63,7 +64,7 @@
     [home setImage:[UIImage imageNamed:@"home"] forState:UIControlStateNormal];
     [home sizeToFit];
 
-    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:shopCar],[[UIBarButtonItem alloc]initWithCustomView:home]];
+    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:home],[[UIBarButtonItem alloc]initWithCustomView:shopCar]];
     
     GHButton *show = [[GHButton alloc]init];
     [show setTitle:@"弹出" forState:UIControlStateNormal];
@@ -73,13 +74,11 @@
     [show addTarget:self action:@selector(clickShow) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:show];
     
-    self.navigationItem.title = @"GHAlibabaSpecificationSelection";
+     self.navigationItem.title = @"GHAlibabaSpecificationSelection";
      UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
      self.webView = webView;
      webView.scrollView.backgroundColor = [UIColor whiteColor];
      webView.delegate = self;
-     NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelection" ofType:@"html"];
-     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
      [self.view addSubview:webView];
      [ToastTool makeToastActivity:webView];
 }
@@ -131,11 +130,18 @@
 }
 
 - (void)loadData{
-        
+    [self clickHome];
+    [self.view hideEmptyPage];
     [ToastTool makeToastActivity:self.view];
     weakself(self);
     NSString *url = @"http://mock-api.com/7zxXywz3.mock/data";
     [[GHHTTPSessionManager sharedManager] getGoodDetailsWithUrl:url finishedBlock:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+        if (!responseObject) {
+            [weakSelf.view showEmptyPage:kSafeAreaTopHeight imageName:@"emptyPage" imageFrame:CGRectMake((kScreenWidth - 72) * 0.5, (kScreenHeight - 72) * 0.5 - kSafeAreaTopHeight, 72, 72) didClickReloadBlock:^{
+                [weakSelf loadData];
+            }];
+            return ;
+        }
         NSDictionary *dict = (NSDictionary *)responseObject;
         NSArray *colors = dict[@"color"];
         NSArray *data = dict[@"data"];
@@ -174,6 +180,12 @@
             weakSelf.sectePrice = sectePrice;
             weakSelf.colors = colors;
         }];
+        
+        if (error) {
+            [weakSelf.view showEmptyPage:kSafeAreaTopHeight imageName:@"emptyPage" imageFrame:CGRectMake((kScreenWidth - 72) * 0.5, (kScreenHeight - 72) * 0.5, 72, 72) didClickReloadBlock:^{
+                [weakSelf loadData];
+            }];
+        }
     }];
 }
 
