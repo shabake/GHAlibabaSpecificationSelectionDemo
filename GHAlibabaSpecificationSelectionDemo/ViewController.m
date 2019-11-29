@@ -192,7 +192,7 @@
                  }
              }
             weakSelf.dataArray = dataArray;
-            [weakSelf.shopCar pp_addBadgeWithText:[NSString stringWithFormat:@"%lu",(unsigned long)weakSelf.allCount]];
+            [weakSelf.shopCar pp_addBadgeWithText:[NSString stringWithFormat:@"%@",weakSelf.allCount <= 99 ? [NSString stringWithFormat:@"%lu",(unsigned long)weakSelf.allCount]:@"99+"]];
         };
     }
     return _alibabaSpecificationSelection;
