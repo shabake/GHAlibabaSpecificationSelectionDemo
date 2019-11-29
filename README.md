@@ -1,9 +1,9 @@
 
 #### 前言
 
-因为最近有需求，需要做和阿里巴巴样式相似的规格选择器，在简书，`cocoaChina`,`github`都没找到比较满意决定自己撸一个，实现一个`demo`展示大致的实现思路，如果你有更好方案，请联系我，如果这个`demo`对你有帮助，请点一个`star`是对我最大的鼓励，小弟感激不尽！
-
 ![未标题-2.png](https://upload-images.jianshu.io/upload_images/1419035-5554f91741be4c55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+仿阿里巴巴规格选择器，如果你有更好方案，请联系我，如果这个`demo`对你有帮助，请点一个`star`是对我最大的鼓励，小弟感激不尽！
 
 
 #### Features
@@ -272,7 +272,7 @@
 > 
 > 底部确定按钮初始化状态。
 > 
-> scrollTitles初始化。
+> `scrollTitles`初始化。
 
 
 ```objective-c

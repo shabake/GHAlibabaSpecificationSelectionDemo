@@ -26,7 +26,6 @@
 		040359C5238F9F7100151AC2 /* UIView+ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359C4238F9F7100151AC2 /* UIView+ActivityIndicator.m */; };
 		040359C8238FA95F00151AC2 /* UIImage+ViewToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359C7238FA95F00151AC2 /* UIImage+ViewToImage.m */; };
 		040359CC2390250800151AC2 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359CB2390250800151AC2 /* GHButton.m */; };
-		040359CF2390253700151AC2 /* GHSkuListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359CE2390253700151AC2 /* GHSkuListViewController.m */; };
 		040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5B523544A4E001D2877 /* AppDelegate.m */; };
 		040FA5BC23544A4E001D2877 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5BB23544A4E001D2877 /* ViewController.m */; };
 		040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5BD23544A4E001D2877 /* Main.storyboard */; };
@@ -77,8 +76,6 @@
 		040359C7238FA95F00151AC2 /* UIImage+ViewToImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ViewToImage.m"; sourceTree = "<group>"; };
 		040359CA2390250800151AC2 /* GHButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHButton.h; sourceTree = "<group>"; };
 		040359CB2390250800151AC2 /* GHButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHButton.m; sourceTree = "<group>"; };
-		040359CD2390253700151AC2 /* GHSkuListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHSkuListViewController.h; sourceTree = "<group>"; };
-		040359CE2390253700151AC2 /* GHSkuListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHSkuListViewController.m; sourceTree = "<group>"; };
 		040FA5B123544A4E001D2877 /* GHAlibabaSpecificationSelectionDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHAlibabaSpecificationSelectionDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		040FA5B423544A4E001D2877 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		040FA5B523544A4E001D2877 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -159,8 +156,6 @@
 		040359C92390249000151AC2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				040359CD2390253700151AC2 /* GHSkuListViewController.h */,
-				040359CE2390253700151AC2 /* GHSkuListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -382,7 +377,6 @@
 				040359C5238F9F7100151AC2 /* UIView+ActivityIndicator.m in Sources */,
 				040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */,
 				0462804B238EA09500C4C277 /* GHTextField.m in Sources */,
-				040359CF2390253700151AC2 /* GHSkuListViewController.m in Sources */,
 				040359AF238EB40000151AC2 /* GHAlibabaSpecificationSelection.m in Sources */,
 				04035992238EB38000151AC2 /* UIView+Extension.m in Sources */,
 				040FA5B623544A4E001D2877 /* AppDelegate.m in Sources */,

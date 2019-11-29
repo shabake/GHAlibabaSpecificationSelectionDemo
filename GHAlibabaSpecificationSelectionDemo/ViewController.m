@@ -17,16 +17,12 @@
 #import "UIView+ActivityIndicator.h"
 #import "UIImage+ViewToImage.h"
 #import "GHButton.h"
-#import "GHSkuListViewController.h"
 
 @interface ViewController ()<UIWebViewDelegate>
-
 
 @property (nonatomic , strong) GHAlibabaSpecificationSelection *alibabaSpecificationSelection;
 
 @property (nonatomic , strong) UIWebView *webView;
-
-@property (nonatomic , strong) UIImageView *cartAnimView;
 
 @property (nonatomic , strong) UIButton *shopCar;
 
@@ -36,6 +32,12 @@
 
 @property (nonatomic , strong) NSArray *dataArray;
 
+@property (nonatomic , strong) NSArray *specifications;
+
+@property (nonatomic , strong) NSArray *colors;
+
+@property (nonatomic , strong) NSDictionary *sectePrice;
+
 @end
 
 @implementation ViewController
@@ -43,16 +45,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self setupUI];
+    
+    [self loadData];
+}
 
-    self.navigationItem.title = @"GHAlibabaSpecificationSelection";
-    UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-    self.webView = webView;
-    webView.scrollView.backgroundColor = [UIColor whiteColor];
-    webView.delegate = self;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelection" ofType:@"html"];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
-    [self.view addSubview:webView];
-    [ToastTool makeToastActivity:self.view];
+- (void)setupUI {
+    
+    GHButton *shopCar = [[GHButton alloc]init];
+    self.shopCar = shopCar;
+    [shopCar setImage:[UIImage imageNamed:@"shopCar"] forState:UIControlStateNormal];
+    [shopCar sizeToFit];
+    [shopCar addTarget:self action:@selector(clickShopCar) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:shopCar];
     
     GHButton *show = [[GHButton alloc]init];
     [show setTitle:@"弹出" forState:UIControlStateNormal];
@@ -62,14 +67,16 @@
     [show addTarget:self action:@selector(clickShow) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:show];
     
-    GHButton *shopCar = [[GHButton alloc]init];
-    self.shopCar = shopCar;
-    [shopCar setImage:[UIImage imageNamed:@"shopCar"] forState:UIControlStateNormal];
-    [shopCar sizeToFit];
-    [shopCar addTarget:self action:@selector(clickShopCar) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:shopCar];
+    self.navigationItem.title = @"GHAlibabaSpecificationSelection";
+     UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+     self.webView = webView;
+     webView.scrollView.backgroundColor = [UIColor whiteColor];
+     webView.delegate = self;
+     NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelection" ofType:@"html"];
+     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
+     [self.view addSubview:webView];
+     [ToastTool makeToastActivity:webView];
 }
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     CGRect shopCarRect = [self.navigationController.view convertRect:self.shopCar.frame fromView:self.shopCar.superview];
@@ -77,21 +84,23 @@
 }
 
 - (void)clickShopCar {
-//    GHSkuListViewController *skuList = [[GHSkuListViewController alloc]init];
-//    skuList.dataArray = self.dataArray;
-//    [self.navigationController pushViewController:skuList animated:YES];
+
 }
 
 - (void)clickShow {
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"GHAlibabaSpecificationSelection" message:@"选择类型" preferredStyle:UIAlertControllerStyleActionSheet];
     weakself(self);
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"带颜色导航器" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [weakSelf loadDataWithNavColorMachine:YES];
+        [weakSelf.alibabaSpecificationSelection setSkuList:weakSelf.specifications colors:weakSelf.colors sectePrice:weakSelf.sectePrice];
+        [weakSelf.alibabaSpecificationSelection show];
+
     }];
     
     UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"不带颜色导航器" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [weakSelf loadDataWithNavColorMachine:NO];
+        [weakSelf.alibabaSpecificationSelection setSkuList:weakSelf.specifications colors:nil sectePrice:weakSelf.sectePrice];
+        [weakSelf.alibabaSpecificationSelection show];
     }];
+    
     UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
     }];
     
@@ -102,17 +111,15 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
-    [ToastTool hideToastActivity:self.view];
+    [ToastTool hideToastActivity:webView];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error API_DEPRECATED("No longer supported.", ios(2.0, 12.0)) {
-    [ToastTool hideToastActivity:self.view];
+    [ToastTool hideToastActivity:webView];
 }
 
-- (void)loadDataWithNavColorMachine:(BOOL)isHave {
-    
-
-    
+- (void)loadData{
+        
     [ToastTool makeToastActivity:self.view];
     weakself(self);
     NSString *url = @"http://mock-api.com/7zxXywz3.mock/data";
@@ -148,9 +155,12 @@
             alibabaSpecificationSelectionModel.color = colorStr;
             [dataArray addObject:alibabaSpecificationSelectionModel];
         }
+         
         [ToastTool makeToastActivity:weakSelf.view toastToolCompleteBlock:^{
-            [weakSelf.alibabaSpecificationSelection setSkuList:specifications colors:isHave ? colors:nil sectePrice:sectePrice];
-            [weakSelf.alibabaSpecificationSelection show];
+            [ToastTool makeToast:@"加载成功" targetView:weakSelf.view];
+            weakSelf.specifications = specifications;
+            weakSelf.sectePrice = sectePrice;
+            weakSelf.colors = colors;
         }];
     }];
 }
@@ -166,7 +176,6 @@
                  GHSpecificationSelectionTitleModel *titleModel = dataArray[i];
                  for (NSInteger j = 0 ; j < titleModel.skuList.count; j++) {
                      GHSpecificationSelectionModel *skuModel = titleModel.skuList[j];
-                     NSLog(@"用户选择的数据%@",skuModel.count);
                      weakSelf.allCount += skuModel.count.integerValue;
                  }
              }

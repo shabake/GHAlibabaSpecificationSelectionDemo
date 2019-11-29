@@ -680,7 +680,6 @@ typedef void (^GHSpecificationSelectionCellCountBlock)(GHSpecificationSelectionM
     for (NSInteger i = 0 ; i < deepCopyArray.count; i ++) {
         GHSpecificationSelectionTitleModel *titleModel = deepCopyArray[i];
         titleModel.skuList = [[NSArray alloc]initWithArray:titleModel.skuList copyItems:YES];
-        
     }
     if (skuList.count == 0) {
         [ToastTool makeToast:@"至少选择一种商品" targetView:self.scrollView];
