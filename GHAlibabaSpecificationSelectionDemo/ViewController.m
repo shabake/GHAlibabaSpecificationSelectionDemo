@@ -57,7 +57,13 @@
     [shopCar setImage:[UIImage imageNamed:@"shopCar"] forState:UIControlStateNormal];
     [shopCar sizeToFit];
     [shopCar addTarget:self action:@selector(clickShopCar) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:shopCar];
+    
+    GHButton *home = [[GHButton alloc]init];
+    [home addTarget:self action:@selector(clickHome) forControlEvents:UIControlEventTouchUpInside];
+    [home setImage:[UIImage imageNamed:@"home"] forState:UIControlStateNormal];
+    [home sizeToFit];
+
+    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc]initWithCustomView:shopCar],[[UIBarButtonItem alloc]initWithCustomView:home]];
     
     GHButton *show = [[GHButton alloc]init];
     [show setTitle:@"弹出" forState:UIControlStateNormal];
@@ -77,10 +83,16 @@
      [self.view addSubview:webView];
      [ToastTool makeToastActivity:webView];
 }
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     CGRect shopCarRect = [self.navigationController.view convertRect:self.shopCar.frame fromView:self.shopCar.superview];
     self.shopCarRect = shopCarRect;
+}
+
+- (void)clickHome {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"GHAlibabaSpecificationSelection" ofType:@"html"];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
 }
 
 - (void)clickShopCar {

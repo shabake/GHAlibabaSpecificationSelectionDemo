@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^FinishedBlock)(id responseObject,NSError *error);
+typedef void (^FinishedBlock)(id responseObject, NSError *error);
 
 @interface GHHTTPSessionManager : AFHTTPSessionManager
 
