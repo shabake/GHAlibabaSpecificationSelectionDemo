@@ -5,7 +5,9 @@
 
 #### 前言
 
-仿阿里巴巴规格选择器，如果你有更好方案，请联系我，如果这个`demo`对你有帮助，请点一个`star`是对我最大的鼓励，小弟感激不尽！
+仿阿里巴巴规格选择器，如果你有更好方案，请联系我，45329453@qq.com
+
+如果这个`demo`对你有帮助，请点一个★是对我最大的鼓励，小弟感激不尽！
 
 
 #### Features
@@ -210,10 +212,27 @@
 }</details>
 
 `GHSpecificationSelectionTitleModel` 颜色导航器模型
+
 `GHSpecificationSelectionModel` `sku` 模型
+
 `GHSpecificationSelectionImageModel` 图片模型
 
-初始化对象
+
+
+**更新依赖库**
+
+```
+cd 项目路径
+```
+
+```
+pod install
+```
+
+
+
+1.初始化对象
+
 `GHAlibabaSpecificationSelection`继承 `GHPopView` ，`GHPopView` 已经封装好弹出/收回动画，外部无需重复处理。
 
 ```objective-c
@@ -226,7 +245,7 @@
 @property (nonatomic, strong) UIView *contentView;
 ```
 
-`contentViewHeight`是`contentView`容器视图的高度，初始化的时候必传
+其中`contentViewHeight`是`contentView`容器视图的高度，初始化的时候必传
 
 `#import GHAlibabaSpecificationSelection.h`
 
@@ -240,7 +259,7 @@
 }
 ```
 
-传入数据
+2.传入数据
 
 
 ```objective-c
@@ -254,7 +273,7 @@
 
 ```
 
-取出用户选择
+3.取出用户选择
 
 ```objective-c
   _alibabaSpecificationSelection.getDataBlock = ^(NSArray * _Nonnull dataArray) {
@@ -266,7 +285,7 @@
   };
   
 ```
-重置数据
+4.重置数据
 
 > 在这个方法内部清除所有`count`。
 > 
@@ -280,6 +299,8 @@
 ```objective-c
 - (void) resetData;
 ```
+
+
 #### 与我联系
 
 45329453@qq.com

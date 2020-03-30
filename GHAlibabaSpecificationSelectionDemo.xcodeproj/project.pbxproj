@@ -22,7 +22,6 @@
 		040359B2238EB40000151AC2 /* GHTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359A8238EB40000151AC2 /* GHTableView.m */; };
 		040359B4238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AA238EB40000151AC2 /* GHAlibabaSpecificationSelectionBottomView.m */; };
 		040359B5238EB40000151AC2 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359AD238EB40000151AC2 /* GHTextField.m */; };
-		040359BF238F647500151AC2 /* GHAlibabaSpecificationSelection.html in Resources */ = {isa = PBXBuildFile; fileRef = 040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */; };
 		040359C5238F9F7100151AC2 /* UIView+ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359C4238F9F7100151AC2 /* UIView+ActivityIndicator.m */; };
 		040359C8238FA95F00151AC2 /* UIImage+ViewToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359C7238FA95F00151AC2 /* UIImage+ViewToImage.m */; };
 		040359CC2390250800151AC2 /* GHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 040359CB2390250800151AC2 /* GHButton.m */; };
@@ -33,6 +32,7 @@
 		040FA5C423544A4F001D2877 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5C223544A4F001D2877 /* LaunchScreen.storyboard */; };
 		040FA5C723544A4F001D2877 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5C623544A4F001D2877 /* main.m */; };
 		040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */; };
+		0450CE9724318DFC00BD600C /* GHAlibabaSpecificationSelection.html in Resources */ = {isa = PBXBuildFile; fileRef = 0450CE9624318DFC00BD600C /* GHAlibabaSpecificationSelection.html */; };
 		0462804B238EA09500C4C277 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0462804A238EA09500C4C277 /* GHTextField.m */; };
 		04C99BEA23902825005991EA /* GHSpecificationSelectionBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C99BE923902825005991EA /* GHSpecificationSelectionBaseModel.m */; };
 		04C99CF92390E2DB005991EA /* UIView+EmptyPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C99CF82390E2DB005991EA /* UIView+EmptyPage.m */; };
@@ -70,7 +70,6 @@
 		040359AB238EB40000151AC2 /* GHPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHPopView.h; sourceTree = "<group>"; };
 		040359AD238EB40000151AC2 /* GHTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
 		040359AE238EB40000151AC2 /* GHScrollTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHScrollTitles.h; sourceTree = "<group>"; };
-		040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHAlibabaSpecificationSelection.html; sourceTree = "<group>"; };
 		040359C3238F9F7100151AC2 /* UIView+ActivityIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ActivityIndicator.h"; sourceTree = "<group>"; };
 		040359C4238F9F7100151AC2 /* UIView+ActivityIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ActivityIndicator.m"; sourceTree = "<group>"; };
 		040359C6238FA95F00151AC2 /* UIImage+ViewToImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ViewToImage.h"; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		040FA5C623544A4F001D2877 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHHTTPSessionManager.h; sourceTree = "<group>"; };
 		040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHHTTPSessionManager.m; sourceTree = "<group>"; };
+		0450CE9624318DFC00BD600C /* GHAlibabaSpecificationSelection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHAlibabaSpecificationSelection.html; sourceTree = "<group>"; };
 		04628044238E835200C4C277 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		04628049238EA09500C4C277 /* GHTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTextField.h; sourceTree = "<group>"; };
 		0462804A238EA09500C4C277 /* GHTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
@@ -194,8 +194,8 @@
 				040FA5BD23544A4E001D2877 /* Main.storyboard */,
 				040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */,
 				040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */,
-				040359BE238F647500151AC2 /* GHAlibabaSpecificationSelection.html */,
 				04628044238E835200C4C277 /* PrefixHeader.pch */,
+				0450CE9624318DFC00BD600C /* GHAlibabaSpecificationSelection.html */,
 				040FA5C023544A4F001D2877 /* Assets.xcassets */,
 				040FA5C223544A4F001D2877 /* LaunchScreen.storyboard */,
 				040FA5C523544A4F001D2877 /* Info.plist */,
@@ -318,7 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040FA5C423544A4F001D2877 /* LaunchScreen.storyboard in Resources */,
-				040359BF238F647500151AC2 /* GHAlibabaSpecificationSelection.html in Resources */,
+				0450CE9724318DFC00BD600C /* GHAlibabaSpecificationSelection.html in Resources */,
 				040FA5C123544A4F001D2877 /* Assets.xcassets in Resources */,
 				040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */,
 			);
