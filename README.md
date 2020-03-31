@@ -233,7 +233,7 @@ pod install
 
 1.初始化对象
 
-`GHAlibabaSpecificationSelection`继承 `GHPopView` ，`GHPopView` 已经封装好弹出/收回动画，外部无需重复处理。
+`GHAlibabaSpecificationSelection`继承 `GHPopView` ，`GHPopView` 已经封装好**弹出**/**收回**动画，外部无需重复处理。
 
 ```objective-c
 - (void)show;
@@ -249,15 +249,7 @@ pod install
 
 `#import GHAlibabaSpecificationSelection.h`
 
-```objective-c
-- (GHAlibabaSpecificationSelection *)alibabaSpecificationSelection {
-    if (_alibabaSpecificationSelection == nil) {
-        _alibabaSpecificationSelection = [[GHAlibabaSpecificationSelection alloc]init];
-        _alibabaSpecificationSelection.contentViewHeight = 500;
-    }
-    return _alibabaSpecificationSelection;
-}
-```
+![carbon.png](https://upload-images.jianshu.io/upload_images/1419035-b4178d2971b737e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 2.传入数据
 
@@ -269,22 +261,16 @@ pod install
  * @param colors 颜色数组 非必传，如果为空，不显示颜色导航
  * @param sectePrice 价格区间字典
  */
-[self.alibabaSpecificationSelection setSkuList:specifications colors:colors sectePrice:sectePrice];
-
 ```
+
+![carbon-2.png](https://upload-images.jianshu.io/upload_images/1419035-d19fe88c461f9de7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 3.取出用户选择
 
-```objective-c
-  _alibabaSpecificationSelection.getDataBlock = ^(NSArray * _Nonnull dataArray) {
-	NSMutableString *string = [NSMutableString string];
-	for (NSDictionary *dict in dataArray) {
-    [string appendFormat:@"颜色:%@  数量:%@  id:%@\n",dict[@"color"],dict[@"skuNum"],dict[@"skuId"]];
-    }
-  	KAlert(@"用户选择的数据", string);
-  };
-  
-```
+![carbon-4.png](https://upload-images.jianshu.io/upload_images/1419035-0c222359f18ec0b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
 4.重置数据
 
 > 在这个方法内部清除所有`count`。

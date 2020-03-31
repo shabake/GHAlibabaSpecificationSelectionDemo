@@ -32,7 +32,7 @@
 		040FA5C423544A4F001D2877 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 040FA5C223544A4F001D2877 /* LaunchScreen.storyboard */; };
 		040FA5C723544A4F001D2877 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA5C623544A4F001D2877 /* main.m */; };
 		040FA62F23599B27001D2877 /* GHHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */; };
-		0450CE9724318DFC00BD600C /* GHAlibabaSpecificationSelection.html in Resources */ = {isa = PBXBuildFile; fileRef = 0450CE9624318DFC00BD600C /* GHAlibabaSpecificationSelection.html */; };
+		0450CF352432EBE000BD600C /* GHAlibabaSpecificationSelection.html in Resources */ = {isa = PBXBuildFile; fileRef = 0450CF342432EBE000BD600C /* GHAlibabaSpecificationSelection.html */; };
 		0462804B238EA09500C4C277 /* GHTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0462804A238EA09500C4C277 /* GHTextField.m */; };
 		04C99BEA23902825005991EA /* GHSpecificationSelectionBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C99BE923902825005991EA /* GHSpecificationSelectionBaseModel.m */; };
 		04C99CF92390E2DB005991EA /* UIView+EmptyPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C99CF82390E2DB005991EA /* UIView+EmptyPage.m */; };
@@ -88,7 +88,7 @@
 		040FA5C623544A4F001D2877 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHHTTPSessionManager.h; sourceTree = "<group>"; };
 		040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHHTTPSessionManager.m; sourceTree = "<group>"; };
-		0450CE9624318DFC00BD600C /* GHAlibabaSpecificationSelection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHAlibabaSpecificationSelection.html; sourceTree = "<group>"; };
+		0450CF342432EBE000BD600C /* GHAlibabaSpecificationSelection.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHAlibabaSpecificationSelection.html; sourceTree = "<group>"; };
 		04628044238E835200C4C277 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		04628049238EA09500C4C277 /* GHTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHTextField.h; sourceTree = "<group>"; };
 		0462804A238EA09500C4C277 /* GHTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHTextField.m; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 				040FA62D23599B27001D2877 /* GHHTTPSessionManager.h */,
 				040FA62E23599B27001D2877 /* GHHTTPSessionManager.m */,
 				04628044238E835200C4C277 /* PrefixHeader.pch */,
-				0450CE9624318DFC00BD600C /* GHAlibabaSpecificationSelection.html */,
+				0450CF342432EBE000BD600C /* GHAlibabaSpecificationSelection.html */,
 				040FA5C023544A4F001D2877 /* Assets.xcassets */,
 				040FA5C223544A4F001D2877 /* LaunchScreen.storyboard */,
 				040FA5C523544A4F001D2877 /* Info.plist */,
@@ -318,7 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				040FA5C423544A4F001D2877 /* LaunchScreen.storyboard in Resources */,
-				0450CE9724318DFC00BD600C /* GHAlibabaSpecificationSelection.html in Resources */,
+				0450CF352432EBE000BD600C /* GHAlibabaSpecificationSelection.html in Resources */,
 				040FA5C123544A4F001D2877 /* Assets.xcassets in Resources */,
 				040FA5BF23544A4E001D2877 /* Main.storyboard in Resources */,
 			);
