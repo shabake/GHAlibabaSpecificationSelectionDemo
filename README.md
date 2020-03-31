@@ -229,7 +229,11 @@ cd 项目路径
 pod install
 ```
 
+![carbon.png](https://upload-images.jianshu.io/upload_images/1419035-879de1e610062d8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+
+
+如果更新 `Pod` 遇到问题,可以参考这篇[文章](https://www.jianshu.com/p/cd057b2055c0)
 
 1.初始化对象
 

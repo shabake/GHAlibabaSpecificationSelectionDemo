@@ -1,0 +1,6 @@
+framework module PPBadgeView {
+  umbrella header "PPBadgeView-framework-umbrella.h"
+
+  export *
+  module * { export * }
+}
